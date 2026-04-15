@@ -1,0 +1,3070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Daily Tasks — BetterStep</title>
+<style>
+  :root {
+    --bg: #0B1220;
+    --bg-soft: #121A2D;
+    --bg-card: #141D33;
+    --border: #1F2A44;
+    --border-soft: #18223A;
+    --text: #E8ECF4;
+    --text-dim: #9AA4BF;
+    --text-muted: #6B7690;
+    --accent: #5AC8BE;
+    --accent-soft: rgba(90, 200, 190, 0.10);
+    --accent-border: rgba(90, 200, 190, 0.35);
+    --backend: #A5A9C7;
+    --backend-soft: rgba(165, 169, 199, 0.08);
+    --frontend: #8FCFC4;
+    --frontend-soft: rgba(143, 207, 196, 0.08);
+    --user: #C9B88A;
+    --user-soft: rgba(201, 184, 138, 0.08);
+    --red: #E58A94;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1240px; margin: 0 auto; }
+  code {
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.92em;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-soft);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--text);
+  }
+
+  .hero {
+    text-align: center;
+    padding: 56px 20px 48px;
+    border-radius: 16px;
+    margin-bottom: 48px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+  }
+  .hero .badge {
+    display: inline-block;
+    padding: 5px 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    margin-bottom: 18px;
+    border: 1px solid var(--accent-border);
+  }
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text);
+    letter-spacing: -0.8px;
+  }
+  .hero .subtitle {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 740px;
+    margin: 0 auto 28px;
+    line-height: 1.6;
+  }
+  .hero .meta {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .hero .meta strong { color: var(--text); font-weight: 600; }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px 0 50px;
+    padding: 16px 24px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .legend-dot.backend { background: var(--backend); }
+  .legend-dot.frontend { background: var(--frontend); }
+  .legend-dot.user { background: var(--user); }
+  .legend strong { color: var(--text); font-weight: 600; }
+
+  section { margin-bottom: 64px; }
+  .section-header {
+    margin-bottom: 26px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header .num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .section-header h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    letter-spacing: -0.6px;
+    color: var(--text);
+  }
+  .section-header p {
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+
+  .top-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 16px 8px 24px;
+  }
+  .top-node {
+    min-width: 132px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 10px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .top-node.main { border-color: var(--accent-border); background: var(--accent-soft); }
+  .top-node .tag {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .top-node strong {
+    display: block;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 3px;
+    font-weight: 600;
+  }
+  .top-node .desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .top-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  .phase {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 26px;
+    position: relative;
+  }
+  @media (max-width: 900px) { .phase { grid-template-columns: 1fr; } }
+  .phase-index {
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    background: var(--bg);
+    padding: 2px 10px;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 700;
+    letter-spacing: 1px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
+  .phone {
+    background: #060A14;
+    border: 1px solid #111A2D;
+    border-radius: 24px;
+    padding: 14px 8px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    height: fit-content;
+  }
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 44px; height: 4px;
+    background: #000;
+    border-radius: 2px;
+  }
+  .phone-screen {
+    background: #08080C;
+    border-radius: 18px;
+    padding: 22px 12px 12px;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+    color: #FAFAFA;
+    position: relative;
+  }
+  .phone-back {
+    width: 30px; height: 30px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #FAFAFA;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .phone-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 6px;
+  }
+  .phone-circle-visual {
+    width: 76px; height: 76px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.05);
+    margin-bottom: 12px;
+  }
+  .phone-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .phone-sub { font-size: 10px; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+  .phone-why {
+    border-left: 2px solid rgba(90,200,190,0.4);
+    padding: 4px 8px;
+    margin-bottom: 10px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.85);
+    text-align: left;
+    line-height: 1.5;
+  }
+  .phone-btn-pill {
+    padding: 10px 16px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.03);
+    color: #FAFAFA;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: auto;
+    align-self: center;
+  }
+  .phone-btn-primary {
+    padding: 12px;
+    border-radius: 12px;
+    background: #FAFAFA;
+    color: #08080C;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: auto;
+  }
+  .phone-slider {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    margin: 8px 0;
+    position: relative;
+  }
+  .phone-slider::after {
+    content: '';
+    position: absolute;
+    left: 45%;
+    top: -5px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #5AC8BE;
+  }
+  .phone-phase-label {
+    position: absolute;
+    top: 26%;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FAFAFA;
+  }
+  .phone-count {
+    font-size: 10px;
+    color: rgba(255,255,255,0.65);
+    margin-top: auto;
+    margin-bottom: 8px;
+  }
+  .phone-stop {
+    padding: 6px 14px;
+    border: 1px solid rgba(255,107,122,0.35);
+    border-radius: 999px;
+    background: rgba(0,0,0,0.3);
+    color: #FF8A94;
+    font-size: 9px;
+    font-weight: 500;
+    align-self: center;
+  }
+  .phone-emoji { font-size: 26px; margin-bottom: 8px; }
+  .phone-bc-badge {
+    padding: 5px 12px;
+    border-radius: 16px;
+    background: rgba(90,200,190,0.15);
+    border: 1px solid rgba(90,200,190,0.3);
+    color: #5AC8BE;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+  .phone-progress-track {
+    width: 80%;
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    align-self: center;
+  }
+  .phone-progress-fill { width: 55%; height: 100%; background: #5AC8BE; }
+
+  .phase-details h3 {
+    font-size: 20px;
+    margin-bottom: 4px;
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: -0.2px;
+  }
+  .phase-details .phase-sub {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  .lane {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    border-left-width: 3px;
+  }
+  .lane.backend { border-left-color: var(--backend); background: var(--backend-soft); }
+  .lane.frontend { border-left-color: var(--frontend); background: var(--frontend-soft); }
+  .lane.user { border-left-color: var(--user); background: var(--user-soft); }
+  .lane-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .lane.backend .lane-title { color: var(--backend); }
+  .lane.frontend .lane-title { color: var(--frontend); }
+  .lane.user .lane-title { color: var(--user); }
+  .lane-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .lane.backend .lane-dot { background: var(--backend); }
+  .lane.frontend .lane-dot { background: var(--frontend); }
+  .lane.user .lane-dot { background: var(--user); }
+  .lane ul {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .lane li {
+    padding: 2px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+  .lane li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+  }
+  .lane code {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: var(--text);
+  }
+
+  .phase-arrow {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 22px;
+    margin: 2px 0;
+    font-weight: 300;
+  }
+
+  .api-block {
+    background: #060A14;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 10px;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    overflow-x: auto;
+    line-height: 1.55;
+  }
+  .api-block .method {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-right: 8px;
+    letter-spacing: 0.5px;
+  }
+  .method.get { background: rgba(143,207,196,0.15); color: #8FCFC4; }
+  .method.post { background: rgba(90,200,190,0.15); color: #5AC8BE; }
+  .api-block .path { color: #E0C27C; font-size: 12px; }
+  .api-block pre { margin-top: 10px; white-space: pre-wrap; }
+  .api-block .key { color: #9FB9E0; }
+  .api-block .str { color: #8FCFC4; }
+  .api-block .num { color: #E58A94; }
+  .api-block .comment { color: var(--text-muted); font-style: italic; }
+  .api-block code { background: transparent; border: none; padding: 0; color: inherit; }
+
+  .branch {
+    background: var(--user-soft);
+    border: 1px solid var(--user);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .branch strong { color: var(--user); display: block; margin-bottom: 4px; }
+
+  .tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .task-mini {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    position: relative;
+  }
+  .task-mini.target {
+    border-color: var(--accent-border);
+    background: var(--accent-soft);
+  }
+  .task-mini .position {
+    position: absolute;
+    top: 6px; right: 6px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+  }
+  .task-mini.target .position {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .task-mini .icon { font-size: 20px; margin-bottom: 6px; }
+  .task-mini strong { font-size: 13px; display: block; margin-bottom: 2px; color: var(--text); font-weight: 600; }
+  .task-mini .desc { font-size: 10px; color: var(--text-muted); }
+
+  .callout {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .callout strong { color: var(--accent); display: block; margin-bottom: 4px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  thead th {
+    text-align: left;
+    padding: 12px 14px;
+    background: var(--bg-soft);
+    color: var(--text);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+  tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--text-dim);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--bg-soft); }
+  td strong { color: var(--text); font-weight: 600; }
+
+  .wf-intro {
+    color: var(--text-dim);
+    font-size: 14px;
+    padding: 14px 18px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+    border-radius: 8px;
+    margin-bottom: 26px;
+  }
+  .wf-intro strong { color: var(--accent); }
+  .wf-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .wf-pair { grid-template-columns: 1fr; } }
+  .wf-frame {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 9 / 19.5;
+    background: #08080C;
+    border: 1px solid #111A2D;
+    border-radius: 24px;
+    padding: 16px 12px;
+    position: relative;
+    margin: 0 auto;
+    color: #FAFAFA;
+    font-family: -apple-system, sans-serif;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  }
+  .wf-frame::before {
+    content: '';
+    position: absolute;
+    top: 7px; left: 50%;
+    transform: translateX(-50%);
+    width: 50px; height: 4px;
+    background: #000;
+    border-radius: 2px;
+  }
+  .wf-status {
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    margin: 16px 0 4px;
+  }
+  .wf-box {
+    border: 1px dashed rgba(140, 175, 220, 0.3);
+    border-radius: 6px;
+    position: relative;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  .wf-box-label {
+    position: absolute;
+    top: -7px;
+    left: 6px;
+    background: #08080C;
+    padding: 0 5px;
+    font-size: 8px;
+    color: rgba(140, 175, 220, 0.7);
+    letter-spacing: 0.4px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .wf-box.from-back {
+    border-color: rgba(165, 169, 199, 0.55);
+  }
+  .wf-box.from-back > .wf-box-label {
+    color: rgba(190, 175, 230, 0.85);
+  }
+  .wf-box.from-mobile {
+    border-color: rgba(143, 207, 196, 0.45);
+  }
+  .wf-box.from-mobile > .wf-box-label {
+    color: rgba(160, 220, 210, 0.82);
+  }
+  .wf-back {
+    width: 36px; height: 36px;
+    border-radius: 18px;
+    border: 1.2px dashed rgba(140, 175, 220, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+  .wf-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 4px;
+    min-height: 260px;
+  }
+  .wf-lottie-box {
+    width: 130px; height: 130px;
+    border: 1.2px dashed rgba(140, 175, 220, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .wf-lottie-box.large { width: 170px; height: 170px; }
+  .wf-lottie-box.xlarge { width: 200px; height: 200px; }
+  .wf-text { text-align: center; margin-bottom: 4px; }
+  .wf-text.h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.4px; }
+  .wf-text.h2 { font-size: 19px; font-weight: 700; }
+  .wf-text.body { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .wf-text.caption { font-size: 10px; color: rgba(255,255,255,0.4); font-style: italic; }
+  .wf-text.question { font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 22px; }
+  .wf-text.big-number { font-size: 40px; font-weight: 700; color: #5AC8BE; }
+  .wf-why {
+    border-left: 2px solid rgba(90, 200, 190, 0.5);
+    padding: 6px 10px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.85);
+    text-align: left;
+    margin: 12px 0;
+    width: 100%;
+  }
+  .wf-btn-pill {
+    display: block;
+    margin: 16px auto 6px;
+    padding: 10px 22px;
+    border: 1.2px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.03);
+    color: #FAFAFA;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    width: fit-content;
+  }
+  .wf-btn-primary {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: #FAFAFA;
+    color: #08080C;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    margin: 12px 0 4px;
+  }
+  .wf-btn-ghost {
+    display: block;
+    text-align: center;
+    color: rgba(255,107,122,0.85);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 8px;
+  }
+  .wf-progress {
+    width: 80%;
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    margin: 8px auto;
+    overflow: hidden;
+  }
+  .wf-progress-fill { width: 55%; height: 100%; background: #5AC8BE; }
+  .wf-slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 10px 0 4px;
+  }
+  .wf-slider {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
+    position: relative;
+  }
+  .wf-slider::after {
+    content: '';
+    position: absolute;
+    left: 45%; top: -7px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #5AC8BE;
+  }
+  .wf-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 2px;
+  }
+  .wf-circle {
+    width: 170px; height: 170px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.55);
+  }
+  .wf-session-bg {
+    position: absolute;
+    inset: 0;
+    background: #08080C;
+    border-radius: 22px;
+    z-index: 0;
+  }
+  .wf-session-bg-note {
+    position: absolute;
+    top: 40%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 9px;
+    color: rgba(140, 175, 220, 0.6);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    border: 1px dashed rgba(140, 175, 220, 0.3);
+  }
+  .wf-session-inner { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; }
+  .wf-phase-label {
+    position: absolute;
+    top: 26%;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    z-index: 2;
+  }
+  .wf-bc-pill {
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: rgba(90,200,190,0.15);
+    border: 1px solid rgba(90,200,190,0.3);
+    color: #5AC8BE;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 6px 0 14px;
+  }
+  .wf-session-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .wf-specs {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .wf-specs h4 {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+  }
+  .spec-group {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border-soft);
+  }
+  .spec-group:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .spec-group-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12px;
+    padding: 2px 0;
+    gap: 12px;
+  }
+  .spec-row .spec-key { color: var(--text-dim); flex: 1; }
+  .spec-row .spec-val {
+    color: var(--text);
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+    text-align: right;
+  }
+
+  .design-tokens {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin: 18px 0 26px;
+  }
+  .token-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .token-swatch {
+    width: 100%;
+    height: 44px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+  }
+  .token-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.3px;
+  }
+  .token-val {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'SF Mono', Menlo, monospace;
+    margin-top: 2px;
+  }
+  .token-use {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  /* COLLAPSIBLE BACKEND BLOCK */
+  .collapsible {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  .collapsible[open] {
+    border-color: var(--accent-border);
+  }
+  .collapsible-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    transition: background 0.15s ease;
+  }
+  .collapsible-toggle:hover { background: var(--bg-soft); }
+  .collapsible-toggle::-webkit-details-marker { display: none; }
+  .toggle-chevron {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
+    transition: transform 0.2s ease;
+  }
+  .collapsible[open] .toggle-chevron { transform: rotate(90deg); }
+  .toggle-label { flex: 1; }
+  .toggle-hint {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+  }
+  .collapsible-body {
+    padding: 14px 16px 18px;
+    border-top: 1px solid var(--border);
+    animation: fadeIn 0.2s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Discipline pills on the collapsible toggles */
+  .discipline-pill {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+  }
+  .discipline-pill-backend {
+    background: var(--backend-soft);
+    color: var(--backend);
+    border-color: rgba(165, 169, 199, 0.3);
+  }
+  .discipline-pill-design {
+    background: var(--frontend-soft);
+    color: var(--frontend);
+    border-color: rgba(143, 207, 196, 0.3);
+  }
+  /* Subtle left border tint per discipline when open */
+  .collapsible.discipline-backend[open] { border-left: 3px solid var(--backend); }
+  .collapsible.discipline-design[open] { border-left: 3px solid var(--frontend); }
+
+  /* Technique mini-grid (inside FOR BACKEND) */
+  .technique-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .technique-mini {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .technique-mini.crisis {
+    border-color: rgba(229, 138, 148, 0.5);
+    background: rgba(229, 138, 148, 0.05);
+  }
+  .technique-mini.gated {
+    border-color: rgba(201, 184, 138, 0.4);
+    background: rgba(201, 184, 138, 0.04);
+  }
+  .tm-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tm-pattern {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: 'SF Mono', Menlo, monospace;
+    margin-bottom: 8px;
+  }
+  .tm-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tm-hap {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .tm-flag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+  }
+  .tm-flag.safe { background: var(--frontend-soft); color: var(--frontend); border-color: rgba(143, 207, 196, 0.3); }
+  .tm-flag.ptsd { background: rgba(229, 138, 148, 0.12); color: #E58A94; border-color: rgba(229, 138, 148, 0.35); }
+  .tm-flag.phase { background: rgba(165, 169, 199, 0.1); color: var(--backend); border-color: rgba(165, 169, 199, 0.3); }
+  .tm-chip {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(229, 138, 148, 0.18);
+    color: #E58A94;
+    border: 1px solid rgba(229, 138, 148, 0.4);
+  }
+  .tm-chip-warn {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(201, 184, 138, 0.15);
+    color: var(--user);
+    border: 1px solid rgba(201, 184, 138, 0.4);
+  }
+
+  /* Haptic sampler */
+  .haptic-sampler {
+    margin-top: 22px;
+    padding: 18px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .haptic-sampler-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .haptic-sampler-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.2px;
+  }
+  .haptic-sampler-hint {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    line-height: 1.55;
+  }
+  .haptic-sampler-hint strong { color: var(--text); }
+  .haptic-pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  .haptic-pattern {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+  }
+  .haptic-pattern:hover {
+    border-color: var(--accent-border);
+    background: var(--accent-soft);
+    transform: translateY(-1px);
+  }
+  .haptic-pattern:active {
+    transform: translateY(0);
+    background: rgba(90,200,190,0.18);
+  }
+  .haptic-pattern-tap {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+  }
+  .haptic-pattern-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 2px;
+    letter-spacing: -0.1px;
+  }
+  .haptic-pattern-tech {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .haptic-pattern-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .haptic-pattern-wave {
+    display: block;
+    margin-top: 8px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--bg-soft);
+    border-radius: 4px;
+    padding: 4px 8px;
+    letter-spacing: 1px;
+  }
+
+  /* BIG task collapsible */
+  .big-collapsible {
+    background: linear-gradient(180deg, rgba(90, 200, 190, 0.04), var(--bg));
+    border: 1.5px solid var(--accent-border);
+    border-radius: 14px;
+  }
+  .big-collapsible[open] {
+    background: var(--bg-card);
+  }
+  .big-toggle {
+    padding: 18px 22px;
+    gap: 16px;
+  }
+  .big-toggle .toggle-chevron {
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .big-task-icon {
+    font-size: 30px;
+    line-height: 1;
+  }
+  .big-task-label {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .big-task-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.2px;
+  }
+  .big-task-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .big-task-reward {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .big-body {
+    padding: 22px 24px 28px;
+    border-top: 1px solid var(--border);
+  }
+  .big-body > .phase:first-child { margin-top: 0; }
+
+  /* STEP BLOCKS — refined timeline */
+  .step-block {
+    position: relative;
+    padding: 6px 0 26px 44px;
+    margin: 0;
+    transition: background 0.15s ease;
+  }
+  .step-block:last-of-type { padding-bottom: 0; }
+
+  /* Vertical connector line */
+  .step-block::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 18px;
+    bottom: -6px;
+    width: 1.5px;
+    background: var(--border);
+  }
+  .step-block:last-of-type::before { display: none; }
+
+  /* Dot marker */
+  .step-block::after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--text-muted);
+    box-shadow: 0 0 0 4px var(--bg-card);
+    z-index: 1;
+  }
+  .step-block.has-entry::after { border-color: var(--accent); box-shadow: 0 0 0 4px var(--bg-card), 0 0 0 5px rgba(90,200,190,0.15); }
+  .step-block.has-phase::after { border-color: var(--backend); }
+  .step-block.has-user::after { border-color: var(--user); }
+  .step-block.has-next::after { border-color: var(--frontend); background: var(--frontend-soft); }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .step-num {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+  .step-tag {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    line-height: 1.5;
+  }
+  .step-tag.entry {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent-border);
+  }
+  .step-tag.phase {
+    background: var(--backend-soft);
+    color: var(--backend);
+    border-color: rgba(165, 169, 199, 0.3);
+  }
+  .step-tag.user {
+    background: var(--user-soft);
+    color: var(--user);
+    border-color: rgba(201, 184, 138, 0.3);
+  }
+  .step-tag.next {
+    background: var(--frontend-soft);
+    color: var(--frontend);
+    border-color: rgba(143, 207, 196, 0.3);
+  }
+  .step-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.2px;
+    flex-basis: 100%;
+    margin-top: 2px;
+  }
+  .step-body {
+    list-style: none;
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    padding: 0;
+    margin-top: 4px;
+  }
+  .step-body li {
+    padding: 2px 0 2px 16px;
+    position: relative;
+  }
+  .step-body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 1.5px;
+    background: var(--text-muted);
+    opacity: 0.5;
+    border-radius: 1px;
+  }
+  .step-body strong { color: var(--text); font-weight: 600; }
+  .step-body code {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.88em;
+    padding: 1px 5px;
+  }
+  .step-arrow { display: none; }
+
+  /* Routing + loading warning (sits under FOR BACKEND / FOR DESIGN) */
+  .routing-warning {
+    margin-top: 18px;
+    padding: 16px 20px;
+    background: rgba(255, 176, 96, 0.06);
+    border: 1px solid rgba(255, 176, 96, 0.28);
+    border-left: 3px solid #FFB060;
+    border-radius: 10px;
+  }
+  .routing-warning-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .routing-warning-icon {
+    font-size: 16px;
+    color: #FFB060;
+    font-weight: 700;
+  }
+  .routing-warning-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #FFB060;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .routing-warning-body {
+    list-style: none;
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    padding: 0;
+    margin: 0;
+  }
+  .routing-warning-body li {
+    padding: 3px 0 3px 16px;
+    position: relative;
+  }
+  .routing-warning-body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 1.5px;
+    background: #FFB060;
+    opacity: 0.6;
+    border-radius: 1px;
+  }
+  .routing-warning-body strong { color: var(--text); font-weight: 600; }
+  .routing-warning-body code {
+    background: rgba(255, 176, 96, 0.1);
+    border: 1px solid rgba(255, 176, 96, 0.25);
+    color: var(--text);
+    font-size: 0.88em;
+    padding: 1px 5px;
+  }
+
+  /* Step with inline wireframe (side-by-side layout) */
+  .step-columns {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 24px;
+    align-items: start;
+    margin-top: 4px;
+  }
+  @media (max-width: 900px) {
+    .step-columns { grid-template-columns: 1fr; }
+  }
+  .step-wireframe { align-self: start; }
+  .step-wireframe .wf-frame {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 9 / 19.5;
+    padding: 10px 8px;
+    border-radius: 20px;
+    margin: 0;
+  }
+  .step-wireframe .wf-frame::before {
+    width: 38px; height: 3px; top: 6px;
+  }
+  .step-wireframe .wf-box { padding: 5px; margin-bottom: 5px; }
+  .step-wireframe .wf-box-label {
+    font-size: 6px; top: -5px; padding: 0 3px;
+  }
+  .step-wireframe .wf-status { font-size: 7px; margin: 10px 0 3px; }
+  .step-wireframe .wf-back { width: 22px; height: 22px; font-size: 10px; }
+  .step-wireframe .wf-lottie-box { width: 80px; height: 80px; font-size: 7px; margin-bottom: 8px; }
+  .step-wireframe .wf-lottie-box.large { width: 100px; height: 100px; }
+  .step-wireframe .wf-lottie-box.xlarge { width: 120px; height: 120px; }
+  .step-wireframe .wf-text.h1 { font-size: 14px; }
+  .step-wireframe .wf-text.h2 { font-size: 12px; }
+  .step-wireframe .wf-text.body { font-size: 8px; }
+  .step-wireframe .wf-text.caption { font-size: 7px; }
+  .step-wireframe .wf-text.question { font-size: 12px; margin-bottom: 10px; }
+  .step-wireframe .wf-text.big-number { font-size: 22px; }
+  .step-wireframe .wf-why { font-size: 8px; padding: 4px 6px; margin: 6px 0; line-height: 1.3; }
+  .step-wireframe .wf-btn-pill { font-size: 8px; padding: 6px 12px; margin: 10px auto 4px; }
+  .step-wireframe .wf-btn-primary { font-size: 9px; padding: 7px; margin: 8px 0 2px; }
+  .step-wireframe .wf-progress { height: 2px; }
+  .step-wireframe .wf-slider-row { margin: 6px 0 2px; gap: 6px; }
+  .step-wireframe .wf-slider { height: 2px; }
+  .step-wireframe .wf-slider::after { width: 10px; height: 10px; top: -4px; }
+  .step-wireframe .wf-slider-labels { font-size: 7px; padding: 0 10px; }
+  .step-wireframe .wf-circle { width: 90px; height: 90px; }
+  .step-wireframe .wf-phase-label { font-size: 11px; top: 24%; }
+  .step-wireframe .wf-bc-pill { font-size: 9px; padding: 5px 12px; margin: 4px 0 8px; }
+  .step-wireframe .wf-session-bg-note { font-size: 6px; padding: 3px 6px; }
+  .step-wireframe .wf-center { min-height: 0; padding: 8px 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <div class="badge">USER TASK FLOW · v5.2</div>
+    <h1>User Task Flow</h1>
+    <p class="subtitle">End-to-end documentation of the daily routine — 9 tasks, how the user moves through them, and what each discipline owns. Breathing Exercise (task 3) is detailed as the worked example; the same pattern applies to all nine tasks.</p>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot backend"></div> <strong>Backend</strong> — server, API, clinical decision engine</div>
+    <div class="legend-item"><div class="legend-dot frontend"></div> <strong>Design</strong> — visual spec, layout, tokens, motion</div>
+    <div class="legend-item"><div class="legend-dot user"></div> <strong>UX (mobile)</strong> — on-device behavior, user interactions</div>
+  </div>
+
+  <!-- ENTRY WIREFRAME (moved to top — flow starts here) -->
+  <section>
+    <div class="section-header">
+      <h2>The user opens the Tasks tab</h2>
+      <p>This is where every day begins. The user sees their BS coin balance at the top, then the 9 daily tasks below. Active task is highlighted; completed are dimmed; locked are gated until prior ones are done.</p>
+    </div>
+
+    <h3 style="color: var(--accent); font-size: 20px; margin-bottom: 14px; margin-top: 30px;">Entry · Tasks Tab (home)</h3>
+    <div class="wf-pair">
+      <div class="wf-frame">
+        <div class="wf-status">9:41 · iPhone status bar</div>
+
+        <!-- TOP BAR: BS COIN COUNTER -->
+        <div class="wf-box from-back" style="margin-top: 14px;">
+          <div class="wf-box-label">TOP BAR · BS COIN COUNTER · from back</div>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 4px 2px;">
+            <div style="font-size: 11px; color: rgba(255,255,255,0.55);">Good morning</div>
+            <div style="display: flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 999px; border: 1px solid rgba(90,200,190,0.35); background: rgba(90,200,190,0.08);">
+              <span style="font-size: 11px;">🪙</span>
+              <span style="font-size: 11px; font-weight: 700; color: #5AC8BE;">125 BC</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TITLE -->
+        <div class="wf-box from-mobile" style="margin-top: 10px;">
+          <div class="wf-box-label">TITLE · from mobile</div>
+          <div style="font-size: 22px; font-weight: 700;">Tasks</div>
+          <div style="font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px;">Your 9 daily tasks</div>
+        </div>
+
+        <!-- 9 CARDS -->
+        <div class="wf-box from-back" style="margin-top: 10px; flex: 1;">
+          <div class="wf-box-label">TASK CARDS · scrollable · from back</div>
+          <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 2px;">
+
+            <!-- Card 1: Check-in (completed) -->
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.6;">
+              <div style="width: 18px; height: 18px; background: rgba(80,120,200,0.15); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #9FB9E0; font-size: 9px; font-weight: 700;">1</div>
+              <span style="font-size: 11px;">📋</span>
+              <span style="font-size: 10px; font-weight: 600; flex: 1;">Daily Check-in</span>
+              <span style="font-size: 9px; color: rgba(143,207,196,0.7);">✓ Done</span>
+            </div>
+
+            <!-- Card 2: Pulse Check (completed) -->
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.6;">
+              <div style="width: 18px; height: 18px; background: rgba(80,120,200,0.15); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #9FB9E0; font-size: 9px; font-weight: 700;">2</div>
+              <span style="font-size: 11px;">💓</span>
+              <span style="font-size: 10px; font-weight: 600; flex: 1;">Pulse Check</span>
+              <span style="font-size: 9px; color: rgba(143,207,196,0.7);">✓ Done</span>
+            </div>
+
+            <!-- Card 3: Breathing -->
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.04);">
+              <div style="width: 18px; height: 18px; background: rgba(255,255,255,0.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.55); font-size: 9px; font-weight: 700;">3</div>
+              <span style="font-size: 11px;">🫁</span>
+              <span style="font-size: 10px; font-weight: 600; flex: 1;">Breathing Exercise</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.35);">3 min · +15 BC</span>
+            </div>
+
+            <!-- Card 4: Core Exercise (locked) -->
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.4;">
+              <div style="width: 18px; height: 18px; background: rgba(255,255,255,0.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 9px; font-weight: 700;">4</div>
+              <span style="font-size: 11px;">🧠</span>
+              <span style="font-size: 10px; font-weight: 600; flex: 1;">Core Exercise</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.3);">🔒</span>
+            </div>
+
+            <!-- Card 5: Chest -->
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.4;">
+              <div style="width: 18px; height: 18px; background: rgba(255,255,255,0.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 9px; font-weight: 700;">5</div>
+              <span style="font-size: 11px;">🎁</span>
+              <span style="font-size: 10px; font-weight: 600; flex: 1;">Chest</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.3);">🔒</span>
+            </div>
+
+            <!-- Card 6: Daily Quote -->
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.4;">
+              <div style="width: 18px; height: 18px; background: rgba(255,255,255,0.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 9px; font-weight: 700;">6</div>
+              <span style="font-size: 11px;">📖</span>
+              <span style="font-size: 10px; font-weight: 600; flex: 1;">Daily Quote</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.3);">🔒</span>
+            </div>
+
+            <!-- Card 7: Daily Reflection -->
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.4;">
+              <div style="width: 18px; height: 18px; background: rgba(255,255,255,0.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 9px; font-weight: 700;">7</div>
+              <span style="font-size: 11px;">✍️</span>
+              <span style="font-size: 10px; font-weight: 600; flex: 1;">Daily Reflection</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.3);">🔒</span>
+            </div>
+
+            <!-- Card 8: Daily Close -->
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.4;">
+              <div style="width: 18px; height: 18px; background: rgba(255,255,255,0.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 9px; font-weight: 700;">8</div>
+              <span style="font-size: 11px;">🌙</span>
+              <span style="font-size: 10px; font-weight: 600; flex: 1;">Daily Close</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.3);">🔒</span>
+            </div>
+
+            <!-- Card 9: Complete -->
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.4;">
+              <div style="width: 18px; height: 18px; background: rgba(255,255,255,0.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 9px; font-weight: 700;">9</div>
+              <span style="font-size: 11px;">✓</span>
+              <span style="font-size: 10px; font-weight: 600; flex: 1;">Complete</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.3);">🔒</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-specs">
+        <details class="collapsible discipline-backend">
+          <summary class="collapsible-toggle">
+            <span class="toggle-chevron">›</span>
+            <span class="discipline-pill discipline-pill-backend">FOR BACKEND</span>
+            <span class="toggle-label">API · data shape · server logic</span>
+            <span class="toggle-hint">(show / hide)</span>
+          </summary>
+
+          <div class="collapsible-body">
+            <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(143,207,196,0.12); border: 1px solid rgba(143,207,196,0.35); color: #8FCFC4; font-size: 11px; font-weight: 700; letter-spacing: 0.4px; margin-bottom: 14px;">
+              ✓ Design ready
+            </div>
+
+            <h4 style="margin-top: 4px;">Backend · what the client requests</h4>
+            <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 10px;">
+              When the Tasks tab mounts, the app calls this endpoint. The response drives the entire screen — BS coin balance at the top and the 9 task cards below.
+            </p>
+
+            <div class="api-block">
+          <span class="method get">GET</span><span class="path">/api/v1/routine/today</span>
+<pre>Response 200:
+{
+  <span class="key">"user"</span>: {
+    <span class="key">"bs_coin_balance"</span>: <span class="num">125</span>,
+    <span class="key">"greeting"</span>: <span class="str">"Good morning"</span>
+  },
+  <span class="key">"tasks"</span>: [
+    {
+      <span class="key">"id"</span>: <span class="str">"task1_checkin"</span>,
+      <span class="key">"position"</span>: <span class="num">1</span>,
+      <span class="key">"name"</span>: <span class="str">"Daily Check-in"</span>,
+      <span class="key">"icon"</span>: <span class="str">"📋"</span>,
+      <span class="key">"duration_min"</span>: <span class="num">2</span>,
+      <span class="key">"reward_bc"</span>: <span class="num">10</span>,
+      <span class="key">"status"</span>: <span class="str">"completed"</span>
+    },
+    {
+      <span class="key">"id"</span>: <span class="str">"task2_pulse"</span>,
+      <span class="key">"position"</span>: <span class="num">2</span>,
+      <span class="key">"name"</span>: <span class="str">"Pulse Check"</span>,
+      <span class="key">"icon"</span>: <span class="str">"💓"</span>,
+      <span class="key">"duration_min"</span>: <span class="num">1</span>,
+      <span class="key">"reward_bc"</span>: <span class="num">10</span>,
+      <span class="key">"status"</span>: <span class="str">"completed"</span>
+    },
+    {
+      <span class="key">"id"</span>: <span class="str">"task3_breathing"</span>,
+      <span class="key">"position"</span>: <span class="num">3</span>,
+      <span class="key">"name"</span>: <span class="str">"Breathing Exercise"</span>,
+      <span class="key">"icon"</span>: <span class="str">"🫁"</span>,
+      <span class="key">"duration_min"</span>: <span class="num">3</span>,
+      <span class="key">"reward_bc"</span>: <span class="num">15</span>,
+      <span class="key">"status"</span>: <span class="str">"available"</span>
+    },
+    {
+      <span class="key">"id"</span>: <span class="str">"task4_core_exercise"</span>,
+      <span class="key">"position"</span>: <span class="num">4</span>,
+      <span class="key">"name"</span>: <span class="str">"Core Exercise"</span>,
+      <span class="key">"icon"</span>: <span class="str">"🧠"</span>,
+      <span class="key">"duration_min"</span>: <span class="num">8</span>,
+      <span class="key">"reward_bc"</span>: <span class="num">25</span>,
+      <span class="key">"status"</span>: <span class="str">"locked"</span>
+    }
+    <span class="comment">// ... tasks 5-9 follow the same shape</span>
+  ]
+}</pre>
+        </div>
+
+            <p style="color: var(--text-dim); font-size: 12px; margin-top: 12px; line-height: 1.6;">
+              <strong style="color: var(--text);">Status values:</strong> <code>completed</code>, <code>available</code>, <code>locked</code>.
+              Locking is server-side: a task becomes <code>available</code> only when all lower-position tasks are <code>completed</code>.
+              The client never decides locking — it only renders what the server returns.
+            </p>
+
+            <h4 style="font-size: 13px; color: var(--text); margin: 22px 0 6px; letter-spacing: 0.2px;">Breathing · 11-technique library (backend picks one per session)</h4>
+            <p style="color: var(--text-dim); font-size: 12px; margin-bottom: 10px;">
+              The 3-Layer engine picks exactly one of these 11 based on Check-in state (Layer 1), pulse baseline (Layer 2), and recovery phase (Layer 3). Every session response contains one <code>technique</code> object from this library.
+            </p>
+            <div class="technique-grid">
+              <div class="technique-mini">
+                <div class="tm-title">Paced Breathing</div>
+                <div class="tm-pattern">4-5s in · 5-6s out · ~10s cycle</div>
+                <div class="tm-row"><span class="tm-hap">"The Tide"</span><span class="tm-flag safe">PTSD-safe</span><span class="tm-flag phase">Acute+</span></div>
+              </div>
+              <div class="technique-mini">
+                <div class="tm-title">Extended Exhale</div>
+                <div class="tm-pattern">4s in · 8s out · no hold</div>
+                <div class="tm-row"><span class="tm-hap">"The Retreat"</span><span class="tm-flag safe">PTSD-safe</span><span class="tm-flag phase">Acute+</span></div>
+              </div>
+              <div class="technique-mini">
+                <div class="tm-title">Box Breathing</div>
+                <div class="tm-pattern">4-4-4-4 · 16s cycle</div>
+                <div class="tm-row"><span class="tm-hap">"The Corners"</span><span class="tm-flag safe">PTSD-safe</span><span class="tm-flag phase">Acute+</span></div>
+              </div>
+              <div class="technique-mini">
+                <div class="tm-title">Cyclic Sighing</div>
+                <div class="tm-pattern">double inhale + long exhale</div>
+                <div class="tm-row"><span class="tm-hap">"The Double Tap"</span><span class="tm-flag safe">PTSD-safe</span><span class="tm-flag phase">Early+</span></div>
+              </div>
+              <div class="technique-mini crisis">
+                <div class="tm-title">Physiological Sigh <span class="tm-chip">CRISIS</span></div>
+                <div class="tm-pattern">30-sec rescue · 1-3 cycles</div>
+                <div class="tm-row"><span class="tm-hap">"The Burst"</span><span class="tm-flag safe">PTSD-safe</span><span class="tm-flag phase">Day 1+ override</span></div>
+              </div>
+              <div class="technique-mini">
+                <div class="tm-title">Diaphragmatic</div>
+                <div class="tm-pattern">belly · 4s in · 6s out</div>
+                <div class="tm-row"><span class="tm-hap">"The Belly Wave"</span><span class="tm-flag safe">PTSD-safe</span><span class="tm-flag phase">Acute+</span></div>
+              </div>
+              <div class="technique-mini gated">
+                <div class="tm-title">4-7-8 (Weil) <span class="tm-chip-warn">GATED</span></div>
+                <div class="tm-pattern">4s in · 7s hold · 8s out</div>
+                <div class="tm-row"><span class="tm-hap">"The Wave Receding"</span><span class="tm-flag ptsd">PTSD-filtered</span><span class="tm-flag phase">Stable+</span></div>
+              </div>
+              <div class="technique-mini">
+                <div class="tm-title">Alternating Breath</div>
+                <div class="tm-pattern">alt. nostril · 4s in · 6s out</div>
+                <div class="tm-row"><span class="tm-hap">"The Alternation"</span><span class="tm-flag safe">PTSD-safe</span><span class="tm-flag phase">Stable+</span></div>
+              </div>
+              <div class="technique-mini">
+                <div class="tm-title">Bhramari (humming)</div>
+                <div class="tm-pattern">nose in · humming exhale</div>
+                <div class="tm-row"><span class="tm-hap">"The Hum"</span><span class="tm-flag safe">PTSD-safe</span><span class="tm-flag phase">Stable+</span></div>
+              </div>
+              <div class="technique-mini">
+                <div class="tm-title">Pursed-Lip</div>
+                <div class="tm-pattern">nose in (2s) · pursed out (4s)</div>
+                <div class="tm-row"><span class="tm-hap">"The Press"</span><span class="tm-flag safe">PTSD-safe</span><span class="tm-flag phase">Acute+</span></div>
+              </div>
+              <div class="technique-mini gated">
+                <div class="tm-title">Body Scan (PMR) <span class="tm-chip-warn">DOUBLE-GATED</span></div>
+                <div class="tm-pattern">head → shoulders → chest → belly → legs</div>
+                <div class="tm-row"><span class="tm-hap">"The Traveling Scan"</span><span class="tm-flag ptsd">PTSD-filtered</span><span class="tm-flag phase">Maintained+</span></div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+<!-- COLLAPSIBLE: design view -->
+        <details class="collapsible discipline-design" style="margin-top: 18px;">
+          <summary class="collapsible-toggle">
+            <span class="toggle-chevron">›</span>
+            <span class="discipline-pill discipline-pill-design">FOR DESIGN</span>
+            <span class="toggle-label">Screen layout · task icons · tap-modal</span>
+            <span class="toggle-hint">(show / hide)</span>
+          </summary>
+          <div class="collapsible-body">
+            <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 14px;">
+              The Tasks tab shows 9 task icons in a grid. The user only sees the <strong>icon</strong> for each task — name / reward / duration are not on the home screen. Tapping an icon opens a small modal with the full details.
+            </p>
+
+            <h4 style="font-size: 13px; color: var(--text); margin-bottom: 8px; letter-spacing: 0.2px;">9 tasks (reference only — icons are what the user sees)</h4>
+            <div class="tasks-grid">
+              <div class="task-mini"><span class="position">1</span><div class="icon">📋</div><strong>Daily Check-in</strong><div class="desc">HIGH · 2 min · +10 BC</div></div>
+              <div class="task-mini"><span class="position">2</span><div class="icon">💓</div><strong>Pulse Check</strong><div class="desc">MED · 1 min · +10 BC</div></div>
+              <div class="task-mini"><span class="position">3</span><div class="icon">🫁</div><strong>Breathing Exercise</strong><div class="desc">HIGH · 3 min · +15 BC</div></div>
+              <div class="task-mini"><span class="position">4</span><div class="icon">🧠</div><strong>Core Exercise</strong><div class="desc">HIGH · 8 min · +25 BC</div></div>
+              <div class="task-mini"><span class="position">5</span><div class="icon">🎁</div><strong>Chest</strong><div class="desc">REWARD · 1 min · +20 BC</div></div>
+              <div class="task-mini"><span class="position">6</span><div class="icon">📖</div><strong>Daily Quote</strong><div class="desc">MED · 1 min · +5 BC</div></div>
+              <div class="task-mini"><span class="position">7</span><div class="icon">✍️</div><strong>Daily Reflection</strong><div class="desc">HIGH · 4 min · +15 BC</div></div>
+              <div class="task-mini"><span class="position">8</span><div class="icon">🌙</div><strong>Daily Close</strong><div class="desc">LOW · 2 min · +10 BC</div></div>
+              <div class="task-mini"><span class="position">9</span><div class="icon">✓</div><strong>Complete</strong><div class="desc">SUMMIT · 1 min · +20 BC</div></div>
+            </div>
+
+            <h4 style="font-size: 13px; color: var(--text); margin: 20px 0 8px; letter-spacing: 0.2px;">Tap an icon → modal with delivery prefs appears</h4>
+            <div style="border: 1px dashed var(--border); border-radius: 12px; padding: 20px 18px; display: flex; flex-direction: column; align-items: stretch; gap: 12px; background: var(--bg-soft);">
+
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                <div style="font-size: 42px; line-height: 1;">🫁</div>
+                <div style="font-size: 16px; font-weight: 700; color: var(--text); margin-top: 2px;">Breathing Exercise</div>
+                <div style="display: flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 999px; background: rgba(90,200,190,0.12); border: 1px solid rgba(90,200,190,0.3); color: var(--accent); font-size: 12px; font-weight: 700; margin-top: 4px;">
+                  🪙 +15 BS coin
+                </div>
+              </div>
+
+              <div style="height: 1px; background: var(--border); margin: 4px 0;"></div>
+
+              <!-- Audio mode picker (4 options) -->
+              <div>
+                <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.8px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">Audio mode</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                  <div style="padding: 8px 10px; border-radius: 8px; background: rgba(90,200,190,0.15); border: 1.5px solid var(--accent); display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 14px;">🔇</span>
+                    <span style="font-size: 11px; font-weight: 600; color: var(--accent);">Silence</span>
+                  </div>
+                  <div style="padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 14px;">🎙️</span>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-dim);">Voice</span>
+                  </div>
+                  <div style="padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 14px;">🎵</span>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-dim);">Music</span>
+                  </div>
+                  <div style="padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 14px;">🎙️🎵</span>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-dim);">Voice + Music</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Haptic toggle row -->
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border);">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 14px;">📳</span>
+                  <span style="font-size: 12px; font-weight: 600; color: var(--text);">Haptic</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <div style="width: 32px; height: 18px; border-radius: 999px; background: var(--accent); position: relative;">
+                    <div style="width: 14px; height: 14px; border-radius: 50%; background: #fff; position: absolute; right: 2px; top: 2px;"></div>
+                  </div>
+                  <span style="font-size: 11px; font-weight: 700; color: var(--accent);">ON</span>
+                </div>
+              </div>
+
+              <!-- Start button -->
+              <div style="padding: 12px 28px; border-radius: 999px; background: var(--accent); color: var(--bg); font-size: 14px; font-weight: 700; text-align: center; margin-top: 2px;">Start</div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 11px; margin-top: 6px; text-align: center; font-style: italic;">
+              Modal: task icon · name · +BS coin · audio mode (4) · haptic toggle · Start
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- ROUTING + LOADING WARNING -->
+    <div class="routing-warning">
+      <div class="routing-warning-header">
+        <span class="routing-warning-icon">⚠︎</span>
+        <span class="routing-warning-title">Routing &amp; loading — applies to every task</span>
+      </div>
+      <ul class="routing-warning-body">
+        <li>Every task must pass a unique <strong>task id</strong> (and the icon + display name) as a <strong>route parameter</strong> from the Tasks tab into the task screen. The task screen reads these from <code>route.params</code> on mount.</li>
+        <li>The task screen <strong>does not wait on a blank screen</strong> for backend data. The first thing it renders is the <strong>loading state</strong>: the task's <strong>icon</strong> and its <strong>name</strong> from the route params, so the user immediately sees <em>which</em> task they entered.</li>
+        <li>Only after <strong>real data arrives from the backend</strong> does the screen transition out of loading into the task's actual content. If the backend errors, loading still resolves and the error is surfaced — never a frozen spinner.</li>
+      </ul>
+    </div>
+
+
+
+    <!-- BIG COLLAPSIBLE: Daily Check-in full flow -->
+    <details class="collapsible big-collapsible" style="margin-top: 22px;">
+      <summary class="collapsible-toggle big-toggle">
+        <span class="toggle-chevron">›</span>
+        <span class="big-task-icon">📋</span>
+        <span class="big-task-label">
+          <span class="big-task-name">Daily Check-in</span>
+          <span class="big-task-sub">6 screens + branching flows · ~25–90s · task 1 of 9</span>
+        </span>
+        <span class="big-task-reward">🪙 +15 BC</span>
+      </summary>
+      <div class="collapsible-body big-body">
+
+    <!-- HAPTIC SAMPLER — 11 fingerprints, tap-to-feel -->
+    <div class="haptic-sampler">
+      <div class="haptic-sampler-header">
+        <span style="font-size: 18px;">📳</span>
+        <div class="haptic-sampler-title">Haptic fingerprints — tap to feel</div>
+      </div>
+      <p class="haptic-sampler-hint">
+        <strong>11 unique vibration patterns</strong>, one per breathing technique. The core WOW of the Breathing node: after 14 days, users can <strong>recognize which technique they're doing by feel alone</strong>. Each pattern is triggered by the backend's <code>haptic_pattern_id</code> during the session. <strong>Tap a card below to feel the pattern</strong> — works on iOS Safari / Android Chrome with vibration API enabled.
+      </p>
+
+      <div class="haptic-pattern-grid">
+        <div class="haptic-pattern" data-pattern="tide" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Tide"</div>
+          <div class="haptic-pattern-tech">Paced Breathing · 10s cycle</div>
+          <div class="haptic-pattern-desc">Slow rising and falling wave, no hard edges, continuous. Feels like ocean waves breathing with you.</div>
+          <span class="haptic-pattern-wave">~~~▁▂▃▄▅▄▃▂▁~~~</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="corners" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Corners"</div>
+          <div class="haptic-pattern-tech">Box Breathing · 16s cycle</div>
+          <div class="haptic-pattern-desc">Four sharp taps separated by 4-second silent holds. Drawing a square on your leg.</div>
+          <span class="haptic-pattern-wave">▌ · · · · ▌ · · · · ▌ · · · · ▌</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="wave_receding" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Wave Receding"</div>
+          <div class="haptic-pattern-tech">4-7-8 · 15s cycle · GATED</div>
+          <div class="haptic-pattern-desc">Firm buzz, 7 seconds of nothing, then slow fading vibration. Wave pulling back from shore.</div>
+          <span class="haptic-pattern-wave">▌ · · · · · · · ▅▄▃▂▁</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="traveling_scan" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Traveling Scan"</div>
+          <div class="haptic-pattern-tech">Body Scan · 15s cycle · DOUBLE-GATED</div>
+          <div class="haptic-pattern-desc">Sequential pulses traveling "down the body" via decreasing intensity, ending in long silence.</div>
+          <span class="haptic-pattern-wave">█▇ · ▆▅ · ▅▄ · ▄▃ · ▃▂ · · · ·</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="alternation" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Alternation"</div>
+          <div class="haptic-pattern-tech">Alternating Breath · 8s cycle</div>
+          <div class="haptic-pattern-desc">Alternating firm and soft pulses suggesting switching sides.</div>
+          <span class="haptic-pattern-wave">█ · · · · ▃ · · · · █ · · · · ▃</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="retreat" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Retreat"</div>
+          <div class="haptic-pattern-tech">Extended Exhale · 12s cycle</div>
+          <div class="haptic-pattern-desc">Short rising pulse then long decaying fade. Wave pulling far out. Asymmetric — decay is 2× rise.</div>
+          <span class="haptic-pattern-wave">▁▂▃▄▅▆▇█▇▆▅▄▃▂▁ · · · ·</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="double_tap" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Double Tap"</div>
+          <div class="haptic-pattern-tech">Cyclic Sighing · 8.5s cycle</div>
+          <div class="haptic-pattern-desc">"hup-hup... ahhhhhh" — two quick rising pulses then long slow decay.</div>
+          <span class="haptic-pattern-wave">▆ ▇ · · · · ▅▄▃▂▁ · · · · ·</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="burst" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Burst"</div>
+          <div class="haptic-pattern-tech">Physiological Sigh · CRISIS · 10s × 1-3</div>
+          <div class="haptic-pattern-desc">Same structure as Double Tap but INTENSE and condensed. Crisis rescue only. Maximum intensity.</div>
+          <span class="haptic-pattern-wave">█ █ · · · · █▇▆▅▄▃▂▁ · · · · · ·</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="belly_wave" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Belly Wave"</div>
+          <div class="haptic-pattern-tech">Diaphragmatic · 10s cycle</div>
+          <div class="haptic-pattern-desc">Deep slow rising pulse → slow falling. Low sharpness = "rounded" belly-like feel.</div>
+          <span class="haptic-pattern-wave">▁▂▃▄▆█▆▄▃▂▁ · · · ▁▂▃▄▆█</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="hum" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Hum"</div>
+          <div class="haptic-pattern-tech">Bhramari · 10s cycle</div>
+          <div class="haptic-pattern-desc">Continuous low-frequency vibration during full exhale. Internal buzzing resonance.</div>
+          <span class="haptic-pattern-wave">· · · · ▅▅▅▅▅▅▅▅▅▅ · · · ·</span>
+        </div>
+
+        <div class="haptic-pattern" data-pattern="press" onclick="playHaptic(this)">
+          <span class="haptic-pattern-tap">TAP</span>
+          <div class="haptic-pattern-name">"The Press"</div>
+          <div class="haptic-pattern-tech">Pursed-Lip · 6s cycle</div>
+          <div class="haptic-pattern-desc">Gentle rising pulse → firm continuous medium vibration on exhale. Air pressure through narrow tube.</div>
+          <span class="haptic-pattern-wave">▁▂▃ · ▆▆▆▆▆▆▆ · ▁▂▃ · ▆▆▆▆</span>
+        </div>
+      </div>
+
+      <p style="font-size: 11px; color: var(--text-muted); margin-top: 14px; font-style: italic; line-height: 1.5;">
+        Progressive intensity rule: during a real session, all haptic intensities are multiplied by a session-progress factor that softens over time (1.0 → 0.4 over 5 min). The phone "calms down with the user" — narrative biofeedback without biometrics.
+      </p>
+    </div>
+
+    <script>
+      // Vibration API — works on Android Chrome/Firefox and iOS 16.4+ Safari
+      // with user-initiated interaction. Each call is a pattern array:
+      // [vibMs, pauseMs, vibMs, ...]
+      const HAPTIC_PATTERNS = {
+        tide:           [500,0,500,0,500,0,500,0,500],
+        corners:        [100,4000,100,4000,100,4000,100],
+        wave_receding:  [150,7000,800],
+        traveling_scan: [500,1500,500,1500,500,1500,500,1500,500,5000],
+        alternation:    [200,4000,100,4000,200,4000,100],
+        retreat:        [100,100,200,100,300,100,400,100,300,100,200,100,100],
+        double_tap:     [80,120,80,200,600],
+        burst:          [150,100,200,200,900,4000,150,100,200,200,900],
+        belly_wave:     [800,1200,800],
+        hum:            [1200,800,1200],
+        press:          [200,200,600,400,200,200,600]
+      };
+      function playHaptic(el) {
+        const p = el.dataset.pattern;
+        const pattern = HAPTIC_PATTERNS[p];
+        if (!pattern) return;
+        if (navigator.vibrate) {
+          navigator.vibrate(0);  // cancel any pending
+          navigator.vibrate(pattern);
+        }
+      }
+    </script>
+
+
+        <!-- OVERVIEW / STEPS -->
+        <section>
+          <div class="section-header">
+            <h2>Step-by-step flow</h2>
+            <p>Every screen and every branch in order. Core path is 4 screens (~25s). Negative mood or low confidence adds HALT. A "Barely" or "No" answer on the accountability screen opens a sub-flow.</p>
+          </div>
+
+          <div class="step-block has-entry">
+            <div class="step-header">
+              <span class="step-num">00</span>
+              <span class="step-tag entry">GREETING</span>
+              <span class="step-title">Time-aware greeting · 2s auto-advance</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li>Not a screen — a transition moment. Auto-advances after <strong>2 seconds</strong>. Tap anywhere to skip instantly.</li>
+                <li>Time-of-day aware copy: <code>Good morning</code> (before 12pm) · <code>Good afternoon</code> (12–5pm) · <code>Good evening</code> (5–9pm) · <code>Hey</code> (9pm–4am).</li>
+                <li>Shows user's <strong>name</strong> (from backend) and <strong>Day N</strong> counter — the most meaningful number in recovery.</li>
+                <li><strong>Day 1 skip:</strong> no greeting on first-ever check-in. Mood screen shows a small "Your first check-in" label instead.</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: center;">
+                    <div class="wf-box from-back"><div class="wf-box-label">GREETING · from back</div>
+                      <div class="wf-text body" style="font-size: 12px; text-align: center;">Good morning,</div>
+                      <div class="wf-text h2" style="text-align: center; margin-top: 6px;">Alex.</div>
+                      <div class="wf-text body" style="font-size: 11px; text-align: center; margin-top: 10px;">Day 47. Let\'s check in.</div>
+                    </div>
+                    <div class="wf-text caption" style="margin-top: 12px;">auto-advance 2s · tap to skip</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-phase">
+            <div class="step-header">
+              <span class="step-num">01</span>
+              <span class="step-tag phase">SCREEN 1</span>
+              <span class="step-title">Mood — "How are you feeling?"</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li>5 horizontal illustrated face cards, left-to-right negative → positive.</li>
+                <li>Options: <strong>Rough · Low · Okay · Good · Great</strong> (with colored selected states: red → amber → grey → green → bright green).</li>
+                <li>Tap → scale 1.05× + colored border + background tint → <strong>auto-advance 380ms</strong>.</li>
+                <li>Triggers HALT screen if user picks <strong>Rough</strong> or <strong>Low</strong>.</li>
+                <li>Clinical basis: affect labeling (Lieberman 2007) reduces amygdala activation.</li>
+                <li>RRS weight: <strong>20%</strong>.</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: flex-start; padding-top: 20px;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">QUESTION · from mobile</div><div class="wf-text question">How are you feeling?</div></div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 16px;"><div class="wf-box-label">5 MOOD CARDS · from mobile</div>
+                      <div style="display: flex; gap: 3px; justify-content: space-between; margin-top: 4px;">
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(244,63,94,0.15); border: 1px solid rgba(244,63,94,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px;">😣</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px;">😔</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(107,114,128,0.12); border: 1px solid rgba(107,114,128,0.4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px;">😐</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px;">🙂</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(22,163,74,0.15); border: 1px solid rgba(22,163,74,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px;">😄</div>
+                      </div>
+                      <div style="display: flex; gap: 3px; justify-content: space-between; margin-top: 4px; font-size: 6px; color: rgba(255,255,255,0.4);">
+                        <span style="flex: 1; text-align: center;">Rough</span>
+                        <span style="flex: 1; text-align: center;">Low</span>
+                        <span style="flex: 1; text-align: center;">Okay</span>
+                        <span style="flex: 1; text-align: center;">Good</span>
+                        <span style="flex: 1; text-align: center;">Great</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-phase">
+            <div class="step-header">
+              <span class="step-num">02</span>
+              <span class="step-tag phase">SCREEN 2</span>
+              <span class="step-title">Sleep — "How did you sleep?"</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li><strong>Two barrel pickers</strong> — Bedtime + Woke up. 15-min increments, <strong>infinite scroll</strong> wrapping past midnight. Default: 11:00 PM / 7:00 AM.</li>
+                <li>Calculated duration below pickers: <em>"8h 0m of sleep"</em>. If &lt;5h → amber warning <em>"Low sleep affects impulse control"</em>.</li>
+                <li>If HealthConnect connected: barrels auto-fill (editable).</li>
+                <li><strong>5 sleep quality cards</strong>: Awful · Poor · Okay · Good · Great. Icons: 🚫 😪 😴 🌙 ✨.</li>
+                <li><strong>Critical:</strong> quality is <strong>NEVER auto-selected</strong> from hours. Subjective feel ≠ objective duration.</li>
+                <li>If user drags a barrel after picking quality → quality selection clears (forces re-commit).</li>
+                <li>Advance: quality card tap → auto-advance 380ms. No continue button.</li>
+                <li>RRS weight: <strong>16%</strong>. Clinical basis: Brower &amp; Perron (2010) — sleep disturbance predicted relapse in 50–70% of SUD patients.</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: flex-start; padding-top: 14px;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">QUESTION · from mobile</div><div class="wf-text" style="font-size: 14px; font-weight: 700; text-align: center;">How did you sleep?</div></div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 8px;"><div class="wf-box-label">2 BARREL PICKERS · from mobile</div>
+                      <div style="display: flex; gap: 6px; justify-content: center; margin-top: 6px;">
+                        <div style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 4px; text-align: center;">
+                          <div style="font-size: 7px; color: rgba(255,255,255,0.5);">🌙 BEDTIME</div>
+                          <div style="font-size: 11px; font-weight: 700; color: #fff; margin-top: 2px;">11:00 PM</div>
+                        </div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 4px; text-align: center;">
+                          <div style="font-size: 7px; color: rgba(255,255,255,0.5);">☀️ WOKE UP</div>
+                          <div style="font-size: 11px; font-weight: 700; color: #fff; margin-top: 2px;">7:00 AM</div>
+                        </div>
+                      </div>
+                      <div style="text-align: center; font-size: 9px; color: #5AC8BE; font-weight: 600; margin-top: 6px;">8h 0m of sleep</div>
+                    </div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 6px;"><div class="wf-box-label">5 QUALITY CARDS · from mobile</div>
+                      <div style="display: flex; gap: 3px; justify-content: space-between; margin-top: 4px;">
+                        <div style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 3px; text-align: center; font-size: 10px;">🚫</div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 3px; text-align: center; font-size: 10px;">😪</div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 3px; text-align: center; font-size: 10px;">😴</div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 3px; text-align: center; font-size: 10px;">🌙</div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 3px; text-align: center; font-size: 10px;">✨</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-phase">
+            <div class="step-header">
+              <span class="step-num">03</span>
+              <span class="step-tag phase">SCREEN 3</span>
+              <span class="step-title">Cravings — "Any cravings lately?"</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li>4 horizontal wave cards: <strong>None</strong> (—, green highlight) · <strong>A little</strong> (🌊) · <strong>Strong</strong> (🌊🌊) · <strong>Intense</strong> (🌊🌊🌊).</li>
+                <li>Tap → auto-advance 380ms. On Strong/Intense: inline copy appears for 1s — <em>"Noted. Let\'s make sure you\'re set up for today."</em> then advances.</li>
+                <li><strong>"Lately"</strong> is deliberately time-ambiguous (captures last night at 7AM, this morning at 2PM, the whole day at 11PM).</li>
+                <li>Wave icons = subconscious ACT urge surfing metaphor — "urges are waves, waves pass."</li>
+                <li>RRS weight: <strong>30% — largest single component</strong>. Craving increase = 14× more likely to use same day (Shiffman 2009).</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: flex-start; padding-top: 20px;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">QUESTION · from mobile</div><div class="wf-text question">Any cravings lately?</div></div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 16px;"><div class="wf-box-label">4 WAVE CARDS · from mobile</div>
+                      <div style="display: flex; gap: 4px; justify-content: space-between; margin-top: 4px;">
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #4ADE80; font-weight: 700;">—</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px;">🌊</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px;">🌊🌊</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px;">🌊🌊🌊</div>
+                      </div>
+                      <div style="display: flex; gap: 3px; justify-content: space-between; margin-top: 4px; font-size: 6px; color: rgba(255,255,255,0.4);">
+                        <span style="flex: 1; text-align: center;">None</span>
+                        <span style="flex: 1; text-align: center;">A little</span>
+                        <span style="flex: 1; text-align: center;">Strong</span>
+                        <span style="flex: 1; text-align: center;">Intense</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-phase">
+            <div class="step-header">
+              <span class="step-num">04</span>
+              <span class="step-tag phase">SCREEN 4</span>
+              <span class="step-title">Confidence — "How confident about today?"</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li>5 horizontal cards: <strong>No way</strong> (💔) · <strong>Probably not</strong> (😕) · <strong>Maybe</strong> (🤷) · <strong>Probably</strong> (💪) · <strong>Definitely</strong> (🛡️).</li>
+                <li>Tap → scale + color → auto-advance 380ms.</li>
+                <li>Self-efficacy, NOT stress (stress overlaps mood r=0.7+). Divergence between mood and confidence is the most valuable clinical signal.</li>
+                <li>Triggers HALT screen if user picks <strong>No way</strong> or <strong>Probably not</strong>.</li>
+                <li>RRS weight: <strong>14%</strong>. Self-efficacy is THE strongest predictor of sustained recovery (Bandura; Kadden &amp; Litt 2011).</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: flex-start; padding-top: 20px;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">QUESTION · from mobile</div><div class="wf-text question">How confident about today?</div></div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 16px;"><div class="wf-box-label">5 CONFIDENCE CARDS · from mobile</div>
+                      <div style="display: flex; gap: 3px; justify-content: space-between; margin-top: 4px;">
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(244,63,94,0.15); border: 1px solid rgba(244,63,94,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px;">💔</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px;">😕</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(107,114,128,0.12); border: 1px solid rgba(107,114,128,0.4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px;">🤷</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px;">💪</div>
+                        <div style="flex: 1; aspect-ratio: 1; background: rgba(22,163,74,0.15); border: 1px solid rgba(22,163,74,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px;">🛡️</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-user">
+            <div class="step-header">
+              <span class="step-num">05</span>
+              <span class="step-tag user">CONDITIONAL</span>
+              <span class="step-title">HALT+ Triggers — "What\'s going on?"</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li><strong>Shown only if</strong> Mood = Rough/Low <strong>OR</strong> Confidence = No way/Probably not. Skipped on good days (~60-70% of check-ins).</li>
+                <li><strong>8 pills, multi-select, wrapped:</strong> Hungry · Angry · Lonely · Tired · Stressed · Bored · Around triggers · Other.</li>
+                <li>Advance via purple Next arrow (bottom-right), enabled when 1+ selected.</li>
+                <li>The WHY determines downstream intervention: Lonely → community task · Angry → DBT distress tolerance · Bored → engagement task · Tired → lighter program.</li>
+                <li>"Bored" is #1 trigger for behavioral addictions, #2 for early-recovery substance use.</li>
+                <li>RRS weight: <strong>10%</strong> (conditional).</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: flex-start; padding-top: 14px;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">QUESTION · from mobile</div>
+                      <div class="wf-text" style="font-size: 13px; font-weight: 700; text-align: center;">What\'s going on?</div>
+                      <div class="wf-text body" style="font-size: 9px; text-align: center;">Select all that apply.</div>
+                    </div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 8px;"><div class="wf-box-label">8 PILLS MULTI-SELECT · from mobile</div>
+                      <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px;">
+                        <span style="padding: 4px 8px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 8px;">Hungry</span>
+                        <span style="padding: 4px 8px; border: 1.5px solid #5AC8BE; border-radius: 999px; background: rgba(90,200,190,0.15); font-size: 8px; color: #5AC8BE; font-weight: 600;">Angry</span>
+                        <span style="padding: 4px 8px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 8px;">Lonely</span>
+                        <span style="padding: 4px 8px; border: 1.5px solid #5AC8BE; border-radius: 999px; background: rgba(90,200,190,0.15); font-size: 8px; color: #5AC8BE; font-weight: 600;">Tired</span>
+                        <span style="padding: 4px 8px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 8px;">Stressed</span>
+                        <span style="padding: 4px 8px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 8px;">Bored</span>
+                        <span style="padding: 4px 8px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 8px;">Around triggers</span>
+                        <span style="padding: 4px 8px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 8px;">Other</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: flex-end; padding: 4px;">
+                    <div style="width: 26px; height: 26px; border-radius: 50%; background: #b78cff; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff;">›</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-user">
+            <div class="step-header">
+              <span class="step-num">06</span>
+              <span class="step-tag user">ALWAYS</span>
+              <span class="step-title">Accountability — "Did you stay on track yesterday?"</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li><strong>3 vertically stacked cards</strong> with icons + colored left borders (layout shift vertical = this matters, read before tapping).</li>
+                <li>✅ <strong>Yes</strong> (green) → card fills green · 380ms → Completion.</li>
+                <li>⚠️ <strong>Barely</strong> (amber) → card fills amber → Close Call Screen.</li>
+                <li>❌ <strong>No</strong> (grey, NEVER red — shame reduction) → 600ms → Compassion Pause.</li>
+                <li>"On track" wording is universal: works for ALL 15 addiction types. "Clean" fails for gaming, "sober" fails for non-substance.</li>
+                <li>"Barely" is the strongest predictor of future lapse (Shiffman 1996). A binary Yes/No misses the entire gradient of struggle.</li>
+                <li><strong>Points:</strong> +15 flat for every answer — reward consistency, not outcomes.</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: flex-start; padding-top: 14px;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">QUESTION · from mobile</div><div class="wf-text" style="font-size: 13px; font-weight: 700; text-align: center;">Did you stay on track yesterday?</div></div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 10px;"><div class="wf-box-label">3 STACKED CARDS · from mobile</div>
+                      <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+                        <div style="padding: 7px 9px; background: rgba(34,197,94,0.1); border-left: 3px solid #22C55E; border-radius: 6px; font-size: 10px; display: flex; align-items: center; gap: 6px;"><span>✅</span><span style="font-weight: 600;">Yes</span></div>
+                        <div style="padding: 7px 9px; background: rgba(245,158,11,0.1); border-left: 3px solid #F59E0B; border-radius: 6px; font-size: 10px; display: flex; align-items: center; gap: 6px;"><span>⚠️</span><span style="font-weight: 600;">Barely</span></div>
+                        <div style="padding: 7px 9px; background: rgba(107,114,128,0.1); border-left: 3px solid #6B7280; border-radius: 6px; font-size: 10px; display: flex; align-items: center; gap: 6px;"><span>❌</span><span style="font-weight: 600;">No</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-user">
+            <div class="step-header">
+              <span class="step-num">⤿</span>
+              <span class="step-tag user">BRANCH · BARELY</span>
+              <span class="step-title">Close Call — "Tell us about it."</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li>Single screen with two sections (both multi-select pills):</li>
+                <li><strong>§ 1 "What almost set you off?"</strong> — 8 pills: Stress · Boredom · Social pressure · Emotional pain · Environment · FOMO · Habit/routine · Other.</li>
+                <li><strong>§ 2 "What kept you on track?"</strong> — 8 coping pills: Called someone · Used an app tool · Walked away · Waited it out · Distracted myself · Thought of my why · Breathing/exercise · Other.</li>
+                <li>Next arrow enabled when BOTH sections have 1+ selection.</li>
+                <li>Coping data feeds the task engine: if user relies on breathing → surface more breathing exercises; feeds AI personalization too.</li>
+                <li>Advances to Completion with <code>accountabilityAnswer: "barely"</code>.</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: flex-start; padding-top: 10px;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">HEADER · from mobile</div><div class="wf-text" style="font-size: 12px; font-weight: 700; text-align: center;">Tell us about it.</div></div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 6px;"><div class="wf-box-label">§ 1 ALMOST SET OFF · from mobile</div>
+                      <div style="font-size: 8px; color: rgba(255,255,255,0.55); text-align: center; margin: 2px 0 4px;">What almost set you off?</div>
+                      <div style="display: flex; flex-wrap: wrap; gap: 3px;">
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Stress</span>
+                        <span style="padding: 3px 6px; border: 1.5px solid #5AC8BE; border-radius: 999px; background: rgba(90,200,190,0.15); font-size: 7px; color: #5AC8BE;">Social pressure</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Boredom</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Environment</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Other</span>
+                      </div>
+                    </div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 4px;"><div class="wf-box-label">§ 2 KEPT ON TRACK · from mobile</div>
+                      <div style="font-size: 8px; color: rgba(255,255,255,0.55); text-align: center; margin: 2px 0 4px;">What kept you on track?</div>
+                      <div style="display: flex; flex-wrap: wrap; gap: 3px;">
+                        <span style="padding: 3px 6px; border: 1.5px solid #5AC8BE; border-radius: 999px; background: rgba(90,200,190,0.15); font-size: 7px; color: #5AC8BE;">Walked away</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Waited it out</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Distracted</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Other</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: flex-end; padding: 4px;">
+                    <div style="width: 26px; height: 26px; border-radius: 50%; background: #b78cff; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff;">›</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-user">
+            <div class="step-header">
+              <span class="step-num">⤿</span>
+              <span class="step-tag user">BRANCH · LAPSE</span>
+              <span class="step-title">Compassion Pause · 1.8s auto-advance</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li>Not a separate screen — a brief transition beat that interrupts the shame spiral before data collection.</li>
+                <li>Copy: <em>"No judgment. Let\'s understand what happened."</em></li>
+                <li>Fade in · hold 1.8s · auto-advance to Lapse Details.</li>
+                <li>Potentially saves the user from closing the app in shame — the expected interrogation met with compassion.</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: center;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">COMPASSION COPY · from mobile</div>
+                      <div class="wf-text" style="font-size: 13px; font-weight: 600; text-align: center; line-height: 1.5;">No judgment.<br/>Let\'s understand what happened.</div>
+                    </div>
+                    <div class="wf-text caption" style="margin-top: 12px;">auto-advance 1.8s</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-user">
+            <div class="step-header">
+              <span class="step-num">⤿</span>
+              <span class="step-tag user">BRANCH · LAPSE</span>
+              <span class="step-title">Lapse Details — "What happened?"</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li><strong>§ 1 "What was it?"</strong> (required) — addiction-specific chips from the user\'s onboarding subcategory:
+                  <ul style="margin-top: 4px; list-style: none; padding: 0;">
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Alcohol user: <code>Beer · Wine · Spirits · Mixed drinks · Other</code></li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Gaming user: <code>PC/Console · Mobile · Competitive · Gacha · Other</code></li>
+                  </ul>
+                </li>
+                <li><strong>§ 2 "What set it off?"</strong> (optional) — same 8 trigger pills as Close Call. Pre-fills triggers from HALT if that screen was shown.</li>
+                <li><strong>No "how much"</strong> question. Quantity creates shame and produces unreliable self-report data (Shiffman 2008).</li>
+                <li>Advance: Next arrow enabled when 1+ substance selected (§ 2 optional).</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: flex-start; padding-top: 10px;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">HEADER · from mobile</div><div class="wf-text" style="font-size: 12px; font-weight: 700; text-align: center;">What happened?</div></div>
+                    <div class="wf-box from-back" style="width: 100%; margin-top: 6px;"><div class="wf-box-label">§ 1 WHAT WAS IT · from back</div>
+                      <div style="font-size: 8px; color: rgba(255,255,255,0.55); text-align: center; margin: 2px 0 4px;">What was it? (required)</div>
+                      <div style="display: flex; flex-wrap: wrap; gap: 3px;">
+                        <span style="padding: 3px 6px; border: 1.5px solid #5AC8BE; border-radius: 999px; background: rgba(90,200,190,0.15); font-size: 7px; color: #5AC8BE;">Beer</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Wine</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Spirits</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Mixed</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Other</span>
+                      </div>
+                    </div>
+                    <div class="wf-box from-mobile" style="width: 100%; margin-top: 4px;"><div class="wf-box-label">§ 2 SET IT OFF · from mobile</div>
+                      <div style="font-size: 8px; color: rgba(255,255,255,0.55); text-align: center; margin: 2px 0 4px;">What set it off? (optional)</div>
+                      <div style="display: flex; flex-wrap: wrap; gap: 3px;">
+                        <span style="padding: 3px 6px; border: 1.5px solid #5AC8BE; border-radius: 999px; background: rgba(90,200,190,0.15); font-size: 7px; color: #5AC8BE;">Social pressure</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Environment</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Stress</span>
+                        <span style="padding: 3px 6px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 7px;">Other</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: flex-end; padding: 4px;">
+                    <div style="width: 26px; height: 26px; border-radius: 50%; background: #b78cff; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff;">›</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-user">
+            <div class="step-header">
+              <span class="step-num">⤿</span>
+              <span class="step-tag user">BRANCH · LAPSE</span>
+              <span class="step-title">Lapse Closing · 2.5s</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li>Copy: <em>"You came back.&nbsp;&nbsp;That\'s the hardest part."</em></li>
+                <li>Fade in line 1 @ 0.3s · line 2 @ 0.8s · Next arrow appears at 1.8s.</li>
+                <li><strong>Backend actions on lapse:</strong>
+                  <ul style="margin-top: 4px; list-style: none; padding: 0;">
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Clean day counter <strong>resets</strong> (honest).</li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Milestone badges <strong>NOT revoked</strong> (represent past accomplishments).</li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Calendar marks the day <strong>red</strong>.</li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Post-Slip Protocol fires: today\'s tasks replaced with 3 recovery tasks (self-compassion, slip analysis, recommitment).</li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> <strong>CRM alert</strong> to clinician.</li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Streak is <strong>NOT broken</strong> (streak = showing up, not sobriety).</li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: center;">
+                    <div class="wf-box from-mobile" style="width: 100%;"><div class="wf-box-label">CLOSING COPY · from mobile</div>
+                      <div class="wf-text" style="font-size: 14px; font-weight: 700; text-align: center;">You came back.</div>
+                      <div class="wf-text" style="font-size: 13px; font-weight: 500; text-align: center; color: rgba(255,255,255,0.75); margin-top: 6px;">That\'s the hardest part.</div>
+                    </div>
+                    <div class="wf-text caption" style="margin-top: 10px;">line 1 @ 0.3s · line 2 @ 0.8s · arrow @ 1.8s</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block has-next">
+            <div class="step-header">
+              <span class="step-num">07</span>
+              <span class="step-tag next">COMPLETION</span>
+              <span class="step-title">Check-in complete · +15 pts</span>
+            </div>
+            <div class="step-columns">
+              <ul class="step-body">
+                <li>✓ green circle with pop animation · <strong>"Check-in complete"</strong> · <strong>+15 pts</strong> (flat, every check-in, no bonuses).</li>
+                <li><strong>Personalized insight</strong> — one line from backend based on today\'s context (8 variants):
+                  <ul style="margin-top: 4px; list-style: none; padding: 0; font-size: 12px;">
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Good day: <em>"Good sleep + good mood. Strong day ahead."</em></li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> No urges: <em>"No urges, steady mood. New pathways forming."</em></li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> High urges: <em>"High urges. Your first task targets exactly this."</em></li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Barely: <em>"You fought for it. That counts."</em></li>
+                    <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Lapse: <em>"Coming back is the hardest part. You did it."</em></li>
+                  </ul>
+                </li>
+                <li>🔥 streak count (<em>"12 day streak"</em>) — incremented for showing up, not for staying clean.</li>
+                <li>Advances to next routine node (Pulse Check · task 2 of 9).</li>
+              </ul>
+              <div class="step-wireframe">
+                <div class="wf-frame">
+                  <div class="wf-status">9:41 · iPhone status bar</div>
+                  <div class="wf-center" style="justify-content: center;">
+                    <div class="wf-box from-mobile" style="border-radius: 50%;"><div class="wf-box-label" style="background: transparent;">CHECK · from mobile</div>
+                      <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(34,197,94,0.2); border: 2px solid #22C55E; display: flex; align-items: center; justify-content: center; font-size: 32px; color: #22C55E;">✓</div>
+                    </div>
+                    <div class="wf-text" style="font-size: 14px; font-weight: 700; margin-top: 8px;">Check-in complete</div>
+                    <div class="wf-bc-pill">+15 pts</div>
+                    <div class="wf-box from-back" style="width: 100%;"><div class="wf-box-label">INSIGHT · from back</div>
+                      <div class="wf-text" style="font-size: 10px; color: rgba(255,255,255,0.75); text-align: center; font-style: italic;">Good sleep + good mood.<br/>Strong day ahead.</div>
+                    </div>
+                    <div class="wf-text" style="font-size: 10px; margin-top: 10px;">🔥 12 day streak</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- RRS FEED -->
+        <section style="margin-top: 22px;">
+          <div class="section-header">
+            <h2>RRS (Relapse Risk Score) feed</h2>
+            <p>The check-in feeds the RRS engine which determines today\'s task selection. High RRS = more support tasks frontloaded. Low RRS = more growth/challenge tasks.</p>
+          </div>
+          <table>
+            <thead><tr><th>Component</th><th>Weight</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Cravings</strong></td><td>30%</td><td>Screen 3 (largest single component)</td></tr>
+              <tr><td><strong>Mood</strong></td><td>20%</td><td>Screen 1</td></tr>
+              <tr><td><strong>Sleep</strong></td><td>16%</td><td>Screen 2 (quality + duration)</td></tr>
+              <tr><td><strong>Self-efficacy</strong></td><td>14%</td><td>Screen 4 (confidence)</td></tr>
+              <tr><td><strong>Triggers</strong></td><td>10%</td><td>Screen 5 (HALT, conditional)</td></tr>
+              <tr><td><strong>Engagement</strong></td><td>10%</td><td>Auto-collected (streak, task completion, session time)</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- BACKEND API -->
+        <section style="margin-top: 22px;">
+          <div class="section-header">
+            <h2>All API endpoints used in this flow</h2>
+            <p>Two endpoints cover the full lifecycle. The scoring / task-selection engine (RRS) lives server-side.</p>
+          </div>
+
+          <div class="api-block">
+            <span class="method get">GET</span><span class="path">/api/v1/routine/checkin/today</span>
+            <div class="comment">// Fetched on screen mount · returns the metadata needed for greeting + lapse chips</div>
+<pre>Response 200:
+{
+  <span class="key">"session_id"</span>: <span class="str">"ci_2026_04_05_u123"</span>,
+  <span class="key">"user"</span>: {
+    <span class="key">"name"</span>: <span class="str">"Alex"</span>,              <span class="comment">// → Greeting line 2</span>
+    <span class="key">"day_number"</span>: <span class="num">47</span>             <span class="comment">// → "Day 47. Let\'s check in."</span>
+  },
+  <span class="key">"is_first_checkin"</span>: <span class="num">false</span>,      <span class="comment">// if true → skip greeting, show "Your first check-in" on Mood</span>
+
+  <span class="comment">// Addiction-specific chips for the Lapse Details screen (from user\'s onboarding subcategory)</span>
+  <span class="key">"lapse_substance_chips"</span>: [
+    { <span class="key">"id"</span>: <span class="str">"beer"</span>,          <span class="key">"label"</span>: <span class="str">"Beer"</span> },
+    { <span class="key">"id"</span>: <span class="str">"wine"</span>,          <span class="key">"label"</span>: <span class="str">"Wine"</span> },
+    { <span class="key">"id"</span>: <span class="str">"spirits"</span>,       <span class="key">"label"</span>: <span class="str">"Spirits"</span> },
+    { <span class="key">"id"</span>: <span class="str">"mixed_drinks"</span>,  <span class="key">"label"</span>: <span class="str">"Mixed drinks"</span> },
+    { <span class="key">"id"</span>: <span class="str">"other"</span>,         <span class="key">"label"</span>: <span class="str">"Other"</span> }
+  ]
+}</pre>
+          </div>
+
+          <div class="api-block">
+            <span class="method post">POST</span><span class="path">/api/v1/routine/checkin/complete</span>
+            <div class="comment">// Fired on Completion screen · commits all collected data · awards +15 pts · returns insight + streak</div>
+<pre>Body:
+{
+  <span class="key">"session_id"</span>: <span class="str">"ci_2026_04_05_u123"</span>,
+  <span class="key">"date"</span>: <span class="str">"2026-04-05"</span>,
+  <span class="key">"mood"</span>: <span class="num">3</span>,                          <span class="comment">// 1-5 (Rough-Great)</span>
+  <span class="key">"sleepQuality"</span>: <span class="num">4</span>,                  <span class="comment">// 1-5</span>
+  <span class="key">"sleepBedtime"</span>: <span class="str">"23:00"</span>,
+  <span class="key">"sleepWakeTime"</span>: <span class="str">"07:00"</span>,
+  <span class="key">"sleepDurationMinutes"</span>: <span class="num">480</span>,
+  <span class="key">"cravings"</span>: <span class="num">1</span>,                      <span class="comment">// 0-3 (None/Little/Strong/Intense)</span>
+  <span class="key">"confidence"</span>: <span class="num">4</span>,                    <span class="comment">// 1-5</span>
+  <span class="key">"haltTriggers"</span>: [],                     <span class="comment">// [] if HALT not shown · else array of ids</span>
+  <span class="key">"accountabilityAnswer"</span>: <span class="str">"yes"</span>,        <span class="comment">// "yes" | "barely" | "no"</span>
+  <span class="key">"closeCallTriggers"</span>: [],                <span class="comment">// filled if answer = "barely"</span>
+  <span class="key">"copingStrategies"</span>: [],                 <span class="comment">// filled if answer = "barely"</span>
+  <span class="key">"lapseSubstances"</span>: [],                  <span class="comment">// filled if answer = "no"</span>
+  <span class="key">"lapseTriggers"</span>: [],                    <span class="comment">// filled if answer = "no"</span>
+  <span class="key">"completedAt"</span>: <span class="str">"2026-04-05T07:23:41Z"</span>
+}
+
+Response 200:
+{
+  <span class="key">"points_awarded"</span>: <span class="num">15</span>,             <span class="comment">// always 15</span>
+  <span class="key">"streak_days"</span>: <span class="num">12</span>,
+  <span class="key">"personalized_insight"</span>: <span class="str">"Good sleep + good mood. Strong day ahead."</span>,
+  <span class="key">"rrs_score"</span>: <span class="num">0.34</span>,                <span class="comment">// 0-1, feeds task selection</span>
+  <span class="key">"next_node"</span>: <span class="str">"hrv_check"</span>,
+  <span class="key">"lapse_actions"</span>: <span class="num">null</span>               <span class="comment">// filled on "no" answer — see below</span>
+}
+
+<span class="comment">// On accountability = "no", response also returns:</span>
+<span class="key">"lapse_actions"</span>: {
+  <span class="key">"day_counter_reset"</span>: <span class="num">true</span>,
+  <span class="key">"calendar_marked_date"</span>: <span class="str">"2026-04-05"</span>,
+  <span class="key">"post_slip_tasks_scheduled"</span>: <span class="num">true</span>,
+  <span class="key">"clinician_alerted"</span>: <span class="num">true</span>,
+  <span class="key">"streak_preserved"</span>: <span class="num">true</span>,
+  <span class="key">"badges_preserved"</span>: <span class="num">true</span>
+}</pre>
+          </div>
+        </section>
+
+      </div>
+    </details>
+
+
+    <!-- BIG COLLAPSIBLE: Breathing Exercise full flow -->
+    <details class="collapsible big-collapsible" style="margin-top: 22px;">
+      <summary class="collapsible-toggle big-toggle">
+        <span class="toggle-chevron">›</span>
+        <span class="big-task-icon">🫁</span>
+        <span class="big-task-label">
+          <span class="big-task-name">Breathing Exercise</span>
+          <span class="big-task-sub">6-phase task flow · show the full journey</span>
+        </span>
+        <span class="big-task-reward">🪙 +15 BC</span>
+      </summary>
+      <div class="collapsible-body big-body">
+
+  <!-- TOP-LEVEL FLOW -->
+  <section>
+    <div class="section-header">
+      <h2>Step-by-step flow</h2>
+      <p>Every step in order, matching the implementation in <code>Task3BreathingV2Screen.tsx</code>. Each step lists exactly what happens on mount, during the phase, and on exit.</p>
+    </div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">01</span>
+        <span class="step-tag entry">ENTRY</span>
+        <span class="step-title">Tasks Tab (home)</span>
+      </div>
+      <ul class="step-body">
+        <li>User opens the bottom <strong>Tasks</strong> tab.</li>
+        <li>Renders: top bar with greeting + <strong>BS coin balance</strong> (teal pill), "Tasks" title, 9 task icons.</li>
+        <li>User sees only the <strong>icon</strong> per task (no names/details on the home grid).</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">02</span>
+        <span class="step-tag user">USER ACTION</span>
+        <span class="step-title">Tap a task icon → popup modal</span>
+      </div>
+      <ul class="step-body">
+        <li>Haptic <code>impactLight</code> on tap.</li>
+        <li>Small modal appears with the task summary <strong>and delivery preferences</strong> the user picks <strong>before</strong> starting:
+          <ul style="margin-top: 4px; list-style: none; padding: 0;">
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Big task <strong>icon</strong> · task <strong>name</strong> · <strong>+{reward} BS coin</strong> pill</li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> <strong>Audio mode picker</strong> — 4 options: <code>Silence</code> · <code>Voice</code> · <code>Music</code> · <code>Voice + Music</code></li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> <strong>Haptic toggle</strong> — ON / OFF (independent from audio)</li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Primary <strong>Start</strong> button</li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Defaults seeded from user profile (new users: Silence + Haptic ON)</li>
+          </ul>
+        </li>
+        <li>Locked task → Alert "Complete previous tasks first".</li>
+        <li>Completed task → Alert "Already done today".</li>
+        <li>User taps <strong>Start</strong> → navigate to <code>Task3BreathingV2</code> with params <code>{ taskId, taskName, taskIcon, audioMode, hapticEnabled }</code>.</li>
+        <li>Selections persist to user profile (<code>POST /user/breathing-preferences</code>) fire-and-forget, so next time the modal opens pre-filled.</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">03</span>
+        <span class="step-tag phase">PHASE 0</span>
+        <span class="step-title">Loading</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+        <li>Screen mounts with <code>phase = 'loading'</code> and <code>isLoading = true</code>.</li>
+        <li>Reads <code>route.params</code> (taskIcon + taskName) — shows instantly, no empty state.</li>
+        <li>Fires <code>GET /api/v1/routine/breathing/today</code> (server runs 3-Layer decision engine).</li>
+        <li>Renders: Sandy Lottie (220×220, loops while <code>isLoading</code>) + text "Loading {taskName}".</li>
+        <li>On response (success or error): <code>setIsLoading(false)</code>.</li>
+        <li>Waits 600ms for current Lottie loop → crossfade (500ms fade-out + 700ms fade-in @ 200ms delay) → Phase 1.</li>
+      </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+        <div class="wf-status">9:41 · iPhone status bar</div>
+
+        <div class="wf-box from-mobile" style="width: 56px; position: absolute; top: 48px; left: 16px;">
+          <div class="wf-box-label">BACK · from mobile</div>
+          <div class="wf-back">←</div>
+        </div>
+
+        <div class="wf-center">
+          <div class="wf-box from-mobile" style="border-radius: 50%;">
+            <div class="wf-box-label">LOTTIE · from mobile</div>
+            <div class="wf-lottie-box xlarge" style="border: none;">Sandy Loading<br/>220 × 220</div>
+          </div>
+          <div class="wf-box from-back" style="width: 100%; margin-top: 10px;">
+            <div class="wf-box-label">TASK NAME · from back</div>
+            <div class="wf-text h3" style="margin-top: 4px;">Loading Breathing Exercise</div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">04</span>
+        <span class="step-tag phase">PHASE 1</span>
+        <span class="step-title">Intro — "Why this breathing today?"</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+        <li>Renders: breathing-lotus Lottie (140×140) + technique name + subtitle + why-copy block with teal left border.</li>
+        <li>Data from backend: <code>technique.name</code>, <code>technique.pattern_description</code>, <code>duration_minutes</code>, <code>transparency.why_copy</code>.</li>
+        <li>Entrance animations: Lottie FadeIn 900ms · title FadeInDown @300ms · subtitle @450ms · why copy FadeIn @700ms.</li>
+        <li>Bottom: pill button <strong>"Skip intro · Let's Begin"</strong> (always enabled, skippable-from-Day-1 per v5.2 spec).</li>
+        <li>Tap → haptic <code>impactLight</code> → crossfade to Phase 2.</li>
+      </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+        <div class="wf-status">9:41 · iPhone status bar</div>
+
+        <div class="wf-box from-mobile" style="width: 56px; margin-top: 18px;">
+          <div class="wf-box-label">BACK · from mobile</div>
+          <div class="wf-back">←</div>
+        </div>
+
+        <div class="wf-box from-mobile" style="margin-top: 14px;">
+          <div class="wf-box-label">LOTTIE · breathing-lotus · 140×140 · from mobile</div>
+          <div style="display: flex; justify-content: center;">
+            <div class="wf-lottie-box" style="border: none;">🪷</div>
+          </div>
+        </div>
+
+        <div class="wf-box from-back">
+          <div class="wf-box-label">TITLE · H1 from BACKEND · from back</div>
+          <div class="wf-text h1">Physiological Sigh</div>
+        </div>
+
+        <div class="wf-box from-back">
+          <div class="wf-box-label">SUBTITLE · BACKEND · from back</div>
+          <div class="wf-text body">Double inhale + long exhale · 3 min</div>
+        </div>
+
+        <div class="wf-box from-back">
+          <div class="wf-box-label">WHY COPY · BACKEND · teal left border · from back</div>
+          <div class="wf-why">You mentioned strong cravings + your pulse is 82 (avg 74, a bit up). This technique calms the body fastest.</div>
+        </div>
+
+        <div class="wf-box from-mobile" style="margin-top: auto;">
+          <div class="wf-box-label">START — pill button · from mobile</div>
+          <div class="wf-btn-pill">Skip intro · Let's Begin</div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">05</span>
+        <span class="step-tag phase">PHASE 2</span>
+        <span class="step-title">Pre-slider — rate activation</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+        <li>Question "How activated do you feel right now?" + 1-10 slider (default 5) with 😌 / 😰 emoji ends.</li>
+        <li>Big teal value display above slider, live-updates while dragging.</li>
+        <li>Primary white <strong>Continue</strong> button.</li>
+        <li>Tap → stores <code>preRating</code> <strong>locally in mobile state</strong> (no backend call here — it's committed later with <code>/complete</code>), crossfade to Phase 3.</li>
+      </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+        <div class="wf-status">9:41 · iPhone status bar</div>
+
+        <div class="wf-box from-mobile" style="width: 56px; margin-top: 18px;">
+          <div class="wf-box-label">BACK · from mobile</div>
+          <div class="wf-back">←</div>
+        </div>
+
+        <div class="wf-center" style="margin-top: 20px;">
+          <div class="wf-box from-mobile" style="width: 100%;">
+            <div class="wf-box-label">QUESTION · H2 · from mobile</div>
+            <div class="wf-text question">How activated do you feel right now?</div>
+          </div>
+
+          <div class="wf-box from-mobile" style="width: 100%;">
+            <div class="wf-box-label">SLIDER BLOCK · from mobile</div>
+            <div style="text-align: center;">
+              <div class="wf-text big-number">5</div>
+              <div class="wf-slider-row">
+                <span style="font-size: 22px;">😌</span>
+                <div class="wf-slider"></div>
+                <span style="font-size: 22px;">😰</span>
+              </div>
+              <div class="wf-slider-labels"><span>Calm</span><span>Activated</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf-box from-mobile" style="margin-top: auto;">
+          <div class="wf-box-label">PRIMARY BUTTON · from mobile</div>
+          <div class="wf-btn-primary">Continue</div>
+          <div class="wf-btn-ghost" style="display: none;">I need to stop</div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">06</span>
+        <span class="step-tag phase">PHASE 3</span>
+        <span class="step-title">Session — the breathing</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+        <li>Full-screen <strong>hyperspace tunnel shader</strong> (Three.js · line-segment star streaks via WebView).</li>
+        <li>Breath circle (220×220) center: scales 0.6 ↔ 1.0 each cycle, animated with <code>phase.duration_ms</code>.</li>
+        <li>Phase label ("Quick inhale" / "Long exhale") floats in top third — fade-in 400ms → hold → fade-out 400ms.</li>
+        <li>Loops <code>technique.phases[]</code> for <code>total_breath_cycles</code> iterations (e.g. 18).</li>
+        <li>Delivery mode (audio + haptic) is <strong>already chosen</strong> in Step 02 modal — no in-session toggles.</li>
+        <li>Bottom: "Breath X of Y" + "I need to stop" pill (escape to Grounding, see alt branch below).</li>
+        <li>Haptic per breath: looked up by <code>haptic_pattern_id</code> (Core Haptics iOS / VibrationEffect Android). Plays only if user picked haptic ON in the modal.</li>
+        <li>On final cycle: <code>notificationSuccess</code> haptic → crossfade to Phase 4.</li>
+      </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame" style="overflow: hidden;">
+        <div class="wf-session-bg"></div>
+        <div class="wf-session-bg-note">Full-screen Hyperspace Tunnel Shader<br/>(Three.js · line-segment star streaks)</div>
+
+        <div class="wf-session-inner" style="padding-top: 22px;">
+          <div class="wf-session-row">
+            <div class="wf-box from-mobile" style="width: 40px; background: rgba(0,0,0,0.3); padding: 3px;">
+              <div class="wf-box-label" style="background: #08080C;">BACK · from mobile</div>
+              <div class="wf-back" style="width: 28px; height: 28px; font-size: 10px;">←</div>
+            </div>
+            <div style="font-size: 11px; font-weight: 600;">Physiological Sigh</div>
+            <div style="width: 30px;"></div>
+          </div>
+
+          <div class="wf-phase-label">Quick inhale</div>
+
+          <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <div class="wf-box" style="border-radius: 50%;">
+              <div class="wf-box-label" style="background: transparent;">BREATH CIRCLE</div>
+              <div class="wf-circle"></div>
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+            <div class="wf-box from-mobile" style="width: 100%;">
+              <div class="wf-box-label">BREATH COUNT · from mobile</div>
+              <div style="font-size: 13px; color: rgba(255,255,255,0.75);">Breath 7 of 18</div>
+            </div>
+            <div class="wf-box from-mobile" style="margin-top: 8px;">
+              <div class="wf-box-label">STOP · from mobile</div>
+              <div style="padding: 8px 20px; border: 1px solid rgba(255,107,122,0.35); border-radius: 999px; background: rgba(0,0,0,0.3); color: #FF8A94; font-size: 12px; font-weight: 500; display: inline-block;">I need to stop</div>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">07</span>
+        <span class="step-tag phase">PHASE 4</span>
+        <span class="step-title">Post-slider — re-rate</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+        <li>Same component as Phase 2, question changes to <strong>"And now?"</strong>.</li>
+        <li>User re-rates 1-10. Rating held locally (no POST yet — single commit at Phase 5).</li>
+        <li>Extra ghost button: "I need to stop" (coral, jumps to Grounding).</li>
+        <li>Continue → crossfade to Phase 5.</li>
+      </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+        <div class="wf-status">9:41 · iPhone status bar</div>
+
+        <div class="wf-box from-mobile" style="width: 56px; margin-top: 18px;">
+          <div class="wf-box-label">BACK · from mobile</div>
+          <div class="wf-back">←</div>
+        </div>
+
+        <div class="wf-center" style="margin-top: 20px;">
+          <div class="wf-box from-mobile" style="width: 100%;">
+            <div class="wf-box-label">QUESTION · H2 · from mobile</div>
+            <div class="wf-text question">How activated do you feel right now?</div>
+          </div>
+
+          <div class="wf-box from-mobile" style="width: 100%;">
+            <div class="wf-box-label">SLIDER BLOCK · from mobile</div>
+            <div style="text-align: center;">
+              <div class="wf-text big-number">5</div>
+              <div class="wf-slider-row">
+                <span style="font-size: 22px;">😌</span>
+                <div class="wf-slider"></div>
+                <span style="font-size: 22px;">😰</span>
+              </div>
+              <div class="wf-slider-labels"><span>Calm</span><span>Activated</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf-box from-mobile" style="margin-top: auto;">
+          <div class="wf-box-label">PRIMARY BUTTON · from mobile</div>
+          <div class="wf-btn-primary">Continue</div>
+          <div class="wf-btn-ghost" style="display: none;">I need to stop</div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">08</span>
+        <span class="step-tag phase">PHASE 5</span>
+        <span class="step-title">Complete — result</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+        <li>Commits <code>POST /complete</code> with pre / post ratings, breaths completed, audio/haptic mode used.</li>
+        <li>Server awards <strong>+15 BC</strong> atomically, returns <code>result_copy</code> + <code>next_node</code>.</li>
+        <li>Renders: check-success Lottie (160×160) + "Session Complete" + <code>result_copy</code> ("You went from 7 to 4...").</li>
+        <li>Teal <strong>"+15 BC"</strong> pill + primary white <strong>Done</strong> button.</li>
+        <li>Tap Done → navigate to next task (<code>next_node = core_exercise</code>).</li>
+      </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+        <div class="wf-status">9:41 · iPhone status bar</div>
+
+        <div class="wf-box from-mobile" style="width: 56px; margin-top: 18px;">
+          <div class="wf-box-label">BACK · from mobile</div>
+          <div class="wf-back">←</div>
+        </div>
+
+        <div class="wf-center">
+          <div class="wf-box from-mobile" style="border-radius: 50%;">
+            <div class="wf-box-label">LOTTIE · check-success · from mobile</div>
+            <div class="wf-lottie-box large" style="border: none;">✓</div>
+          </div>
+
+          <div class="wf-box from-mobile" style="width: 100%;">
+            <div class="wf-box-label">TITLE · from mobile</div>
+            <div class="wf-text h2">Session Complete</div>
+          </div>
+
+          <div class="wf-box from-back" style="width: 100%;">
+            <div class="wf-box-label">RESULT COPY · BACKEND · from back</div>
+            <div class="wf-text body" style="font-size: 14px;">You went from 7 to 4. 18 slow breaths done.</div>
+          </div>
+
+          <div class="wf-box from-back">
+            <div class="wf-box-label">BC BADGE · from back</div>
+            <div class="wf-bc-pill">+15 BC</div>
+          </div>
+        </div>
+
+        <div class="wf-box from-mobile" style="margin-top: auto;">
+          <div class="wf-box-label">DONE · from mobile</div>
+          <div class="wf-btn-primary" style="max-width: 280px; margin: 0 auto;">Done</div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block next-node">
+      <div class="step-header">
+        <span class="step-num">09</span>
+        <span class="step-tag next">NEXT</span>
+        <span class="step-title">Core Exercise (Task 4 of 9)</span>
+      </div>
+      <ul class="step-body">
+        <li>Routine advances to position 4.</li>
+        <li>User returns to the Tasks tab; task 3 now shows as <strong>completed</strong>, task 4 unlocks to <strong>available</strong>.</li>
+      </ul>
+    </div>
+
+    <!-- ALT BRANCH: I need to stop → Grounding -->
+    <div class="step-block has-user" style="margin-top: 22px;">
+      <div class="step-header">
+        <span class="step-num">⤿</span>
+        <span class="step-tag user">ALT BRANCH</span>
+        <span class="step-title">"I need to stop" → Grounding</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+          <li>Trigger: user taps the coral <strong>"I need to stop"</strong> button during <strong>Phase 3 (Session)</strong> or <strong>Phase 4 (Post-slider)</strong>.</li>
+          <li>Session ends immediately. App fires <code>POST /api/v1/routine/breathing/stopped</code> with <code>{ session_id, stopped_at_breath, stopped_at_ms }</code>.</li>
+          <li>Screen transitions to <strong>Grounding</strong>: Relaxing Lottie (160×160, loop) + "It's okay" title + 3-line grounding prompts.</li>
+          <li>Italic reassurance: <em>"Streak protected · no penalty · no shame"</em>.</li>
+          <li><strong>No timer</strong> — user leaves manually via Close button. Timer would imply pressure; this screen is an escape.</li>
+          <li>Backend saves session as <code>"user_stopped"</code> · streak preserved · <strong>no BC awarded</strong> · CRM event logged for clinician review.</li>
+        </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+            <div class="wf-status">9:41 · iPhone status bar</div>
+
+            <div class="wf-box from-mobile" style="width: 56px; margin-top: 18px;">
+              <div class="wf-box-label">BACK · from mobile</div>
+              <div class="wf-back">←</div>
+            </div>
+
+            <div class="wf-center">
+              <div class="wf-box from-mobile" style="border-radius: 50%;">
+                <div class="wf-box-label">LOTTIE · Relaxing (loop) · from mobile</div>
+                <div class="wf-lottie-box large" style="border: none;">🧘</div>
+              </div>
+
+              <div class="wf-box from-mobile" style="width: 100%;">
+                <div class="wf-box-label">TITLE · from mobile</div>
+                <div class="wf-text h2">It's okay</div>
+              </div>
+
+              <div class="wf-box from-mobile" style="width: 100%;">
+                <div class="wf-box-label">3-LINE GROUNDING · from mobile</div>
+                <div class="wf-text body" style="line-height: 1.7;">
+                  Let's just be still for a moment.<br/>
+                  Feel your feet on the ground.<br/>
+                  Notice three things around you.
+                </div>
+              </div>
+
+              <div class="wf-box from-mobile">
+                <div class="wf-box-label">REASSURANCE (dim italic) · from mobile</div>
+                <div class="wf-text caption">Streak protected · no penalty · no shame</div>
+              </div>
+            </div>
+
+            <div class="wf-box from-mobile" style="margin-top: auto;">
+              <div class="wf-box-label">CLOSE · from mobile</div>
+              <div class="wf-btn-primary" style="max-width: 280px; margin: 0 auto;">Close</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACKEND API SUMMARY -->
+  <section>
+    <div class="section-header">
+      <h2>All API endpoints used in this flow</h2>
+      <p>Three endpoints cover the full lifecycle of this breathing task. The decision engine (3-Layer) lives server-side; mobile is "dumb" — it just renders what the server returns.</p>
+    </div>
+
+    <div class="api-block">
+      <span class="method get">GET</span><span class="path">/api/v1/routine/breathing/today</span>
+      <div class="comment">// Phase 0 — server runs 3-Layer decision engine and returns the full session payload that drives every wireframe in this doc</div>
+<pre>Response 200:
+{
+  <span class="key">"session_id"</span>: <span class="str">"br_2026_04_15_u123"</span>,
+
+  <span class="comment">// TECHNIQUE — the one technique backend picked for today</span>
+  <span class="key">"technique"</span>: {
+    <span class="key">"id"</span>: <span class="str">"physiological_sigh"</span>,
+    <span class="key">"name"</span>: <span class="str">"Physiological Sigh"</span>,              <span class="comment">// → Intro title</span>
+    <span class="key">"pattern_description"</span>: <span class="str">"Double inhale + long exhale"</span>, <span class="comment">// → Intro subtitle</span>
+    <span class="key">"haptic_pattern_id"</span>: <span class="str">"the_burst"</span>,             <span class="comment">// → which of the 11 haptic patterns to play</span>
+    <span class="key">"cycle_duration_ms"</span>: <span class="num">10000</span>,                 <span class="comment">// one full breath cycle length</span>
+    <span class="key">"phases"</span>: [                                       <span class="comment">// breath phase structure — mobile loops this</span>
+      { <span class="key">"type"</span>: <span class="str">"inhale"</span>,       <span class="key">"duration_ms"</span>: <span class="num">500</span>,  <span class="key">"label"</span>: <span class="str">"Quick inhale"</span> },
+      { <span class="key">"type"</span>: <span class="str">"pause"</span>,        <span class="key">"duration_ms"</span>: <span class="num">300</span>,  <span class="key">"label"</span>: <span class="str">""</span> },
+      { <span class="key">"type"</span>: <span class="str">"inhale_topup"</span>, <span class="key">"duration_ms"</span>: <span class="num">600</span>,  <span class="key">"label"</span>: <span class="str">"Top-up inhale"</span> },
+      { <span class="key">"type"</span>: <span class="str">"pause"</span>,        <span class="key">"duration_ms"</span>: <span class="num">200</span>,  <span class="key">"label"</span>: <span class="str">""</span> },
+      { <span class="key">"type"</span>: <span class="str">"exhale"</span>,       <span class="key">"duration_ms"</span>: <span class="num">8400</span>, <span class="key">"label"</span>: <span class="str">"Long exhale"</span> }
+    ]
+  },
+
+  <span class="comment">// DURATION — determined by Layer 2 (pulse baseline)</span>
+  <span class="key">"duration_minutes"</span>: <span class="num">3</span>,                          <span class="comment">// → Intro subtitle</span>
+  <span class="key">"total_breath_cycles"</span>: <span class="num">18</span>,                      <span class="comment">// → "Breath X of 18" counter</span>
+
+  <span class="comment">// TRANSPARENCY — the "why this breathing today?" copy</span>
+  <span class="key">"transparency"</span>: {
+    <span class="key">"day_number"</span>: <span class="num">12</span>,
+    <span class="key">"phase"</span>: <span class="str">"early"</span>,                            <span class="comment">// acute / early / stable / maintained / thriving</span>
+    <span class="key">"why_copy"</span>: <span class="str">"You mentioned strong cravings + your pulse is 82 (avg 74, a bit up). This technique calms the body fastest."</span>
+  },
+
+  <span class="comment">// REWARD — fixed for this task, echoed for convenience</span>
+  <span class="key">"reward_bc"</span>: <span class="num">15</span>,
+
+  <span class="comment">// USER DELIVERY PREFS — last-used, used to pre-fill the modal</span>
+  <span class="key">"user_preferences"</span>: {
+    <span class="key">"audio_mode"</span>: <span class="str">"silence"</span>,                     <span class="comment">// silence | voice | music | voice_music</span>
+    <span class="key">"haptic_enabled"</span>: <span class="num">true</span>
+  }
+}</pre>
+    </div>
+
+    <div class="api-block">
+      <span class="method post">POST</span><span class="path">/api/v1/routine/breathing/complete</span>
+      <div class="comment">// Phase 5 — commits the session · awards BC · returns result copy + next_node</div>
+<pre>Body:
+{
+  <span class="key">"session_id"</span>: <span class="str">"br_2026_04_15_u123"</span>,
+  <span class="key">"pre_rating"</span>: <span class="num">7</span>,          <span class="comment">// initial subjective score (1-10), pre-session</span>
+  <span class="key">"post_rating"</span>: <span class="num">4</span>,         <span class="comment">// final subjective score (1-10), post-session</span>
+  <span class="key">"breaths_completed"</span>: <span class="num">18</span>,
+  <span class="key">"duration_actual_ms"</span>: <span class="num">180500</span>,
+  <span class="key">"audio_mode_used"</span>: <span class="str">"silence"</span>,
+  <span class="key">"haptic_used"</span>: <span class="num">true</span>
+}</pre>
+    </div>
+
+    <div class="api-block">
+      <span class="method post">POST</span><span class="path">/api/v1/routine/breathing/stopped</span>
+      <div class="comment">// Grounding branch — saves user_stopped · no BC · streak protected · CRM event</div>
+<pre>Body:
+{
+  <span class="key">"session_id"</span>: <span class="str">"br_2026_04_15_u123"</span>,
+  <span class="key">"pre_rating"</span>: <span class="num">7</span>,          <span class="comment">// initial subjective score (always present — taken before session)</span>
+  <span class="key">"post_rating"</span>: <span class="num">null</span>,       <span class="comment">// null if stopped during Phase 3 · filled if stopped at Phase 4</span>
+  <span class="key">"stopped_at_breath"</span>: <span class="num">4</span>,
+  <span class="key">"stopped_at_ms"</span>: <span class="num">42000</span>,
+  <span class="key">"reason"</span>: <span class="str">"user_stopped"</span>
+}</pre>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
