@@ -2542,6 +2542,18 @@ Response 200:
       </summary>
       <div class="collapsible-body big-body">
 
+  <!-- v5.2 ADVISOR PATCHES — what changed since the previous cut -->
+  <div style="margin: 4px 0 22px; padding: 16px 20px; background: rgba(90,200,190,0.06); border: 1px solid rgba(90,200,190,0.28); border-left: 3px solid var(--accent); border-radius: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <span style="font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.3px; text-transform: uppercase;">What changed in v5.2 — design-impacting patches</span>
+    </div>
+    <ul style="list-style: none; font-size: 13.5px; color: var(--text-dim); line-height: 1.65; padding: 0; margin: 0;">
+      <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; top: 11px; width: 6px; height: 1.5px; background: var(--accent); opacity: 0.6; border-radius: 1px;"></span><strong style="color: var(--text); font-weight: 600;">① Physiological Sigh — unlocked from Day 1 in crisis.</strong> The 30-sec rescue variant fires from Day 1 for every user (incl. PTSD-flagged) whenever Layer 1 routes to it or RED ZONE triggers. Previously Day 15+. <em>Design:</em> the technique card (Phase 1 Intro) can show "Physiological Sigh" on Day 1 — plan visual/copy accordingly.</li>
+      <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; top: 11px; width: 6px; height: 1.5px; background: var(--accent); opacity: 0.6; border-radius: 1px;"></span><strong style="color: var(--text); font-weight: 600;">② Intro ("Why this breathing today?") — skippable from Day 1.</strong> User can tap <strong>anywhere on the card</strong>, tap the <strong>Start</strong> pill, or <strong>swipe</strong> to begin immediately. If the user does nothing, the card <strong>auto-advances after 3 seconds</strong>. Previously forced unskippable Days 1–14. <em>Design:</em> Start pill stays visible from t=0; add a subtle 3-sec progress hint if desired (not required).</li>
+      <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; top: 11px; width: 6px; height: 1.5px; background: var(--accent); opacity: 0.6; border-radius: 1px;"></span><strong style="color: var(--text); font-weight: 600;">③ In-session toggles moved to opposite corners.</strong> Haptic toggle <strong>TOP-LEFT</strong>, Audio-mode toggle <strong>TOP-RIGHT</strong>, minimum <strong>120pt horizontal separation</strong>. Previously side-by-side top-right with ~8pt gap. <em>Reason:</em> 2AM shaking-hand users mistapping the wrong toggle. Changes take effect on the <em>next breath cycle</em>, never mid-pulse.</li>
+    </ul>
+  </div>
+
   <!-- TOP-LEVEL FLOW -->
   <section>
     <div class="section-header">
@@ -2642,8 +2654,8 @@ Response 200:
         <li>Renders: breathing-lotus Lottie (140×140) + technique name + subtitle + why-copy block with teal left border.</li>
         <li>Data from backend: <code>technique.name</code>, <code>technique.pattern_description</code>, <code>duration_minutes</code>, <code>transparency.why_copy</code>.</li>
         <li>Entrance animations: Lottie FadeIn 900ms · title FadeInDown @300ms · subtitle @450ms · why copy FadeIn @700ms.</li>
-        <li>Bottom: pill button <strong>"Skip intro · Let's Begin"</strong> (always enabled, skippable-from-Day-1 per v5.2 spec).</li>
-        <li>Tap → haptic <code>impactLight</code> → crossfade to Phase 2.</li>
+        <li><strong>Skippable from Day 1 (v5.2 patch).</strong> Three ways to advance: <strong>(a)</strong> tap the <strong>Start</strong> pill, <strong>(b)</strong> tap anywhere on the card, or <strong>(c)</strong> swipe. If the user does nothing, the card <strong>auto-advances after 3 seconds</strong>.</li>
+        <li>Any advance trigger fires haptic <code>impactLight</code> → crossfade to Phase 2.</li>
       </ul>
         <div class="step-wireframe">
           <div class="wf-frame">
@@ -2677,8 +2689,9 @@ Response 200:
         </div>
 
         <div class="wf-box from-mobile" style="margin-top: auto;">
-          <div class="wf-box-label">START — pill button · from mobile</div>
-          <div class="wf-btn-pill">Skip intro · Let's Begin</div>
+          <div class="wf-box-label">START — pill button · tap anywhere / swipe / 3-sec auto · from mobile</div>
+          <div class="wf-btn-pill">Let's Begin</div>
+          <div style="margin-top: 8px; font-size: 9.5px; color: rgba(255,255,255,0.55); text-align: center; font-style: italic; letter-spacing: 0.3px;">Tap anywhere · swipe · or auto-advance in 3s</div>
         </div>
       </div>
         </div>
@@ -2753,9 +2766,16 @@ Response 200:
         <li>Breath circle (220×220) center: scales 0.6 ↔ 1.0 each cycle, animated with <code>phase.duration_ms</code>.</li>
         <li>Phase label ("Quick inhale" / "Long exhale") floats in top third — fade-in 400ms → hold → fade-out 400ms.</li>
         <li>Loops <code>technique.phases[]</code> for <code>total_breath_cycles</code> iterations (e.g. 18).</li>
-        <li>Delivery mode (audio + haptic) is <strong>already chosen</strong> in Step 02 modal — no in-session toggles.</li>
+        <li><strong>In-session toggles (v5.2 patch) — opposite top corners:</strong>
+          <ul style="margin-top: 4px; list-style: none; padding: 0;">
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> <strong>TOP-LEFT:</strong> Haptic toggle (ON / OFF · tactile icon)</li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> <strong>TOP-RIGHT:</strong> Audio-mode toggle (Silence / Voice / Music / Voice+Music — cycles on tap, or opens a small inline picker)</li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Minimum <strong>120pt horizontal separation</strong>, each target ≥44pt — prevents mistap at 2AM.</li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> Defaults seeded from Step 02 modal. Mid-session change takes effect on the <em>next breath cycle</em>, not mid-pulse.</li>
+          </ul>
+        </li>
         <li>Bottom: "Breath X of Y" + "I need to stop" pill (escape to Grounding, see alt branch below).</li>
-        <li>Haptic per breath: looked up by <code>haptic_pattern_id</code> (Core Haptics iOS / VibrationEffect Android). Plays only if user picked haptic ON in the modal.</li>
+        <li>Haptic per breath: looked up by <code>haptic_pattern_id</code> (Core Haptics iOS / VibrationEffect Android). Plays only while haptic toggle is ON.</li>
         <li>On final cycle: <code>notificationSuccess</code> haptic → crossfade to Phase 4.</li>
       </ul>
         <div class="step-wireframe">
@@ -2764,16 +2784,34 @@ Response 200:
         <div class="wf-session-bg-note">Full-screen Hyperspace Tunnel Shader<br/>(Three.js · line-segment star streaks)</div>
 
         <div class="wf-session-inner" style="padding-top: 22px;">
+          <!-- Top row: back + title + close -->
           <div class="wf-session-row">
             <div class="wf-box from-mobile" style="width: 40px; background: rgba(0,0,0,0.3); padding: 3px;">
               <div class="wf-box-label" style="background: #08080C;">BACK · from mobile</div>
               <div class="wf-back" style="width: 28px; height: 28px; font-size: 10px;">←</div>
             </div>
-            <div style="font-size: 11px; font-weight: 600;">Physiological Sigh</div>
-            <div style="width: 30px;"></div>
+            <div style="font-size: 11px; font-weight: 600;">Physiological Sigh · 3 min</div>
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 11px; color: rgba(255,255,255,0.7);">✕</div>
           </div>
 
-          <div class="wf-phase-label">Quick inhale</div>
+          <!-- Toggle bar: opposite corners (v5.2 patch ③) -->
+          <div class="wf-box from-mobile" style="margin-top: 10px; width: 100%; background: rgba(0,0,0,0.22); padding: 4px; border-radius: 10px;">
+            <div class="wf-box-label" style="background: #08080C;">TOGGLE BAR · opposite corners · ≥120pt apart · from mobile</div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 4px;">
+              <!-- Haptic · TOP-LEFT -->
+              <div style="display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: rgba(90,200,190,0.18); border: 1px solid rgba(90,200,190,0.35);">
+                <span style="font-size: 12px;">📳</span>
+                <span style="font-size: 10px; font-weight: 700; color: #5AC8BE; letter-spacing: 0.3px;">HAPTIC · ON</span>
+              </div>
+              <!-- Audio · TOP-RIGHT -->
+              <div style="display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);">
+                <span style="font-size: 12px;">🔇</span>
+                <span style="font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.3px;">AUDIO · SILENCE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="wf-phase-label" style="margin-top: 14px;">Quick inhale</div>
 
           <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
             <div class="wf-box" style="border-radius: 50%;">
