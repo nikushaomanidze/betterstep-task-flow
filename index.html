@@ -4024,6 +4024,504 @@ Response 200:
       </div>
     </details>
 
+
+    <!-- BIG COLLAPSIBLE: Daily Quote full flow -->
+    <details class="collapsible big-collapsible" style="margin-top: 22px;">
+      <summary class="collapsible-toggle big-toggle">
+        <span class="toggle-chevron">›</span>
+        <span class="big-task-icon">📖</span>
+        <span class="big-task-label">
+          <span class="big-task-name">Daily Quote</span>
+          <span class="big-task-sub">Scratch-to-reveal · 25–40s · position 6 of 9 · v5.2</span>
+        </span>
+        <span class="big-task-reward">🪙 +10 BC</span>
+      </summary>
+      <div class="collapsible-body big-body">
+
+  <!-- THESIS CALLOUT -->
+  <div style="margin: 4px 0 22px; padding: 18px 22px; background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.28); border-left: 3px solid #8B5CF6; border-radius: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+      <span style="font-size: 13px; font-weight: 700; color: #B98CFF; letter-spacing: 0.3px; text-transform: uppercase;">The thesis — protect this above all</span>
+    </div>
+    <blockquote style="margin: 0 0 8px; padding: 0; border: none; font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.45; font-style: italic;">"WOW is not a property of a quote. WOW is a property of delivery."</blockquote>
+    <p style="font-size: 13px; color: var(--text-dim); line-height: 1.55; margin: 0;">A pile of 500 beautiful quotes with random rotation becomes wallpaper in 2 weeks. What creates the <em>"how did they know?"</em> feeling is <strong>being seen</strong> — the user opens the card, scratches, reveals, and the quote lands on an exact match to what they're carrying that day. That feeling is produced by <strong>signal-matched selection</strong>, not by the quote itself.</p>
+  </div>
+
+  <!-- LOCKED NODE IDENTITY (§2.1) -->
+  <section style="margin-bottom: 22px;">
+    <div class="section-header">
+      <h2>Node identity — LOCKED</h2>
+      <p>Fixed attributes per v5.1 §10.1. Do not contradict.</p>
+    </div>
+    <div style="margin-top: 10px; padding: 14px 18px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 13px; color: var(--text-dim); line-height: 1.55;">
+        <div style="color: var(--text-muted); font-weight: 600;">Position</div><div>6 in the 9-element daily routine — fires <strong>after the Chest, before Daily Reflection</strong>.</div>
+        <div style="color: var(--text-muted); font-weight: 600;">Bettercoins reward</div><div><strong>+10 BC fixed</strong> (down from v4's +15 + quiz bonus — the new mechanic is 25–40s, not 2–3 min).</div>
+        <div style="color: var(--text-muted); font-weight: 600;">Replaces</div><div>old "Today's Insight" (the 5–7 swipeable card reader — weakest engagement link, killed in v5.1).</div>
+        <div style="color: var(--text-muted); font-weight: 600;">Duration</div><div>25–40 seconds.</div>
+        <div style="color: var(--text-muted); font-weight: 600;">Energy tier</div><div>MED.</div>
+        <div style="color: var(--text-muted); font-weight: 600;">Post-slip behavior</div><div><strong>Does NOT appear on slip days.</strong> On "No" accountability, the 4 Post-Slip tasks replace the entire path. Chest, Daily Quote, Reflection, Close, Complete are all suppressed. Earliest a quote can reappear is Day 1 after a slip.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP-BY-STEP FLOW -->
+  <section>
+    <div class="section-header">
+      <h2>Interaction flow — scratch-to-reveal</h2>
+      <p>Foggy/blurred card with drifting particles · user scratches with finger · fog erases under touch (Apple Wallet pattern) · haptic per stroke · auto-clear after ~70% scratched.</p>
+    </div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">01</span>
+        <span class="step-tag phase">PRE-REVEAL</span>
+        <span class="step-title">Foggy card with drifting particles</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+          <li>Card renders <strong>foggy / blurred</strong>, quote hidden beneath.</li>
+          <li><strong>Drifting particles</strong> animate across the card surface — signals "alive, waiting to be revealed."</li>
+          <li>Affordance to scratch (CTA / iconography per Apple Wallet pattern).</li>
+        </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+            <div class="wf-status">9:41 · iPhone status bar</div>
+            <div class="wf-box from-mobile" style="width: 56px; margin-top: 18px;">
+              <div class="wf-box-label">BACK · from mobile</div>
+              <div class="wf-back">←</div>
+            </div>
+            <div class="wf-center" style="flex: 1;">
+              <div class="wf-box from-mobile" style="width: 100%;">
+                <div class="wf-box-label">SCRATCH CARD · foggy blur · drifting particles · from mobile</div>
+                <div style="height: 220px; border-radius: 14px; background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(139,92,246,0.08)); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                  <div style="position: absolute; inset: 0; backdrop-filter: blur(10px); background: rgba(20,29,31,0.6);"></div>
+                  <div style="position: absolute; top: 24%; left: 20%; width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.4);"></div>
+                  <div style="position: absolute; top: 60%; left: 70%; width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.3);"></div>
+                  <div style="position: absolute; top: 40%; left: 45%; width: 5px; height: 5px; border-radius: 50%; background: rgba(139,92,246,0.5);"></div>
+                  <div style="position: absolute; top: 80%; left: 30%; width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.35);"></div>
+                  <div style="position: relative; z-index: 1; font-size: 11px; color: rgba(255,255,255,0.55); font-style: italic;">Scratch to reveal today's quote</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">02</span>
+        <span class="step-tag user">USER ACTION</span>
+        <span class="step-title">Scratch — finger erases fog</span>
+      </div>
+      <ul class="step-body">
+        <li>Fog erases under the user's finger (Apple Wallet pattern).</li>
+        <li><strong>Haptic per stroke</strong> — tactile feedback on every drag segment.</li>
+        <li><strong>Auto-clear at ~70% scratched</strong> — once the user crosses the threshold, the remaining fog sweeps away automatically.</li>
+        <li>OR user taps <strong>[Done]</strong> after manual scratch reveal.</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">03</span>
+        <span class="step-tag phase">REVEALED</span>
+        <span class="step-title">Quote card — text, attribution, drawer, actions</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+          <li><strong>Quote text</strong> + <strong>attribution</strong>.</li>
+          <li>Optional <strong>"Why this quote? ▼"</strong> drawer — expands to ONE sentence connecting the quote to today's signal (family-keyed copy — see templates below).</li>
+          <li><strong>[♥ Save]</strong> → adds quote to "Wisdom Collection" on Progress tab.</li>
+          <li><strong>[📱 Add to Widget]</strong> — <strong>pre-selected by default</strong>. Friction-free widget adoption. Quote becomes active home-screen widget content for 24 hours.</li>
+          <li><strong>[Done]</strong> button → commits +10 BC, fires widget Write Event 1, proceeds to Daily Reflection.</li>
+        </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+            <div class="wf-status">9:41 · iPhone status bar</div>
+            <div class="wf-box from-mobile" style="width: 56px; margin-top: 18px;">
+              <div class="wf-box-label">BACK · from mobile</div>
+              <div class="wf-back">←</div>
+            </div>
+
+            <div class="wf-box from-back" style="margin-top: 14px;">
+              <div class="wf-box-label">QUOTE CARD · backend content · from back</div>
+              <div style="padding: 16px 14px; background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.2); border-radius: 12px;">
+                <div style="font-size: 13px; font-style: italic; color: var(--text); line-height: 1.5; margin-bottom: 10px;">"Between stimulus and response there is a space. In that space is our power to choose our response."</div>
+                <div style="font-size: 11px; color: rgba(255,255,255,0.55);">— Viktor Frankl</div>
+              </div>
+            </div>
+
+            <div class="wf-box from-back" style="margin-top: 8px;">
+              <div class="wf-box-label">"WHY THIS QUOTE?" DRAWER · from back · family-keyed · one sentence</div>
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(139,92,246,0.9); font-weight: 600;">
+                <span>Why this quote?</span><span style="font-size: 9px;">▼</span>
+              </div>
+              <div style="margin-top: 5px; font-size: 11px; color: rgba(255,255,255,0.7); font-style: italic; line-height: 1.4;">You said today was rough. Viktor knew that feeling.</div>
+            </div>
+
+            <div class="wf-box from-mobile" style="margin-top: 10px;">
+              <div class="wf-box-label">ACTION BUTTONS · from mobile</div>
+              <div style="display: flex; gap: 6px;">
+                <div style="flex: 1; padding: 8px; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); text-align: center; font-size: 11px; color: rgba(255,255,255,0.75);">♥ Save</div>
+                <div style="flex: 1; padding: 8px; border-radius: 8px; background: rgba(139,92,246,0.15); border: 1.5px solid #8B5CF6; text-align: center; font-size: 11px; color: #B98CFF; font-weight: 600;">📱 Add to Widget ✓</div>
+              </div>
+              <div style="margin-top: 8px; font-size: 9.5px; color: rgba(255,255,255,0.5); text-align: center; font-style: italic;">Widget toggle is PRE-SELECTED by default — friction-free adoption</div>
+            </div>
+
+            <div class="wf-box from-mobile" style="margin-top: auto;">
+              <div class="wf-box-label">DONE · from mobile</div>
+              <div class="wf-btn-primary">Done</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">04</span>
+        <span class="step-tag phase">POST-TAP</span>
+        <span class="step-title">+10 BC · widget write · proceed to Daily Reflection</span>
+      </div>
+      <ul class="step-body">
+        <li>+10 BC credited to user balance.</li>
+        <li><strong>Widget Write Event 1</strong> fires at this moment (if widget added) — today's revealed quote text + attribution displayed on home-screen widget for 24 hours.</li>
+        <li>Path advances to Node 7 (Daily Reflection).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- "WHY THIS QUOTE?" DRAWER TEMPLATES — §11A -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>"Why this quote?" drawer templates — D32 Q-1 LOCKED</h2>
+      <p>Drawer copy is keyed to the user's <strong>emotional family for today</strong>, using the author's <strong>first name</strong> for intimacy (Viktor, not Frankl). Hybrid: 8 templates hand-written, <code>{FirstName}</code> slot auto-fills from the quote's author field.</p>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 130px 1fr; font-size: 12.5px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Family</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Template</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">SHAME</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"You said today was rough. {FirstName} knew that feeling."</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">FEAR</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"Cravings are loud right now. {FirstName} has something to say about that."</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">GRIEF</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"Some days are heavy. {FirstName} understood heaviness."</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">EXHAUSTION</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"You're running on empty today. This one doesn't ask anything of you." <span style="font-style: normal; color: var(--text-muted); font-size: 10.5px;">(no {FirstName})</span></div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">LONELINESS</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"Feeling alone with this? {FirstName} wrote this for exactly that."</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">DRIFT</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"When the 'why' fades, perspective helps. Here's some." <span style="font-style: normal; color: var(--text-muted); font-size: 10.5px;">(no {FirstName})</span></div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">CAPACITY</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"Good day? Good. {FirstName} has a challenge for you."</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">ANGER</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"Frustration has energy in it. {FirstName} knew how to point it."</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 16px 18px; background: rgba(255,107,122,0.05); border: 1px solid rgba(255,107,122,0.28); border-left: 3px solid #FF6B7A; border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: #FF8A94; letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 8px;">Clinical guardrails for drawer copy (non-negotiable)</div>
+      <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">NEVER reference clinical labels.</strong> No "mood score," no "RRS," no "severity," no "risk level," no "relapse risk," no scoring of any kind. <em>"You said today was rough"</em> = good. <em>"Your mood score was 2/5"</em> = banned. <em>"Your RRS trend is rising"</em> = absolutely banned.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">NEVER quote the check-in back verbatim.</strong> Users dislike being parroted. The template paraphrases intent, not the exact word from the check-in.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">First-name intimacy required.</strong> Viktor, Brené, Gabor, Anne, Marcus, Matthew, Anthony, James, Anna. Single-name historical figures (Epictetus, Seneca, Baldwin) stay as-is.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">EXHAUSTION and DRIFT omit {FirstName}.</strong> A depleted user shouldn't have to parse attribution before the comfort lands. A drifting user benefits from a bare, direct line.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 12px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Edge cases the template must handle</div>
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 6px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+        <div style="color: var(--text); font-weight: 600;">Family can't be derived (skipped emotional check-in)</div><div>Default to <strong>CAPACITY</strong> template (non-directive, safe) and select a PERSPECTIVE-function quote from CAPACITY legal pool.</div>
+        <div style="color: var(--text); font-weight: 600;">Quote has no author (Tier F BetterStep original)</div><div>Use the template without <code>{FirstName}</code> slot. Rewrite naturally: <em>"You said today was rough. This one was written for that."</em></div>
+        <div style="color: var(--text); font-weight: 600;">Multiple families fire simultaneously</div><div>Use priority order (SHAME &gt; FEAR &gt; ANGER &gt; EXHAUSTION &gt; GRIEF &gt; LONELINESS &gt; DRIFT &gt; CAPACITY). Drawer is one sentence — cannot stack.</div>
+        <div style="color: var(--text); font-weight: 600;">Accountability = No (post-slip rebuilding day 1–7)</div><div>Uses detected family's template. <strong>NEVER</strong> reference the slip directly. Do not say "you slipped yesterday" — that retraumatizes. The quote itself carries the therapeutic weight; drawer stays family-generic.</div>
+        <div style="color: var(--text); font-weight: 600;">Author is a single-name figure (Epictetus, Seneca)</div><div>Use the single name in the <code>{FirstName}</code> slot. <em>"You said today was rough. Epictetus knew that feeling."</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WIDGET INTEGRATION — §2.4 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Widget integration — LOCKED 2026-04-16</h2>
+      <p>The widget has <strong>TWO write events per day</strong>. No periodic polling. No phone-wake refresh. No hourly cron. Two writes only.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid rgba(139,92,246,0.3); border-radius: 12px; background: rgba(139,92,246,0.04);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: #B98CFF; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Write Event 1 — Quote Reveal (user-triggered)</div>
+        <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
+          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Fires the moment the user finishes scratching (auto-clear at ~70%) OR taps [Done] after manual reveal.</li>
+          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Widget displays <strong>today's revealed quote text + attribution</strong> for the next 24 hours.</li>
+          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>State: full quote · "Open BetterStep" tap target.</li>
+        </ul>
+      </div>
+      <div style="padding: 14px; border: 1px solid rgba(90,200,190,0.3); border-radius: 12px; background: rgba(90,200,190,0.04);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--accent); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Write Event 2 — 04:00 Wipe (scheduled, local time)</div>
+        <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
+          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Fires at <strong>04:00 user local time</strong>, every day.</li>
+          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Wipes the previously-displayed quote from the widget.</li>
+          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Placeholder state: <strong>"New quote available"</strong> + small BetterStep logo + "Open BetterStep" tap target.</li>
+          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Remains until Write Event 1 fires later that day.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Why 04:00 local time</div>
+      <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
+        <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Most users are asleep — widget doesn't visibly "flicker" mid-reading.</li>
+        <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Late-night recovery users (active 23:00–03:00) still see yesterday's quote as a comfort artifact for as long as possible.</li>
+        <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Far enough before morning routine (~06:00–09:00) that the placeholder is in place when user picks up phone, signaling "today's quote awaits."</li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Widget fallback states</div>
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 6px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+        <div style="color: var(--text); font-weight: 600;">Day 0 / first install (never revealed a quote)</div><div>Widget shows <strong>"Open BetterStep" prompt only</strong>. No "New quote available" until first quote is ever revealed.</div>
+        <div style="color: var(--text); font-weight: 600;">User skipped Node 6 yesterday + kept widget</div><div>04:00 wipe fires anyway → widget shows <strong>"New quote available"</strong>. Same state as a normal day before reveal.</div>
+        <div style="color: var(--text); font-weight: 600;">Slip day (Post-Slip Protocol replaces Node 6)</div><div>Widget <strong>keeps yesterday's quote</strong> through the slip day (no Write Event 1). 04:00 next morning still wipes per Write Event 2 schedule. Resumes normal cycle on first non-slip day.</div>
+        <div style="color: var(--text); font-weight: 600;">User has not added the widget</div><div>No writes occur. Widget integration is silent until first add.</div>
+        <div style="color: var(--text); font-weight: 600;">Tapping widget in any state</div><div>Opens BetterStep app — deep link to Home if quote not yet revealed today, or to today's saved quote view if revealed.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 10px; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px dashed var(--border); border-radius: 8px; font-size: 11.5px; color: var(--text-muted); line-height: 1.55;">
+      <strong style="color: var(--text);">Implementation note for CTO:</strong> Use platform-native scheduled task APIs (<code>WidgetKit</code> on iOS, <code>WorkManager</code> on Android). Schedule Write Event 2 as a daily local-time job. Write Event 1 fires from the app process directly when the reveal completes. No background polling needed.
+    </div>
+  </section>
+
+  <!-- THE WOW MECHANISM — §5 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>The WOW mechanism — 3 ingredients</h2>
+      <p>WOW fires when three ingredients line up simultaneously on the scratched-open card. If any one is missing, it's decoration. The delivery logic exists to force all three to line up as often as possible — ideally every single day.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">1. Synchronicity</div>
+        <div style="font-size: 12.5px; color: var(--text); font-weight: 600; font-style: italic; margin-bottom: 6px;">"This is exactly what I needed to hear right now."</div>
+        <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">Produced by <strong>signal-matched selection</strong>. Signal sources: today's check-in (mood, cravings, confidence, HALT, accountability), today's Core Exercise category, recovery phase, day number, streak, primary addiction, day of week. If the selection is random, synchronicity is impossible.</div>
+      </div>
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">2. Borrowed authority they respect</div>
+        <div style="font-size: 12.5px; color: var(--text); font-weight: 600; font-style: italic; margin-bottom: 6px;">"Wait, Matthew Perry said that? He went through this."</div>
+        <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">Produced by <strong>source tier</strong>. Voice credibility &gt; prose quality. A B-tier sentence from a recovery memoirist beats an A-tier sentence from an anonymous Instagram poster every time.</div>
+      </div>
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">3. Permission they couldn't give themselves</div>
+        <div style="font-size: 12.5px; color: var(--text); font-weight: 600; font-style: italic; margin-bottom: 6px;">"I'm allowed to feel this. I'm allowed to be tired. I'm allowed to start over."</div>
+        <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">Produced by <strong>function tag</strong>. Permission is the most under-used function in motivational content. Most quotes tell users to do more. The rare quote that gives them permission is the one that creates the biggest emotional release.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOVERNING RULES / CONTENT GUARDRAILS — §3 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Governing rules — non-negotiable content guardrails</h2>
+      <p>These rules sit above every decision. When logic conflicts with these rules, the rules win.</p>
+    </div>
+
+    <div style="margin-top: 10px; padding: 16px 20px; background: rgba(255, 107, 122, 0.05); border: 1px solid rgba(255, 107, 122, 0.28); border-left: 3px solid #FF6B7A; border-radius: 10px;">
+      <ol style="margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--text-dim); line-height: 1.65;">
+        <li style="margin-bottom: 10px;"><strong style="color: var(--text);">The golden rule.</strong> Every feature must satisfy BOTH engagement AND therapeutic value. A quote that only entertains fails. A quote that only teaches fails. The library is the intersection, not the union.</li>
+        <li style="margin-bottom: 10px;"><strong style="color: var(--text);">Never validate negative self-beliefs.</strong>
+          <div style="margin-top: 4px; padding: 6px 10px; background: rgba(0,0,0,0.2); border-radius: 6px; font-size: 12px;">
+            <div>❌ <em>"I am an addict."</em> — identity-sickness framing</div>
+            <div>❌ <em>"You are only as sick as your secrets."</em> — validates sickness as identity</div>
+            <div>❌ <em>"You are broken, and that's okay."</em> — broken-identity validation</div>
+            <div style="color: #5AC8BE; margin-top: 4px;">✅ <em>"Between stimulus and response there is a space..."</em> — agency, not identity-sickness</div>
+            <div style="color: #5AC8BE;">✅ <em>"Recovery is a practice, not a verdict."</em> — practice framing, no diagnostic label</div>
+          </div>
+        </li>
+        <li style="margin-bottom: 10px;"><strong style="color: var(--text);">Never show scary/negative clinical metrics.</strong> No quote that implies "relapse risk HIGH." No quote that frames the user as severe, chronic, or doomed. Positive framing only.</li>
+        <li style="margin-bottom: 10px;"><strong style="color: var(--text);">The 2AM test.</strong> Before any quote ships, read it at 2am imagining yourself in a panic attack or post-slip shame spiral. <strong>Would it make you feel WORSE?</strong> If yes, kill it. Classic failures:
+          <div style="margin-top: 4px; padding: 6px 10px; background: rgba(0,0,0,0.2); border-radius: 6px; font-size: 12px;">
+            <div>❌ <em>"Every storm runs out of rain."</em> — dismissive in crisis</div>
+            <div>❌ <em>"What doesn't kill you makes you stronger."</em> — gaslights actual trauma</div>
+            <div>❌ <em>"Just breathe."</em> — invalidating when breathing isn't the problem</div>
+          </div>
+        </li>
+        <li style="margin-bottom: 10px;"><strong style="color: var(--text);">Middle East / global cultural safety.</strong> Ships in Riyadh, Tel Aviv, and the broader Middle East. No pork, alcohol, or gambling references as metaphors. No religious text verses as universal wisdom. No gendered pronouns where neutral works. No US-centric idioms ("knock it out of the park," "Hail Mary"). No culturally specific holidays or figures as shorthand.</li>
+        <li style="margin-bottom: 10px;"><strong style="color: var(--text);">Tone of voice — Option B (warm / coachy / factual).</strong>
+          <div style="margin-top: 4px; padding: 6px 10px; background: rgba(0,0,0,0.2); border-radius: 6px; font-size: 12px;">
+            <div>❌ Saccharine affirmations (<em>"You are enough, you are loved, you are perfect."</em>)</div>
+            <div>❌ Poetic body-talk (<em>"Your body is a temple of light."</em>)</div>
+            <div>❌ Mystical lyricism that doesn't convert to action</div>
+          </div>
+          <div style="margin-top: 4px;">Lean hard on <strong>pragmatic, clear, grounded voices</strong>. Lean away from mystical-poetic ones — even beloved ones like Rumi — unless the specific quote is pragmatic and action-oriented.</div>
+        </li>
+        <li><strong style="color: var(--text);">Zero-typing.</strong> The quote node has no typing. Scratch, tap, save, add to widget, done.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SOURCE AUTHORITY TIERS — §6 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Source authority tiers</h2>
+      <p>Ranked from highest WOW potential to lowest, filtered by Option B tone compliance.</p>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 60px 1fr 1.3fr 1.3fr; font-size: 12.5px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Tier</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Category</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Examples</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Why they work</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 700;">A</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);">Recovery memoirists with public scars</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Matthew Perry, Elton John, Robert Downey Jr., Anne Lamott, Craig Ferguson, Anthony Kiedis, Demi Lovato</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Identification is the active ingredient of recovery. "They got through this. I can too."</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: #FFD764; font-weight: 700;">B</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);">Trauma / addiction clinicians</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Gabor Maté, Viktor Frankl, Pema Chödrön, Bessel van der Kolk, Marc Lewis, Judson Brewer</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Clinical authority + warmth. Option B natively.</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">C</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);">Stoics</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Marcus Aurelius, Epictetus, Seneca</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Timeless, religion-neutral, globally portable, short. Filter for warm ones.</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: #B98CFF; font-weight: 700;">D</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);">Literary voices with grit</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">James Baldwin, Kurt Vonnegut, Ernest Hemingway, Flannery O'Connor</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Wrote about suffering without flinching. One-line truth-tellers.</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: #FF8A94; font-weight: 700;">E</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);">Research-voiced scientists</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Andrew Huberman, Robert Sapolsky, Lisa Feldman Barrett, Anna Lembke</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"Your brain science is on my side." Most direct Option B match.</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">F</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);">Original BetterStep copy</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Written in-house, Option B voice, signal-matched to specific user states</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Perfect signal match. ~25% of library target.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 16px 18px; background: rgba(255,107,122,0.05); border: 1px solid rgba(255,107,122,0.28); border-left: 3px solid #FF6B7A; border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: #FF8A94; letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 8px;">Deliberate exclusions — NEVER pull from</div>
+      <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">AA Big Book verbatim</strong> — religious, US-centric, "you are only as sick as your secrets" validates sickness-as-identity.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">Bible / Quran / Torah / Buddhist sutras</strong> — violates global cultural safety.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">Instagram motivation posters / trending social media quotes</strong> — no recovery credibility, toxic positivity risk, fake-attribution risk.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">David Goggins</strong> outside his rawest addiction-adjacent lines — toxic masculinity risk + Option B violation.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">Fake attributions</strong> — "Einstein said," "Gandhi said," "Buddha said." Most fabricated. If cannot be verified to a specific book/speech/interview, the quote is killed.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">Rumi / Hafiz / mystic poets</strong> — Option B violation. Even the lines you love.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><strong style="color: var(--text);">Song lyrics</strong> — copyright nightmare. Musical voice, not coachy.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ANTI-PATTERNS — §12 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Anti-patterns — do NOT do any of this</h2>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 1.2fr 1.5fr 1.5fr; font-size: 12.5px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Anti-pattern</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Why it fails</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">What to do instead</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Pile up 300 quotes with date-modulo rotation</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Random = wallpaper in 2 weeks</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Signal-matched 7-layer algorithm</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">"Inspirational" quotes that fail 2AM test</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Hurts vulnerable users</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Run every quote at 2am in your imagination first</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">AA-style identity-sickness framing</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Validates negative identity</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Agency / practice framing</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Religious text as universal</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Alienates ~40% of global users</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Stoic / secular clinical / scientific voice</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Trending social-media motivation</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">No recovery credibility, toxic positivity</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Tier A-F authority sources only</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Single-culture-only quotes</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Fails Riyadh / Tel Aviv markets</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Cultural pre-flight gate</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Deploying quotes to Post-Slip day 0</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Locked exclusion</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Earliest post-slip eligibility is rebuilding day 1</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Bleeding quotes onto other surfaces</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Kills the scarcity that makes WOW work</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">ONE surface in v5.1. Period.</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Mystic / poetic lyricism (Rumi-style)</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Option B tone violation</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Stoic, clinical, memoirist, or scientific voice</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Revising a failed-gate quote</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Trap — "almost right" = wrong quote</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Drop it and find a different one</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Over-serving a user's favorites</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Makes app feel predictable</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Layer 4 halves favorite weights</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERY LOGIC BRIEF (for backend/content context) -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Delivery logic — backend brief</h2>
+      <p>Designer summary of the selection system behind the scenes. Drives which quote appears for which user on which day.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">D32 Primary taxonomy — 8 Emotional Families</div>
+        <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4px 10px; font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+          <div style="color: var(--text); font-weight: 600;">SHAME</div><div>Accountability = Barely, Mood = Rough with self-blame</div>
+          <div style="color: var(--text); font-weight: 600;">FEAR</div><div>Cravings = Strong / Intense, Low confidence + cravings</div>
+          <div style="color: var(--text); font-weight: 600;">GRIEF</div><div>Mood = Low sustained, Rough without self-blame</div>
+          <div style="color: var(--text); font-weight: 600;">ANGER</div><div>HALT: Angry</div>
+          <div style="color: var(--text); font-weight: 600;">EXHAUSTION</div><div>HALT: Tired, Sleep &lt; 5h</div>
+          <div style="color: var(--text); font-weight: 600;">LONELINESS</div><div>HALT: Lonely</div>
+          <div style="color: var(--text); font-weight: 600;">DRIFT</div><div>Plateau + no signal, Mood = Okay + no HALT</div>
+          <div style="color: var(--text); font-weight: 600;">CAPACITY</div><div>Mood = Good / Great + high confidence + no cravings</div>
+        </div>
+        <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted); font-style: italic;">Priority when multiple fire: post_slip &gt; SHAME &gt; FEAR &gt; ANGER &gt; EXHAUSTION &gt; GRIEF &gt; LONELINESS &gt; DRIFT &gt; CAPACITY</div>
+      </div>
+
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">6 Need Functions</div>
+        <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4px 10px; font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+          <div style="color: var(--text); font-weight: 600;">COMFORT</div><div>Holds the user, asks nothing</div>
+          <div style="color: var(--text); font-weight: 600;">NORMALIZE</div><div>"You're not the only one"</div>
+          <div style="color: var(--text); font-weight: 600;">PERMISSION</div><div>Lets them off the hook</div>
+          <div style="color: var(--text); font-weight: 600;">REFRAME</div><div>Flips the thought</div>
+          <div style="color: var(--text); font-weight: 600;">PERSPECTIVE</div><div>Zoom out, bigger picture</div>
+          <div style="color: var(--text); font-weight: 600;">CHALLENGE</div><div>Respectful activation</div>
+        </div>
+        <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted); font-style: italic;">Deprecated: <code>identity</code> and <code>humor</code> — retag to REFRAME / CHALLENGE / PERSPECTIVE.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Family × Function Legality Matrix (LOCKED)</div>
+      <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.5; margin: 0 0 10px;">Which function is legal inside which family. <strong style="color: var(--text);">primary</strong> = first-choice · <strong style="color: var(--text);">secondary</strong> = acceptable fallback · <strong style="color: var(--text);">careful</strong> = clinical review required · <strong style="color: #FF8A94;">NEVER</strong> = hard ban, excluded from pool.</p>
+      <div style="overflow-x: auto;">
+        <div style="display: grid; grid-template-columns: 120px repeat(6, 1fr); gap: 0; font-size: 11px; min-width: 540px;">
+          <div style="padding: 6px 8px; background: rgba(255,255,255,0.04); font-weight: 700; color: var(--text-muted);"></div>
+          <div style="padding: 6px 8px; background: rgba(255,255,255,0.04); font-weight: 700; color: var(--text-muted); text-align: center;">Comfort</div>
+          <div style="padding: 6px 8px; background: rgba(255,255,255,0.04); font-weight: 700; color: var(--text-muted); text-align: center;">Normalize</div>
+          <div style="padding: 6px 8px; background: rgba(255,255,255,0.04); font-weight: 700; color: var(--text-muted); text-align: center;">Permission</div>
+          <div style="padding: 6px 8px; background: rgba(255,255,255,0.04); font-weight: 700; color: var(--text-muted); text-align: center;">Reframe</div>
+          <div style="padding: 6px 8px; background: rgba(255,255,255,0.04); font-weight: 700; color: var(--text-muted); text-align: center;">Perspective</div>
+          <div style="padding: 6px 8px; background: rgba(255,255,255,0.04); font-weight: 700; color: var(--text-muted); text-align: center;">Challenge</div>
+
+          <div style="padding: 6px 8px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">SHAME</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FFB060;">careful</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div>
+          <div style="padding: 6px 8px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">FEAR</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div>
+          <div style="padding: 6px 8px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">GRIEF</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FFB060;">careful</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div>
+          <div style="padding: 6px 8px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">ANGER</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FFB060;">careful</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FFB060;">careful</div>
+          <div style="padding: 6px 8px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">EXHAUSTION</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div>
+          <div style="padding: 6px 8px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">LONELINESS</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FFB060;">careful</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div>
+          <div style="padding: 6px 8px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">DRIFT</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FFB060;">careful</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div>
+          <div style="padding: 6px 8px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">CAPACITY</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FF8A94; font-weight: 700;">NEVER</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FFB060;">careful</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #FFB060;">careful</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim);">secondary</div><div style="padding: 6px 8px; border-top: 1px solid var(--border); text-align: center; color: #5AC8BE; font-weight: 700;">primary</div>
+        </div>
+      </div>
+      <div style="margin-top: 12px; padding: 10px 12px; background: rgba(255,107,122,0.06); border: 1px solid rgba(255,107,122,0.2); border-radius: 6px; font-size: 11.5px; color: var(--text-dim); line-height: 1.55;">
+        <strong style="color: #FF8A94;">Clinical guardrails encoded by the matrix:</strong>
+        <ul style="list-style: none; margin: 6px 0 0; padding: 0;">
+          <li style="padding: 2px 0 2px 10px; position: relative;"><span style="position: absolute; left: 0;">·</span><strong style="color: var(--text);">Five families NEVER get CHALLENGE</strong> (SHAME, FEAR, GRIEF, EXHAUSTION, LONELINESS). Do not push a user already at their edge.</li>
+          <li style="padding: 2px 0 2px 10px; position: relative;"><span style="position: absolute; left: 0;">·</span><strong style="color: var(--text);">FEAR NEVER gets PERMISSION.</strong> Giving a craving-spiked user "permission to rest" reads as permission to use.</li>
+          <li style="padding: 2px 0 2px 10px; position: relative;"><span style="position: absolute; left: 0;">·</span><strong style="color: var(--text);">EXHAUSTION NEVER gets REFRAME.</strong> A depleted user doesn't have cognitive budget for reframing.</li>
+          <li style="padding: 2px 0 2px 10px; position: relative;"><span style="position: absolute; left: 0;">·</span><strong style="color: var(--text);">DRIFT NEVER gets COMFORT or PERMISSION.</strong> More softness deepens the drift. They need perspective or a respectful push.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">7-layer selection algorithm</div>
+      <ol style="margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--text-dim); line-height: 1.65;">
+        <li><strong style="color: var(--text);">Layer 1 — Category match</strong> to today's Core Exercise (CBT, Refusal Skills, Crisis Planning, Values, etc.).</li>
+        <li><strong style="color: var(--text);">Layer 2 — Tone match to morning mood.</strong> Rough/Low → gentle/comfort only. Okay → any. Good/Great → preference for firm/stoic/athletic/challenge.</li>
+        <li><strong style="color: var(--text);">Layer 3 — No repeat within 60 days.</strong> Hard filter. Non-negotiable.</li>
+        <li><strong style="color: var(--text);">Layer 4 — Favorites get 0.5× weight.</strong> Let them collect new ones.</li>
+        <li><strong style="color: var(--text);">Layer 5 — Function match to signals</strong> (filtered by Family × Function legality).</li>
+        <li><strong style="color: var(--text);">Layer 6 — Author diversity.</strong> No author twice within 7 days.</li>
+        <li><strong style="color: var(--text);">Layer 7 — Novelty injection.</strong> Every 14th day, force a never-shown-before quote — variable ratio, creates curiosity.</li>
+      </ol>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">4 review gates — every quote, no exceptions</div>
+      <ol style="margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--text-dim); line-height: 1.65;">
+        <li><strong style="color: var(--text);">Verification gate</strong> — cite exact book + page, or speech + year, or interview + publication + date. Fake attributions killed on sight.</li>
+        <li><strong style="color: var(--text);">2AM test gate</strong> — read at 2am imagining panic / shame spiral. Would it make you feel WORSE? If yes, kill it. Kills ~70% of Instagram-tier content.</li>
+        <li><strong style="color: var(--text);">Never-validate-negative-beliefs gate</strong> — does it reinforce "I am an addict," "I am broken," "I am sick"? Even beloved AA sayings can fail.</li>
+        <li><strong style="color: var(--text);">Cultural pre-flight gate</strong> — works in Riyadh, Tel Aviv, NYC, São Paulo? No pork / alcohol metaphors / religious assumptions / gendered pronouns / US-centric idioms / Western holidays? Option B tone compliant?</li>
+      </ol>
+      <p style="margin: 10px 0 0; font-size: 11.5px; color: var(--text-muted); font-style: italic; line-height: 1.55;">Any quote that fails any gate is not "revised" — it's dropped. Revision is a trap. If the quote was almost-right, pick a different one that's exactly-right.</p>
+    </div>
+  </section>
+
+      </div>
+    </details>
+
 </div>
 </body>
 </html>
