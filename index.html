@@ -2535,10 +2535,10 @@ Response 200:
         <span class="toggle-chevron">›</span>
         <span class="big-task-icon">💓</span>
         <span class="big-task-label">
-          <span class="big-task-name">Pulse Check</span>
-          <span class="big-task-sub">Camera-based finger PPG · 60s measurement · task 2 of 9</span>
+          <span class="big-task-name">Heart Rate Check</span>
+          <span class="big-task-sub">Camera-based finger PPG · 60s measurement · task 2 of 7</span>
         </span>
-        <span class="big-task-reward">🪙 +15 BC</span>
+        <span class="big-task-reward">🪙 +15 pts</span>
       </summary>
       <div class="collapsible-body big-body">
 
@@ -2551,7 +2551,7 @@ Response 200:
       <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; top: 11px; width: 6px; height: 1.5px; background: var(--accent); opacity: 0.6; border-radius: 1px;"></span><strong style="color: var(--text); font-weight: 600;">User-facing name is "Heart Rate Check" — NEVER "HRV Measurement".</strong> "HRV" means nothing to users and makes them anxious when they google it.</li>
       <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; top: 11px; width: 6px; height: 1.5px; background: var(--accent); opacity: 0.6; border-radius: 1px;"></span><strong style="color: var(--text); font-weight: 600;">Raw numbers translated to labels.</strong> Backend measures RMSSD, SDNN, stress index, R-R intervals — user only sees BPM + <strong>"Recovery"</strong> label (HRV translation) + <strong>"Calm Level"</strong> label (stress inverted, more fill = better).</li>
       <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; top: 11px; width: 6px; height: 1.5px; background: var(--accent); opacity: 0.6; border-radius: 1px;"></span><strong style="color: var(--text); font-weight: 600;">60-second measurement, single screen that transforms.</strong> Measurement screen and results screen are the <em>same page</em> — no transitions. Metric cards loading dots → fill with results. Ring: purple (filling) → green (done).</li>
-      <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; top: 11px; width: 6px; height: 1.5px; background: var(--accent); opacity: 0.6; border-radius: 1px;"></span><strong style="color: var(--text); font-weight: 600;">No guided breathing during measurement.</strong> Paced breathing inflates RMSSD by ~40–45% (Laborde 2021). Breathing is the NEXT task (task 3).</li>
+      <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; top: 11px; width: 6px; height: 1.5px; background: var(--accent); opacity: 0.6; border-radius: 1px;"></span><strong style="color: var(--text); font-weight: 600;">No guided breathing during measurement.</strong> Paced breathing inflates RMSSD by ~40–45% (Laborde et al., 2021), compromising clinical comparisons. Breathing exercise is the NEXT task.</li>
       <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; top: 11px; width: 6px; height: 1.5px; background: var(--accent); opacity: 0.6; border-radius: 1px;"></span><strong style="color: var(--text); font-weight: 600;">Mini camera preview stays top-right throughout measurement.</strong> User needs to confirm their finger is still on the camera (Welltory pattern).</li>
     </ul>
   </div>
@@ -2593,84 +2593,18 @@ Response 200:
   <section>
     <div class="section-header">
       <h2>Step-by-step flow</h2>
-      <p>Entry → Loading → Prep → in-place Calibration → Measurement → Results. Phases 3–4 share the same screen (transforms in place, no page transition).</p>
+      <p>Prep → in-place Calibration → Measurement → Results. Measurement and Results share the same screen (transforms in place, no page transition).</p>
     </div>
 
     <div class="step-block">
       <div class="step-header">
         <span class="step-num">01</span>
-        <span class="step-tag entry">ENTRY</span>
-        <span class="step-title">Tasks Tab (home)</span>
-      </div>
-      <ul class="step-body">
-        <li>User opens bottom <strong>Tasks</strong> tab · sees 9 task icons · taps 💓.</li>
-        <li>Haptic <code>impactLight</code> on tap.</li>
-      </ul>
-    </div>
-
-    <div class="step-arrow">↓</div>
-
-    <div class="step-block">
-      <div class="step-header">
-        <span class="step-num">02</span>
-        <span class="step-tag user">USER ACTION</span>
-        <span class="step-title">Tap → popup modal (no audio/haptic picker — measurement task)</span>
-      </div>
-      <ul class="step-body">
-        <li>Small modal: task <strong>icon</strong> · <strong>name</strong> · <strong>+15 BS coin</strong> pill · one-line description · <strong>Start</strong> button.</li>
-        <li>No audio-mode / haptic toggles (measurement tasks don't need them).</li>
-        <li>Locked → "Complete previous tasks first". Already done → "Already done today".</li>
-        <li>Tap Start → navigate to <code>PulseCheck</code> screen with params <code>{ taskId, taskName, taskIcon }</code>.</li>
-      </ul>
-    </div>
-
-    <div class="step-arrow">↓</div>
-
-    <div class="step-block">
-      <div class="step-header">
-        <span class="step-num">03</span>
-        <span class="step-tag phase">PHASE 0</span>
-        <span class="step-title">Loading</span>
-      </div>
-      <div class="step-columns">
-        <ul class="step-body">
-          <li>Screen mounts with <code>isLoading = true</code>.</li>
-          <li>Reads <code>route.params</code> (taskIcon + taskName) — renders instantly, no empty state.</li>
-          <li>Fires <code>GET /api/v1/routine/pulse/today</code> (gets baseline data, day-in-program, DYK cards).</li>
-          <li>Renders Sandy Lottie (220×220) + "Loading Heart Rate Check".</li>
-          <li>On response → crossfade to Phase 1 (Prep).</li>
-        </ul>
-        <div class="step-wireframe">
-          <div class="wf-frame">
-            <div class="wf-status">9:41 · iPhone status bar</div>
-            <div class="wf-center" style="flex: 1;">
-              <div class="wf-box from-mobile">
-                <div class="wf-box-label">LOTTIE · sandy-loading · 220×220 · from mobile</div>
-                <div style="display: flex; justify-content: center;">
-                  <div class="wf-lottie-box xlarge" style="border: none;">Sandy Loading<br/>220 × 220</div>
-                </div>
-              </div>
-              <div class="wf-box from-back" style="width: 100%; margin-top: 10px;">
-                <div class="wf-box-label">TASK NAME · from back</div>
-                <div class="wf-text h3" style="margin-top: 4px;">Loading Heart Rate Check</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="step-arrow">↓</div>
-
-    <div class="step-block">
-      <div class="step-header">
-        <span class="step-num">04</span>
         <span class="step-tag phase">PHASE 1</span>
         <span class="step-title">Prep Screen — finger placement</span>
       </div>
       <div class="step-columns">
         <ul class="step-body">
-          <li>Title <strong>"Heart Rate Check"</strong> + subtitle <strong>"Task 2 of 9 · +15 pts"</strong> (anchors user to climbing path).</li>
+          <li>Title <strong>"Heart Rate Check"</strong> + subtitle <strong>"Task 2 of 7 · +15 pts"</strong> (anchors user to their position on the climbing path).</li>
           <li><strong>Device-aware finger placement visual</strong> (80×140 phone illustration). App detects the phone model and shows one of 6 category illustrations:
             <ul style="margin-top: 4px; list-style: none; padding: 0;">
               <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span> iPhone vertical dual (12/13/14) — perpendicular across top camera + flash</li>
@@ -2697,7 +2631,7 @@ Response 200:
             <div class="wf-box from-back" style="margin-top: 10px;">
               <div class="wf-box-label">TITLE + SUBTITLE · from back</div>
               <div class="wf-text h1">Heart Rate Check</div>
-              <div style="font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 3px;">Task 2 of 9 · +15 pts</div>
+              <div style="font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 3px;">Task 2 of 7 · +15 pts</div>
             </div>
 
             <div class="wf-box from-mobile" style="margin-top: 10px;">
@@ -2735,7 +2669,7 @@ Response 200:
 
     <div class="step-block">
       <div class="step-header">
-        <span class="step-num">05</span>
+        <span class="step-num">02</span>
         <span class="step-tag phase">PHASE 2</span>
         <span class="step-title">Calibration — in-place, 8–10 sec (no page transition)</span>
       </div>
@@ -2792,7 +2726,7 @@ Response 200:
 
     <div class="step-block">
       <div class="step-header">
-        <span class="step-num">06</span>
+        <span class="step-num">03</span>
         <span class="step-tag phase">PHASE 3</span>
         <span class="step-title">Measurement — 60 seconds (single screen)</span>
       </div>
@@ -2883,7 +2817,7 @@ Response 200:
 
     <div class="step-block">
       <div class="step-header">
-        <span class="step-num">07</span>
+        <span class="step-num">04</span>
         <span class="step-tag phase">PHASE 4</span>
         <span class="step-title">Results — same screen transforms</span>
       </div>
@@ -2907,8 +2841,9 @@ Response 200:
             </ul>
           </li>
           <li><strong>Trend sparkline (Day 3+):</strong> 7-day resting HR as tiny bar chart · framed positively (Improving / Steady / "Up and down — that's normal"; NEVER "getting worse").</li>
-          <li><strong>Bridge text</strong> → next task (Breathing): <em>"Looking good. Let's keep the momentum with a breathing exercise."</em> / <em>"Your heart rate is a bit elevated — let's bring it down together."</em> / <em>"Your body could use some calm. This breathing exercise will help."</em></li>
-          <li><strong>[ Continue to Breathing ]</strong> primary button · commits <code>POST /complete</code> → server awards +15 BC · navigates to Task 3 (Breathing).</li>
+          <li><strong>Bridge text</strong> → connects to the breathing exercise (next task on the path): <em>"Looking good. Let's keep the momentum with a breathing exercise."</em> / <em>"Your heart rate is a bit elevated — let's bring it down together."</em> / <em>"Your body could use some calm. This breathing exercise will help."</em></li>
+          <li><strong>Points: +15 pts</strong> (flat, same as every task). Primary button <strong>[ Continue to Breathing ]</strong>.</li>
+          <li><strong>Skipping</strong> also completes the task (marked as skipped, no points). Never blocks the path.</li>
         </ul>
         <div class="step-wireframe">
           <div class="wf-frame">
@@ -3607,6 +3542,487 @@ Response 200:
 }</pre>
     </div>
   </section>
+
+      </div>
+    </details>
+
+
+    <!-- BIG COLLAPSIBLE: The Chest full flow -->
+    <details class="collapsible big-collapsible" style="margin-top: 22px;">
+      <summary class="collapsible-toggle big-toggle">
+        <span class="toggle-chevron">›</span>
+        <span class="big-task-icon">🎁</span>
+        <span class="big-task-label">
+          <span class="big-task-name">The Chest</span>
+          <span class="big-task-sub">Variable reward 10–800 BC · EV ~36 BC/day · position 5 of 9</span>
+        </span>
+        <span class="big-task-reward">🪙 Variable 10–800 BC</span>
+      </summary>
+      <div class="collapsible-body big-body">
+
+  <!-- GOVERNING RULES (NEVER VIOLATE) — md §0 -->
+  <div style="margin: 4px 0 22px; padding: 16px 20px; background: rgba(255, 107, 122, 0.05); border: 1px solid rgba(255, 107, 122, 0.28); border-left: 3px solid #FF6B7A; border-radius: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <span style="font-size: 13px; font-weight: 700; color: #FF8A94; letter-spacing: 0.3px; text-transform: uppercase;">Governing rules — NEVER violate</span>
+    </div>
+    <ol style="margin: 0; padding-left: 18px; font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+      <li><strong style="color: var(--text);">Chest is ALWAYS subordinate to Core Exercise.</strong> Chest EV must stay below Core's +50 BC fixed reward. Side dish, never the entree.</li>
+      <li><strong style="color: var(--text);">Never empty.</strong> Minimum drop is 10 BC. A zero-chest kills the ritual.</li>
+      <li><strong style="color: var(--text);">Never two jackpots in a row.</strong> If yesterday rolled any jackpot (Lucky, Epic, Legendary, or milestone), today rolls from Normal distribution only. Server-enforced.</li>
+      <li><strong style="color: var(--text);">Chest is motivational carrot, NOT therapeutic reward.</strong> Core Exercise owns the clinical outcome. Never frame the chest as the day's "achievement."</li>
+      <li><strong style="color: var(--text);">Gambling Sensitivity Mode — ZERO gambling vocabulary.</strong> Banned: "Lucky," "Jackpot," "Rare," "Drop," "Spin," "Win," "Open," "Roll," "Odds," "Chance," "Lucky streak." Allowed: "Daily Bonus," "Collect," "Milestone Bonus."</li>
+      <li><strong style="color: var(--text);">Sensitivity flag is immutable mid-program.</strong> Set at onboarding; cannot be toggled later.</li>
+      <li><strong style="color: var(--text);">Audio: soft bell chime ONLY.</strong> Never casino clink, slot jingle, cash-register ding, or percussive metallic cascade. One bell, clean, ~0.8s decay.</li>
+      <li><strong style="color: var(--text);">Chest appears only AFTER Core Exercise is marked complete.</strong> The sequence gate is hard.</li>
+      <li><strong style="color: var(--text);">Day 1–7 ramp is locked — no exceptions.</strong> Forced Small tier Days 1–6. Guaranteed +150 BC on Day 7. Full distribution only from Day 8.</li>
+      <li><strong style="color: var(--text);">Milestone days override random rolls.</strong> Deterministic by <code>daysSinceStart</code>. Milestone drop replaces the day's random roll; they do not stack.</li>
+    </ol>
+  </div>
+
+  <!-- PURPOSE & POSITION — md §1 -->
+  <section style="margin-bottom: 22px;">
+    <div class="section-header">
+      <h2>Purpose &amp; Position</h2>
+      <p>Position <strong>5 of 9</strong>. Motivational carrot positioned immediately after Core Exercise — the user sees the chest glowing on the path <em>during</em> the hardest task of the day (forward-pull motivation).</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 10px; letter-spacing: 0.8px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Clinical basis</div>
+        <ul style="margin: 8px 0 0; padding-left: 16px; font-size: 13px; color: var(--text-dim); line-height: 1.55;">
+          <li><strong>Schultz 2016 (reward prediction error):</strong> Variable rewards with low-anchored expectation produce dopaminergic responses stronger than fixed rewards of equal average value.</li>
+          <li><strong>Variable-ratio reinforcement:</strong> Sustains behavior longer than fixed-ratio. Chest = variable, Core Exercise = fixed. Combination makes Core feel dependable AND Chest feel alive.</li>
+          <li><strong>Habit loop (Duhigg 2012, Clear 2018):</strong> Cue (Core complete) → Routine (open chest) → Variable Reward (BC amount).</li>
+        </ul>
+      </div>
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 10px; letter-spacing: 0.8px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Fixed attributes</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin-top: 8px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55;">
+          <div style="color: var(--text-muted);">Position</div><div>5 of 9</div>
+          <div style="color: var(--text-muted);">Reward</div><div>Variable 10 BC min to 800 BC Legendary. EV ~36 BC/day Standard.</div>
+          <div style="color: var(--text-muted);">Energy</div><div>REWARD (distinct from HIGH/MED/LOW therapeutic)</div>
+          <div style="color: var(--text-muted);">Duration</div><div>8–12 seconds (animation + user tap)</div>
+          <div style="color: var(--text-muted);">Zero-typing</div><div>Yes</div>
+          <div style="color: var(--text-muted);">Skippable</div><div>No (tap required to collect)</div>
+          <div style="color: var(--text-muted);">Blocks progression</div><div>Yes — cannot reach Daily Quote until collected</div>
+          <div style="color: var(--text-muted);">Trigger</div><div><code>coreExercise.status == completed</code></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: rgba(255,215,100,0.06); border: 1px solid rgba(255,215,100,0.28); border-left: 3px solid #FFD764; border-radius: 10px;">
+      <div style="font-size: 13px; font-weight: 700; color: #FFD764; letter-spacing: 0.2px; margin-bottom: 6px;">✨ The WOW Moment — Day 7 guaranteed +150 BC jackpot</div>
+      <p style="font-size: 13px; color: var(--text-dim); line-height: 1.55; margin: 0;">After six days of small drops anchoring the user's expectation at ~20 BC, Day 7 delivers ~7.5× the anchor in a single burst. This is the first designed "wow" moment of the BetterStep program and is why the Day 1–7 ramp exists.</p>
+    </div>
+  </section>
+
+  <!-- STEP-BY-STEP FLOW — md §2 -->
+  <section>
+    <div class="section-header">
+      <h2>Interaction flow</h2>
+      <p>Trigger → Pre-tap visual → 8-phase animation → Collect tap → Proceed to Daily Quote.</p>
+    </div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">01</span>
+        <span class="step-tag entry">TRIGGER</span>
+        <span class="step-title">Core Exercise completes</span>
+      </div>
+      <ul class="step-body">
+        <li>Chest node becomes available on the Climbing Path <strong>immediately after Core Exercise transitions to <code>completed</code></strong>.</li>
+        <li>Path animation reveals a golden-glowing chest icon at position 5 with a soft pulse effect.</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">02</span>
+        <span class="step-tag phase">PRE-TAP</span>
+        <span class="step-title">Pre-tap visual state</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+          <li><strong>Chest visual:</strong> Golden chest icon (3D-rendered asset, iOS + Android parity).</li>
+          <li><strong>Ambient effect:</strong> Soft pulse (brightness 0.85 → 1.0, 2s loop).</li>
+          <li><strong>Glow:</strong> Radial golden glow, contained within the node circle.</li>
+          <li><strong>Label:</strong> "Tap to open" (DERIVED from source — explicit CTA).</li>
+          <li><strong>Accessibility:</strong> VoiceOver: <em>"Daily chest. Double-tap to open and collect your reward."</em> (DERIVED)</li>
+        </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+            <div class="wf-status">9:41 · iPhone status bar</div>
+            <div class="wf-center" style="flex: 1;">
+              <div class="wf-box from-mobile" style="width: 100%;">
+                <div class="wf-box-label">CHEST NODE · golden glow · pulse 0.85→1.0 / 2s loop · from mobile</div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px 0;">
+                  <div style="width: 88px; height: 88px; border-radius: 50%; background: radial-gradient(circle at center, rgba(255,215,100,0.4), rgba(120,80,20,0.2)); border: 1.5px solid rgba(255,215,100,0.5); display: flex; align-items: center; justify-content: center; font-size: 40px;">🎁</div>
+                  <div style="font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600;">Tap to open</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">03</span>
+        <span class="step-tag phase">ANIMATION</span>
+        <span class="step-title">8-phase opening sequence (8–12s)</span>
+      </div>
+      <ul class="step-body">
+        <li>Total animation window is <strong>8 seconds minimum, 12 seconds maximum</strong>. CTO may tune within this window based on device performance. Every phase below is mandatory; time ranges are DERIVED from the 8–12s budget.</li>
+      </ul>
+      <div style="margin-top: 10px; padding: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+        <div style="display: grid; grid-template-columns: 40px 90px 1fr 1fr 1fr; gap: 0; font-size: 12px;">
+          <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">#</div>
+          <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Duration</div>
+          <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Visual</div>
+          <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Audio</div>
+          <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Haptic</div>
+
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">1</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">0 – 1.5s</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); line-height: 1.4;">Chest lid tilts open 45°, light spills from interior</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Single soft bell chime (~0.8s decay) on lid-start</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">One medium pulse at lid-start</div>
+
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">2</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">1.5 – 3s</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); line-height: 1.4;">Radial light rays emit upward from chest interior</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Bell decay tail</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">—</div>
+
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">3</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">3 – 5s</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); line-height: 1.4;">Coins fly outward in arc, settle into BC counter target</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Subtle coin-shimmer (NOT casino clink)</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">—</div>
+
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">4</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">5 – 7s</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); line-height: 1.4;">Counter ticks up from 0 to final drop value</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Tick sound per 10% of value (cap 5 ticks)</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Medium pulse per tick (cap 5 pulses)</div>
+
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">5</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">7 – 8s</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); line-height: 1.4;">Tier name fades in above counter</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">—</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">—</div>
+
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">6</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">8s → ∞</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); line-height: 1.4;">[Collect] button slides up from bottom</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Soft chime on button appear</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Light pulse</div>
+
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">7</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">User-driven</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); line-height: 1.4;">Button depresses, counter number animates into Bettercoin header counter at top-right</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Soft chime confirm</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Medium pulse</div>
+
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">8</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Instant on tap</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); line-height: 1.4;">Node 6 Daily Quote becomes next node on path</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">—</div>
+          <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">—</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 12px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Tier name copy (Standard Mode)</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px; color: var(--text-dim);">
+          <span style="padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);">"Small!"</span>
+          <span style="padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);">"Medium!"</span>
+          <span style="padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);">"Big!"</span>
+          <span style="padding: 4px 10px; border-radius: 999px; background: rgba(255,215,100,0.12); border: 1px solid rgba(255,215,100,0.35); color: #FFD764;">🪙 "Lucky!"</span>
+          <span style="padding: 4px 10px; border-radius: 999px; background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.35); color: #B98CFF;">💎 "Epic!"</span>
+          <span style="padding: 4px 10px; border-radius: 999px; background: rgba(255,176,96,0.14); border: 1px solid rgba(255,176,96,0.4); color: #FFB060; font-weight: 700;">👑 "LEGENDARY!"</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">04</span>
+        <span class="step-tag phase">POST-TAP</span>
+        <span class="step-title">Collect → proceed to Daily Quote</span>
+      </div>
+      <ul class="step-body">
+        <li>BC increments to user total with visible counter tick (top-right header).</li>
+        <li>Chest node on path marked complete (checkmark overlay).</li>
+        <li>Path scrolls to Node 6 (Daily Quote).</li>
+        <li>Chest cannot be re-opened for the day.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DROP DISTRIBUTION — md §3 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Drop distribution — Standard Mode (Day 8+)</h2>
+      <p>Every day rolls exactly once. Distribution sums to unity: 55 + 28 + 7 + 6 + 3 + 1 = 100%.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Normal drops — 90% of days</div>
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 6px 12px; font-size: 13px; color: var(--text-dim);">
+          <div style="color: var(--text); font-weight: 600;">Small</div><div>10–30 BC</div><div>55%</div>
+          <div style="color: var(--text); font-weight: 600;">Medium</div><div>40–80 BC</div><div>28%</div>
+          <div style="color: var(--text); font-weight: 600;">Big</div><div>100–150 BC</div><div>7%</div>
+        </div>
+      </div>
+      <div style="padding: 14px; border: 1px solid rgba(255,215,100,0.3); border-radius: 12px; background: rgba(255,215,100,0.04);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: #FFD764; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Random jackpots — 10% of days · Day 8+ only</div>
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 6px 12px; font-size: 13px; color: var(--text-dim);">
+          <div style="color: #FFD764; font-weight: 700;">Lucky</div><div>150–250 BC</div><div>6%</div>
+          <div style="color: #B98CFF; font-weight: 700;">Epic</div><div>350–500 BC</div><div>3%</div>
+          <div style="color: #FFB060; font-weight: 700;">Legendary</div><div>600–800 BC</div><div>1%</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 12px; font-size: 12.5px; color: var(--text-muted); line-height: 1.55;">
+      <strong style="color: var(--text);">Within-tier selection (DERIVED):</strong> Pick uniformly at random within the tier range (e.g., Small tier rolls uniform integer <code>[10, 30]</code> inclusive). <strong style="color: var(--text);">Realized EV ~36 BC/day</strong> is the contract (pre-cooldown midpoint math yields ~68 BC/day; the gap reflects the "never two jackpots in a row" rule).
+    </p>
+  </section>
+
+  <!-- DAY 1-7 RAMP — md §4 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Day 1–7 Ramp — locked, no exceptions</h2>
+      <p>Days 1–7 override Standard Mode distribution. No A/B testing, no per-user variation.</p>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 60px 1fr 100px 90px; font-size: 12.5px;">
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Day</div>
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Behavior</div>
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">BC range</div>
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Tier</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">1</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Forced Small</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">10–30</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"Small!"</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">2</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Forced Small</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">10–30</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"Small!"</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">3</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Forced Small</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">10–30</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"Small!"</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">4</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Forced Small</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">10–30</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"Small!"</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">5</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Forced Small</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">10–30</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"Small!"</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">6</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Forced Small</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">10–30</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"Small!"</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 700;">7</div><div style="padding: 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 600;">Guaranteed Milestone Jackpot</div><div style="padding: 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 700;">+150 BC</div><div style="padding: 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 700;">"LEGENDARY!"</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">8+</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);" colspan="3">Full Standard Mode distribution</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">—</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">—</div>
+      </div>
+    </div>
+    <p style="margin-top: 12px; font-size: 12.5px; color: var(--text-muted); line-height: 1.55;">
+      <strong style="color: var(--text);">Why:</strong> Anchors expectation LOW for six days. Day 7 breaks the anchor with a +150 BC burst — ~7.5× the Day 1–6 midpoint. Reward prediction error (Schultz 2016) fires hardest when realized reward massively exceeds expected. <strong>No jackpots before Day 8</strong>, even if RNG would normally permit — engine filters them out.
+    </p>
+  </section>
+
+  <!-- MILESTONES — md §5 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Milestone Jackpots</h2>
+      <p>Deterministic by <code>daysSinceStart</code>. Milestone drop <strong>replaces</strong> (never stacks with) the day's random roll.</p>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 1fr 120px 1fr; font-size: 12.5px;">
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Day</div>
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Drop</div>
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Tier label (Standard)</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Day 7</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 700;">+150 BC</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">First Milestone</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Every 10 days starting Day 20 (20, 40, 50, 60, 70, 80, 100, 110, 120…)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">+100 BC</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">10-Day Milestone</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Day 30</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 700;">+200 BC</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">30-Day Milestone</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Day 90</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 700;">+300 BC</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">90-Day Milestone</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Day 180</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 700;">+500 BC</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">180-Day Milestone</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Day 365</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: #FFB060; font-weight: 700;">+800 BC</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Year Milestone</div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Cadence rules</div>
+      <ul style="margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--text-dim); line-height: 1.6;">
+        <li><strong style="color: var(--text);">Day 10 is NOT a milestone.</strong> Day 7 is the first. The every-10-day cadence begins at <strong>Day 20</strong>.</li>
+        <li><strong style="color: var(--text);">Day 30, 90, 180, 365 override the every-10 cadence.</strong> Day 30 gives +200 (not +100); Day 90 gives +300 (not +100); etc.</li>
+        <li><strong style="color: var(--text);">Day 100 gives +100</strong> (standard 10-day milestone; no special override).</li>
+        <li>Beyond Day 365, the every-10-day cadence continues at +100 BC.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GAMBLING SENSITIVITY MODE — md §7 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Gambling Sensitivity Mode</h2>
+      <p>Activates when <code>user.primaryAddiction == "gambling"</code> OR is flagged as gambling-adjacent at onboarding. <strong>Completely different visual, audio, vocabulary, and reward structure.</strong></p>
+    </div>
+
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; font-size: 12.5px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Element</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Standard Mode</div>
+        <div style="padding: 10px; background: rgba(255,215,100,0.08); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: #FFD764; text-transform: uppercase;">Sensitivity Mode</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Node visual</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Golden chest icon, soft pulse</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Neutral card-flip icon</strong> (face-down card, subtle glow)</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Animation</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Chest-opening sequence (8–12s)</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Card-flip:</strong> 0–1.5s flip face-up, 1.5–3s counter ticks, 3s+ Collect button</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Reward amount</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Variable per distribution</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Fixed +20 BC every day</strong> (no variability)</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Vocabulary</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"Open" / "Tap to open" / "Small!" / "Jackpot!" / "Lucky!" / "LEGENDARY!"</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>"Collect" / "Tap to collect" / "Daily Bonus" / "Milestone Bonus"</strong> — NEVER tier names, NEVER jackpot language</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Audio</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Soft bell chime on lid-lift</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);">Soft bell chime on card-flip (same chime)</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Haptic</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Medium pulse per BC tick (cap 5)</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);">Single medium pulse on flip, single on Collect</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Milestones</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Fire with tier names and jackpot framing</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Same BC amounts</strong> (+150 / +100 / +200 / +300 / +500 / +800) with copy <em>"Day 30 Milestone Bonus: +200 Bettercoins"</em> — no tier label, no celebration language</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Day 1–7 ramp</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Forced Small + Day 7 guaranteed +150</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Fixed +20 from Day 1 every day</strong> (no ramp, no Day 7 surprise)</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Tier names</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Shown ("Small!", "Big!", "LEGENDARY!")</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Hidden entirely.</strong> Never shown anywhere in the app for these users</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Variance</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Full distribution range</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Zero variance.</strong> +20 today, +20 tomorrow, forever (except milestone days)</div>
+      </div>
+    </div>
+
+    <!-- Vocabulary rules -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px;">
+      <div style="padding: 14px; border: 1px solid rgba(255,107,122,0.28); border-radius: 12px; background: rgba(255,107,122,0.04);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: #FF8A94; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Blacklist — banned in sensitivity mode</div>
+        <div style="font-size: 12.5px; color: var(--text-dim); line-height: 1.65;">
+          "Lucky," "Jackpot," "Rare," "Drop," "Spin," "Win," "Open," "Roll," "Odds," "Chance," "Lucky streak," "Jackpot incoming," "You got lucky," "Rare find," "Epic drop," "Legendary pull," "What'd you get?" — any casino-referential phrasing.
+        </div>
+      </div>
+      <div style="padding: 14px; border: 1px solid rgba(90,200,190,0.28); border-radius: 12px; background: rgba(90,200,190,0.04);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--accent); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Allowlist — use these instead</div>
+        <div style="font-size: 12.5px; color: var(--text-dim); line-height: 1.65;">
+          "Daily Bonus," "Collect," "Milestone Bonus," "Your daily reward," "Tap to collect," "Day X Milestone."
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 13px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Sensitivity milestone copy — same amounts, neutral framing</div>
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr 1.8fr; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+        <div style="padding: 6px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Day</div>
+        <div style="padding: 6px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Standard Mode</div>
+        <div style="padding: 6px 10px; background: rgba(255,215,100,0.08); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: #FFD764; text-transform: uppercase;">Sensitivity Mode</div>
+
+        <div style="padding: 6px 10px; border-top: 1px solid var(--border); color: var(--text);">Day 7</div><div style="padding: 6px 10px; border-top: 1px solid var(--border);">"LEGENDARY! +150 BC"</div><div style="padding: 6px 10px; border-top: 1px solid var(--border); background: rgba(255,215,100,0.03);"><em>"Day 7 Milestone Bonus: +150 Bettercoins"</em></div>
+        <div style="padding: 6px 10px; border-top: 1px solid var(--border); color: var(--text);">Day 30</div><div style="padding: 6px 10px; border-top: 1px solid var(--border);">"LEGENDARY! +200 BC"</div><div style="padding: 6px 10px; border-top: 1px solid var(--border); background: rgba(255,215,100,0.03);"><em>"Day 30 Milestone Bonus: +200 Bettercoins"</em></div>
+        <div style="padding: 6px 10px; border-top: 1px solid var(--border); color: var(--text);">Day 90</div><div style="padding: 6px 10px; border-top: 1px solid var(--border);">"LEGENDARY! +300 BC"</div><div style="padding: 6px 10px; border-top: 1px solid var(--border); background: rgba(255,215,100,0.03);"><em>"Day 90 Milestone Bonus: +300 Bettercoins"</em></div>
+        <div style="padding: 6px 10px; border-top: 1px solid var(--border); color: var(--text);">Day 180</div><div style="padding: 6px 10px; border-top: 1px solid var(--border);">"LEGENDARY! +500 BC"</div><div style="padding: 6px 10px; border-top: 1px solid var(--border); background: rgba(255,215,100,0.03);"><em>"Day 180 Milestone Bonus: +500 Bettercoins"</em></div>
+        <div style="padding: 6px 10px; border-top: 1px solid var(--border); color: var(--text);">Day 365</div><div style="padding: 6px 10px; border-top: 1px solid var(--border);">"LEGENDARY! +800 BC"</div><div style="padding: 6px 10px; border-top: 1px solid var(--border); background: rgba(255,215,100,0.03);"><em>"Day 365 Milestone Bonus: +800 Bettercoins"</em></div>
+        <div style="padding: 6px 10px; border-top: 1px solid var(--border); color: var(--text);">Every 10 (20+)</div><div style="padding: 6px 10px; border-top: 1px solid var(--border);">"Big! +100 BC"</div><div style="padding: 6px 10px; border-top: 1px solid var(--border); background: rgba(255,215,100,0.03);"><em>"Day {N} Milestone Bonus: +100 Bettercoins"</em></div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: rgba(139,92,246,0.04); border: 1px solid rgba(139,92,246,0.28); border-left: 3px solid #8B5CF6; border-radius: 10px;">
+      <div style="font-size: 13px; font-weight: 700; color: #B98CFF; letter-spacing: 0.2px; margin-bottom: 6px;">Why no mid-program toggle</div>
+      <ol style="margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--text-dim); line-height: 1.6;">
+        <li><strong style="color: var(--text);">Clinical risk:</strong> A gambling-recovery user who toggles sensitivity OFF re-exposes themselves to variable-reward schedules identical to gambling mechanics. Equivalent to a sober alcoholic turning on "wine-pairing mode."</li>
+        <li><strong style="color: var(--text);">Habit-loop stability:</strong> The chest's reward shape is one of the strongest behavioral anchors in the app. Changing the shape mid-program destabilizes the habit loop.</li>
+        <li><strong style="color: var(--text);">Fairness:</strong> Non-sensitivity users cannot toggle TO sensitivity mode to "lock in +20 floor" and avoid bad-luck days — this would break EV math for the overall app economy.</li>
+      </ol>
+      <p style="margin: 8px 0 0; font-size: 12px; color: var(--text-muted); font-style: italic;">Implementation: <code>user.gamblingSensitivityMode</code> is boolean, set once at onboarding, immutable in user profile. Admin-panel toggle only (clinician override for misclassification).</p>
+    </div>
+  </section>
+
+  <!-- ANIMATION TIMELINES — md §10 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Animation timelines (DERIVED)</h2>
+      <p>Phase durations are proposed defaults; CTO may tune within the 8–12s total window.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 10px;">Standard Mode — 11s default (8–12s range)</div>
+        <div style="font-family: 'SF Mono', Menlo, monospace; font-size: 11px; line-height: 1.8; color: var(--text-dim);">
+          <div>t = 0.0s &nbsp; Chest visible, golden glow, soft pulse. User taps.</div>
+          <div>t = 0.1s &nbsp; Bell chime starts (~0.8s decay). One haptic pulse (medium).</div>
+          <div>t = 0.2s &nbsp; Lid begins to tilt upward.</div>
+          <div>t = 1.5s &nbsp; Lid fully open (45° tilt). Light rays begin emitting.</div>
+          <div>t = 3.0s &nbsp; Light rays peak. Coins begin flying out in arc.</div>
+          <div>t = 5.0s &nbsp; Coins settle into target zone above BC counter.</div>
+          <div>t = 5.1s &nbsp; BC counter begins ticking from 0 upward.</div>
+          <div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Tick sound + haptic pulse per 10% of final value, capped at 5.</div>
+          <div>t = 7.0s &nbsp; BC counter lands on final amount. Counter holds.</div>
+          <div>t = 7.2s &nbsp; Tier name fades in above counter.</div>
+          <div>t = 8.0s &nbsp; Collect button slides up from bottom with soft chime + light haptic.</div>
+          <div>t = 8.0s+ &nbsp; Hold indefinitely until user taps Collect.</div>
+        </div>
+      </div>
+      <div style="padding: 14px; border: 1px solid rgba(255,215,100,0.3); border-radius: 12px; background: rgba(255,215,100,0.04);">
+        <div style="font-size: 12px; font-weight: 700; color: #FFD764; letter-spacing: 0.2px; margin-bottom: 10px;">Sensitivity Mode — 5s default</div>
+        <div style="font-size: 11px; color: var(--text-dim); line-height: 1.55; margin-bottom: 10px; font-style: italic;">Shorter and more restrained to reduce variable-reward conditioning.</div>
+        <div style="font-family: 'SF Mono', Menlo, monospace; font-size: 11px; line-height: 1.8; color: var(--text-dim);">
+          <div>t = 0.0s &nbsp; Card face-down icon visible, subtle glow. User taps.</div>
+          <div>t = 0.1s &nbsp; Soft bell chime (same chime). One haptic pulse (medium).</div>
+          <div>t = 0.2s &nbsp; Card begins flipping.</div>
+          <div>t = 1.5s &nbsp; Card fully flipped, BC amount visible (e.g., "+20 Bettercoins").</div>
+          <div>t = 1.5s &nbsp; BC counter begins ticking from 0 to 20 (fixed).</div>
+          <div>t = 2.8s &nbsp; Counter lands.</div>
+          <div>t = 3.0s &nbsp; Copy label appears ("Daily Bonus" or "Day {N} Milestone Bonus").</div>
+          <div>t = 3.5s &nbsp; Collect button slides up with soft chime + light haptic.</div>
+          <div>t = 3.5s+ &nbsp; Hold indefinitely until user taps Collect.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIO & HAPTIC SPEC -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Audio &amp; haptic specification</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Audio</div>
+        <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4px 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+          <div style="color: var(--text); font-weight: 600;">Bell chime</div><div>Lid-lift / card-flip start · single bell strike, ~0.8s decay, 440–523 Hz, mastered to −18 LUFS</div>
+          <div style="color: var(--text); font-weight: 600;">Tick</div><div>Per 10% of counter increment (Standard only, cap 5) · ~60ms short percussive tick, not metallic</div>
+          <div style="color: var(--text); font-weight: 600;">Collect chime</div><div>Collect button appears · same bell, shorter decay ~0.4s</div>
+          <div style="color: var(--text); font-weight: 600;">Collect confirm</div><div>User taps Collect · same bell, shortest ~0.25s</div>
+        </div>
+        <div style="margin-top: 10px; padding: 8px 10px; background: rgba(255,107,122,0.06); border: 1px solid rgba(255,107,122,0.2); border-radius: 6px; font-size: 11.5px; color: #FF8A94; line-height: 1.5;">
+          <strong>Banned:</strong> casino slot jingles, cash-register dings, multi-coin cascades, any percussive metallic pattern that mimics gambling machines.
+        </div>
+      </div>
+
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Haptic</div>
+        <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4px 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+          <div style="color: var(--text); font-weight: 600;">Lid-lift / card-flip</div><div>Medium pulse — iOS <code>UIImpactFeedbackGenerator.medium</code>; Android <code>VibrationEffect.EFFECT_CLICK</code> or amplitude 180/255</div>
+          <div style="color: var(--text); font-weight: 600;">BC tick</div><div>Medium pulse (Standard, per 10%, cap 5)</div>
+          <div style="color: var(--text); font-weight: 600;">Collect button appears</div><div>Light pulse — iOS <code>.light</code>; Android amplitude 80/255</div>
+          <div style="color: var(--text); font-weight: 600;">Collect tap</div><div>Medium pulse</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDGE CASES — md §11 -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Edge cases (DERIVED)</h2>
+    </div>
+    <div style="margin-top: 10px; padding: 16px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 6px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+        <div style="color: var(--text); font-weight: 600;">Force-quit mid-animation</div><div>Roll generated server-side &amp; persisted. On re-open, skip to final state: chest already open, Collect button visible, amount displayed. Tap Collect → BC credited → proceed.</div>
+        <div style="color: var(--text); font-weight: 600;">Attempts to skip chest</div><div>Not skippable. App does not allow proceeding to Daily Quote without tapping Collect. If backgrounded after animation but before Collect, restore on foreground with chest in final state + Collect button.</div>
+        <div style="color: var(--text); font-weight: 600;">Never collects</div><div>Chest result persists. Next day, yesterday's chest still shows as "uncollected" and blocks today's Core → Chest → Quote sequence.</div>
+        <div style="color: var(--text); font-weight: 600;">Day 0 somehow reaches Chest</div><div>Impossible (gated behind Check-in, HRV, Breathing, Core Exercise). If hit anyway, roll as Day 1 (forced Small, 10–30 BC).</div>
+        <div style="color: var(--text); font-weight: 600;">Milestone day + yesterday was jackpot</div><div>Milestone wins. Fire milestone drop, ignore cooldown. Tomorrow cooldown applies.</div>
+        <div style="color: var(--text); font-weight: 600;">Sensitivity user hits milestone day</div><div>Fire milestone at the same BC amount (+150 / +200 / +300 / +500 / +800) with NEUTRAL copy ("Day {N} Milestone Bonus"). No tier language, no chest imagery — card flip instead.</div>
+        <div style="color: var(--text); font-weight: 600;">Offline at chest</div><div>Show "Connecting…" state. Do NOT fabricate a drop client-side. On reconnect, fetch server result and play animation with correct amount. &gt;60s offline → "Try again when you're back online". Roll not consumed if user never reaches collect state.</div>
+        <div style="color: var(--text); font-weight: 600;">App opens at midnight rollover</div><div><code>daysSinceStart</code> ticks at the user's configured reset time (typically 4 AM local), not midnight. Use the value that was active when Core Exercise completed.</div>
+        <div style="color: var(--text); font-weight: 600;">Legendary drop while wallet holds 3,000+ BC unspent</div><div>DERIVED: currently no soft cap. User receives full Legendary amount regardless of balance. (Open Question in spec §14.)</div>
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </details>
 
 </div>
 </body>
