@@ -4522,6 +4522,663 @@ Response 200:
       </div>
     </details>
 
+
+    <!-- BIG COLLAPSIBLE: Daily Reflection full flow -->
+    <details class="collapsible big-collapsible" style="margin-top: 22px;">
+      <summary class="collapsible-toggle big-toggle">
+        <span class="toggle-chevron">›</span>
+        <span class="big-task-icon">✍️</span>
+        <span class="big-task-label">
+          <span class="big-task-name">Daily Reflection</span>
+          <span class="big-task-sub">Tap-to-compose emotion + gratitude · 30–45s · position 7 of 9 · v5.4</span>
+        </span>
+        <span class="big-task-reward">🪙 +15 BC</span>
+      </summary>
+      <div class="collapsible-body big-body">
+
+  <!-- GOVERNING RULES (NEVER VIOLATE) — md §0 -->
+  <div style="margin: 4px 0 22px; padding: 16px 20px; background: rgba(255, 107, 122, 0.05); border: 1px solid rgba(255, 107, 122, 0.28); border-left: 3px solid #FF6B7A; border-radius: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <span style="font-size: 13px; font-weight: 700; color: #FF8A94; letter-spacing: 0.3px; text-transform: uppercase;">Governing rules — NEVER violate</span>
+    </div>
+    <ol style="margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--text-dim); line-height: 1.65;">
+      <li><strong style="color: var(--text);">A bored user is a lost user → relapse → can kill.</strong> Ship engagement mechanics. Never cripple the 99% to protect the 1%.</li>
+      <li><strong style="color: var(--text);">Every feature must satisfy BOTH engagement AND therapeutic value.</strong> If it only does one, redesign it until it does both.</li>
+      <li><strong style="color: var(--text);">Never show the user a wall of their negative self-statements.</strong> Words and gratitudes are stored to clinician CRM only. <strong>No user-facing Word Cloud. No shame mirror.</strong> The act of SELECTION is the therapy, not review.</li>
+      <li><strong style="color: var(--text);">Zero typing in therapeutic flow.</strong> All selections are tap-based. <strong>One optional 20-char custom entry per screen, with NO auto-suggest.</strong> The cognitive act of generating the custom word IS the high-granularity training moment.</li>
+      <li><strong style="color: var(--text);">Neutral grid surface.</strong> No quadrant coloring, no valence/arousal visual hints, no positive-word highlighting. The grid must be clinically neutral so CRM data is untainted.</li>
+      <li><strong style="color: var(--text);">No per-tap audio.</strong> Audio on every tap causes fatigue by Day 3 and is catastrophic at 2AM in bed. <strong>Haptic only per-tap.</strong> Audio reserved for reward landing (M11) with audio toggle respected.</li>
+      <li><strong style="color: var(--text);">No copy changes on slip days.</strong> "What filled you today?" stays identical regardless of slip/streak status. Changing copy on slip days makes users feel surveilled. Consistency IS the comfort.</li>
+      <li><strong style="color: var(--text);">Global tone-of-voice = Option B (warm/coachy factual).</strong> No saccharine affirmations. No poetic body-talk. No "your body listens" style copy.</li>
+    </ol>
+  </div>
+
+  <!-- KEY FACTS -->
+  <section style="margin-bottom: 22px;">
+    <div class="section-header">
+      <h2>Purpose &amp; fixed attributes</h2>
+      <p>Train emotional granularity + daily gratitude noticing — before the quiet Daily Close. Fourth and final HIGH peak of the session. User names their inner state in words, names one thing that filled them, and carries that named-and-noticed state into the Daily Close.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 10px; letter-spacing: 0.8px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Clinical basis</div>
+        <ul style="margin: 8px 0 0; padding-left: 16px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55;">
+          <li><strong>Emotional granularity</strong> (Kashdan, Barrett &amp; McKnight 2015): users who label emotions with specificity have measurably lower rates of binge drinking, aggression, and self-injury under distress. Immediate effect — no ramp needed.</li>
+          <li><strong>Affect labeling → reduced amygdala reactivity</strong> (Lieberman et al. 2007, "Putting Feelings Into Words"): fMRI evidence that naming an emotion reduces limbic activation. The sentence-reveal moment is designed around this.</li>
+          <li><strong>Gratitude intervention</strong> (Emmons &amp; McCullough 2003): benefit kicks in at 1–3 items. Static prompt works better than rotation.</li>
+          <li><strong>Peak-end rule</strong> (Kahneman &amp; Fredrickson): memory of an experience is dominated by the peak + the ending. Reflection is the 4th peak right before Daily Close.</li>
+        </ul>
+      </div>
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 10px; letter-spacing: 0.8px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Fixed attributes</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin-top: 8px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55;">
+          <div style="color: var(--text-muted);">Position</div><div>7 of 9</div>
+          <div style="color: var(--text-muted);">Bettercoins</div><div>+15 BC fixed</div>
+          <div style="color: var(--text-muted);">Energy</div><div>HIGH</div>
+          <div style="color: var(--text-muted);">Duration</div><div>30–45s (Day 1–14) · 30–50s (Day 15+) · +5s on unlock days (Day 15, Day 60)</div>
+          <div style="color: var(--text-muted);">Zero-typing</div><div>Yes (1 optional custom entry per screen, 20-char max)</div>
+          <div style="color: var(--text-muted);">Day 1 inclusion</div><div>Yes — identical structure every day</div>
+          <div style="color: var(--text-muted);">Skippable</div><div>No (completion required for +15 BC; required to reach Daily Close)</div>
+          <div style="color: var(--text-muted);">Data destination</div><div><strong>Clinician CRM only.</strong> User NEVER sees their own words back.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: rgba(255,215,100,0.06); border: 1px solid rgba(255,215,100,0.28); border-left: 3px solid #FFD764; border-radius: 10px;">
+      <div style="font-size: 13px; font-weight: 700; color: #FFD764; letter-spacing: 0.2px; margin-bottom: 6px;">✨ The WOW differentiator</div>
+      <p style="font-size: 13px; color: var(--text-dim); line-height: 1.55; margin: 0;">30–45s daily ritual that produces <strong>one dignified sentence about the user's inner state</strong> ("Today is Clear, Proud, Steady. Filled by Body.") that <strong>dissolves into their reward</strong>. The sentence is never archived, never re-shown, never turned into a data wall. It exists for 800ms as a complete artifact, then becomes gold particles that stream into the Bettercoin counter. That metaphor — <em>my reflection became my reward</em> — is unique in the clinical DTx space.</p>
+    </div>
+  </section>
+
+  <!-- STRUCTURE — TWO SCREENS (§2) -->
+  <section style="margin-top: 22px;">
+    <div class="section-header">
+      <h2>Structure — two screens, one session</h2>
+      <p>User cannot skip Screen 2. Transition from Screen 1 to Screen 2 is automatic after the sentence reveal (Moment 6).</p>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 60px 1fr 1fr 60px 100px; font-size: 12.5px;">
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">#</div>
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Prompt</div>
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Grid</div>
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Picks</div>
+        <div style="padding: 8px 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Duration</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">1</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-style: italic;">"Today felt..."</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">12-word emotion grid (Day 1–14) · 16 (Day 15+) · 20 (Day 60+)</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">3 words</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">15–25s</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">2</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-style: italic;">"What filled you today?"</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">8-word gratitude grid (static forever)</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">1 word</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">10–15s</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 1 — 12-WORD EMOTION GRID (§3) -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Screen 1 — 12-word emotion grid (Acute phase, Day 1–14)</h2>
+      <p>4×3 layout, 12 words arranged across Barrett's 4 emotion quadrants with 3 words per quadrant. <strong>The quadrant structure is INTERNAL ONLY — not visible to the user.</strong> No color washes, no groupings, no labels.</p>
+    </div>
+
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr 2fr; font-size: 12.5px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Quadrant (INTERNAL)</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Words</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Clinical rationale</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">High-arousal positive</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);"><strong>Hopeful · Proud · Strong</strong></div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Activation + positive valence. Growth / agency emotions.</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Low-arousal positive</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);"><strong>Calm · Steady · Clear</strong></div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">De-activation + positive valence. Regulation / clarity emotions.</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">High-arousal negative</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);"><strong>Anxious · On-edge · Restless</strong></div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Activation + negative valence. Craving / withdrawal emotions. <strong>Critical — this is the quadrant users MUST be able to label during cravings.</strong></div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Low-arousal negative</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text);"><strong>Numb · Heavy · Lonely</strong></div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">De-activation + negative valence. Depression / isolation emotions.</div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Positive-to-negative ratio</div>
+        <p style="font-size: 12.5px; color: var(--text-dim); line-height: 1.55; margin: 0;"><strong style="color: var(--text);">6 positive / 6 negative</strong> balanced across 4 quadrants. Not 8/4: if the grid is 8/4 positive, a depressed user at 2AM who genuinely feels Numb/Heavy/Lonely finds only 3–4 negative options and is forced to pick all three, which becomes a shame mirror. 6/6 balanced gives enough negatives for truthful labeling AND enough positives for self-concept expansion.</p>
+      </div>
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Dropped / added words</div>
+        <div style="font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+          <div style="margin-bottom: 6px;"><strong style="color: #FF8A94;">Dropped Tired</strong> — physical state, not emotion. Becomes a lazy default.</div>
+          <div style="margin-bottom: 6px;"><strong style="color: #FF8A94;">Dropped Grateful</strong> — redundant with Screen 2.</div>
+          <div style="margin-bottom: 6px;"><strong style="color: #5AC8BE;">Added Clear</strong> — signature recovery emotion. "Clear-headed for the first time in months."</div>
+          <div style="margin-bottom: 6px;"><strong style="color: #5AC8BE;">Added On-edge</strong> — fills craving/withdrawal labeling gap.</div>
+          <div><strong style="color: #5AC8BE;">Added Restless</strong> — complements On-edge. Motoric agitation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 12px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Word ordering in the grid</div>
+      <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong style="color: var(--text);">Fixed clinical slots, randomized display order per session.</strong> Not grouped by quadrant visually (would expose clinical structure).</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Seeded shuffle: <code>seed = user_id + date</code> — same user sees same order if they re-enter Node 7 twice in one day, different order across days.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong style="color: var(--text);">Day 1 exception:</strong> fixed hand-tuned order (Calm, Hopeful, Proud / Steady, Clear, Strong / Anxious, Numb, Heavy / On-edge, Restless, Lonely) to reduce Day 1 cognitive load.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 12px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Custom entry — "+ Add your own"</div>
+      <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Available from Day 1 · Single-line text · <strong>20-character max</strong>.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong>No profanity filter</strong> (user owns their words).</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong>No auto-suggest / smart suggestions.</strong> The cognitive act of generating the custom word IS the therapy.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Custom entries count as 1 of the 3 picks · saved to CRM with <code>custom: true</code> flag · do NOT persist in the grid across sessions · no BC bonus.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- VOCABULARY EXPANSION (§4) -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Vocabulary expansion — the phase unlock system</h2>
+      <p>The grid grows. Primary long-term retention hook AND therapeutic mechanism — emotional granularity is a cultivable skill, so vocabulary expansion IS the training.</p>
+    </div>
+
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; font-size: 12.5px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Phase</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Day range</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Grid size</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Unlock event</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Acute</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Day 1–14</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">12 words</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">—</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Rebuild</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Day 15–59</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">16 words</div><div style="padding: 10px; border-top: 1px solid var(--border); color: #FFD764; font-weight: 600;">+4 on Day 15</div>
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Maintenance</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Day 60+</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">20 words (cap)</div><div style="padding: 10px; border-top: 1px solid var(--border); color: #FFD764; font-weight: 600;">+4 on Day 60</div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px;">
+      <div style="padding: 14px; border: 1px solid rgba(255,215,100,0.3); border-radius: 12px; background: rgba(255,215,100,0.04);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: #FFD764; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Day 15 unlock (+4 words)</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+          <div style="color: var(--text); font-weight: 600;">Resentful</div><div>"Sticky anger at someone or something that feels unfair." <em>(HA-)</em></div>
+          <div style="color: var(--text); font-weight: 600;">Peaceful</div><div>"Settled, at ease, no inner argument." <em>(LA+)</em></div>
+          <div style="color: var(--text); font-weight: 600;">Embarrassed</div><div>"Self-conscious discomfort — wanting to hide a moment." <em>(HA-)</em></div>
+          <div style="color: var(--text); font-weight: 600;">Content</div><div>"Quiet okayness. Nothing missing right now." <em>(LA+)</em></div>
+        </div>
+      </div>
+      <div style="padding: 14px; border: 1px solid rgba(255,215,100,0.3); border-radius: 12px; background: rgba(255,215,100,0.04);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: #FFD764; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Day 60 unlock (+4 words)</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+          <div style="color: var(--text); font-weight: 600;">Ashamed</div><div>"Heavy self-judgment — feeling bad about who you are, not just what you did." <em>(LA-)</em></div>
+          <div style="color: var(--text); font-weight: 600;">Joyful</div><div>"Bright, energetic happiness. Wants to move, share, celebrate." <em>(HA+)</em></div>
+          <div style="color: var(--text); font-weight: 600;">Disappointed</div><div>"Let down — by self, by someone, or by how the day went." <em>(LA-)</em></div>
+          <div style="color: var(--text); font-weight: 600;">Settled</div><div>"Grounded, not bouncing. The opposite of restless." <em>(LA+)</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 12px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Unlock Moment UX (fires BEFORE emotion grid reveal on Day 15 and Day 60 only)</div>
+      <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Pre-grid modal header: <em>"Your vocabulary just expanded."</em></li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>4 cards, each showing one new word + its 1-line definition · 150ms stagger, 600ms total reveal.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>User taps <strong>[Add to today]</strong> → dismisses modal → proceeds to emotion grid with new word count (16 Day 15 / 20 Day 60).</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>In the grid, the 4 new words display a <strong>small gold dot in the upper-right corner</strong> for the next 3 sessions. Tap the dot once to re-read the definition.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>Total overlay duration: user-paced, minimum 2s, maximum 10s (auto-dismiss at 10s if no tap).</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>MVP: <strong>no slip-day deferral</strong>. Unlock fires on schedule regardless of slip status.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 12px; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px dashed var(--border); border-radius: 8px; font-size: 11.5px; color: var(--text-muted); line-height: 1.55;">
+      <strong style="color: var(--text);">Why unlock, not rotation:</strong> Static 12 forever gets boring by Week 2. Daily rotation destroys learned label fluency. Expanding vocabulary = Duolingo skill-tree logic + therapeutic progression in one mechanic. Cap at 20 — cognitive ceiling for a 4×5 grid on 390×844. Beyond 20, users lose the "I know this grid" comfort that IS the re-encounter mechanism.
+    </div>
+  </section>
+
+  <!-- SCREEN 2 — 8 GRATITUDE GRID (§5) -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Screen 2 — 8-word gratitude grid (static forever)</h2>
+      <p>4×2 layout, 8 words. <strong>STATIC across all phases — never expands, never rotates.</strong> Same 8 every day, permanently.</p>
+    </div>
+    <div style="margin-top: 10px; padding: 14px 18px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px;">
+        <div style="padding: 12px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); font-weight: 600;">Family</div>
+        <div style="padding: 12px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); font-weight: 600;">Friend</div>
+        <div style="padding: 12px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); font-weight: 600;">Sleep</div>
+        <div style="padding: 12px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); font-weight: 600;">Home</div>
+        <div style="padding: 12px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); font-weight: 600;">Health</div>
+        <div style="padding: 12px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); font-weight: 600;">Body</div>
+        <div style="padding: 12px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); font-weight: 600;">Today</div>
+        <div style="padding: 12px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); font-weight: 600;">Time</div>
+      </div>
+      <p style="font-size: 11.5px; color: var(--text-muted); margin: 0; font-style: italic;">English-only MVP, universal grid. Body kept globally. Region-specific swaps (e.g., Body → Clarity for Middle East) DEFERRED to v2.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Why static, not expanding</div>
+        <p style="font-size: 12.5px; color: var(--text-dim); line-height: 1.55; margin: 0;">Gratitude is not a granularity skill that grows — it's a noticing practice. Emmons &amp; McCullough protocols use the same prompts for 10 weeks and show effect maintenance. Rotating gratitude words defeats the mechanism: the user should re-encounter the same 8 and re-choose, which IS the re-evaluation moment. Screen 1 and Screen 2 have DIFFERENT therapeutic mechanisms, so they get DIFFERENT structures.</p>
+      </div>
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Swaps from draft</div>
+        <div style="font-size: 12.5px; color: var(--text-dim); line-height: 1.55;">
+          <div style="margin-bottom: 6px;"><strong style="color: #FF8A94;">Future → Today.</strong> "Future" is abstract and anxiety-activating for early-recovery users ("I don't know what my future looks like" = shame spike). "Today" is recovery-specific and works identically on good days and slip days.</div>
+          <div><strong style="color: var(--text);">No "Sobriety" or "Self-Control" buttons.</strong> "Sobriety" as a button is a slip-day shame detonator. "Self-Control" reinforces moral-failing framing. Universal 8 + custom entry handles specialization.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONALIZATION (§6) -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Personalization — phase-gated only</h2>
+      <p>The ONLY personalization dimension is recovery phase (Acute / Rebuild / Maintenance). Nothing else.</p>
+    </div>
+    <div style="margin-top: 10px; padding: 14px 18px; background: rgba(255,107,122,0.05); border: 1px solid rgba(255,107,122,0.28); border-left: 3px solid #FF6B7A; border-radius: 10px;">
+      <div style="font-size: 11px; letter-spacing: 0.4px; color: #FF8A94; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Explicitly NOT personalized</div>
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 6px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55;">
+        <div style="color: var(--text); font-weight: 600;">Addiction type (6 word lists)</div><div>Over-engineered for MVP. A gambling addict and an alcohol addict both feel "Anxious."</div>
+        <div style="color: var(--text); font-weight: 600;">Morning check-in mood (reactive)</div><div>Iatrogenic amplification risk. If AM mood = Rough and grid skews negative → feeds depressive loop. If grid skews positive → gaslights.</div>
+        <div style="color: var(--text); font-weight: 600;">Region-specific emotion grids</div><div>English-only MVP. Localization deferred.</div>
+        <div style="color: var(--text); font-weight: 600;">Region-specific gratitude grids</div><div>English-only MVP. Body → Clarity swap for Middle East is v2.</div>
+        <div style="color: var(--text); font-weight: 600;">Slip-day copy changes</div><div>Makes users feel surveilled. Copy stays identical.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-MOMENT UX FLOW (§7) — THE HEART OF THE SPEC -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>The full 12-moment UX flow</h2>
+      <p>Total budget: 30–45s (Day 1–14), +5s on Day 15 / Day 60 unlock days. <strong>Peak moments: M5 (sentence reveal) + M10 (final assembly dissolve).</strong></p>
+    </div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M1</span>
+        <span class="step-tag phase">0.0s — 1.0s</span>
+        <span class="step-title">Entry transition (from Node 6)</span>
+      </div>
+      <ul class="step-body">
+        <li>Node 6 quote fades out over 300ms · background warms by 3% (subtle shift toward amber/gold undertone) · screen dims −5% luminance.</li>
+        <li><strong>Felt haptic tick</strong> (light impact, 200ms). Single, subtle.</li>
+        <li><strong>Audio: NO chime/bell.</strong> Haptic-only. If user has audio toggle ON AND system time is before 10PM: optional low-amplitude wood/felt "tick" sound. <strong>After 10PM: audio force-off regardless of toggle</strong> (2AM in-bed protection).</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M2</span>
+        <span class="step-tag phase">1.0s — 1.5s</span>
+        <span class="step-title">Screen 1 header</span>
+      </div>
+      <ul class="step-body">
+        <li><strong>Top line:</strong> "DAY 47" (or current day) — small caps, 12pt, 60% opacity.</li>
+        <li><strong>Sentence prompt:</strong> <em>"Today felt..."</em> — serif font, 28pt, 100% opacity, fades in over 300ms.</li>
+        <li><strong>Slot display (empty, appears at 1.3s):</strong> three underscores below the grid — <em>"TODAY IS ___ ___ ___."</em> — 80% opacity, awaiting picks.</li>
+        <li>Day number counts <strong>total days in program</strong>, NOT consecutive sober days (so a slip on Day 46 still shows "DAY 47" the next day). Streak is a separate concept.</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M3</span>
+        <span class="step-tag phase">1.5s — 2.1s</span>
+        <span class="step-title">Emotion grid reveal</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+          <li>12 words appear via <strong>staggered fade-in: 50ms stagger between words, 600ms total</strong>.</li>
+          <li>Words are STATIC once placed — <strong>no pulse, no breathing motion, no shimmer</strong>.</li>
+          <li>Background is 3% warm-tinted neutral. <strong>No quadrant coloring.</strong> No visual clinical-structure hints.</li>
+          <li>Grid position: vertically centered on 390×844 screen. Tap targets ≥44pt. Gap between tiles ≥8pt (iOS HIG).</li>
+        </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+            <div class="wf-status">9:41 · iPhone status bar</div>
+            <div class="wf-box from-back" style="margin-top: 16px;">
+              <div class="wf-box-label">HEADER · from back</div>
+              <div style="font-size: 10px; letter-spacing: 0.8px; font-weight: 700; color: rgba(255,255,255,0.6);">DAY 47</div>
+              <div style="font-family: Georgia, serif; font-size: 18px; color: var(--text); margin-top: 6px;">Today felt...</div>
+            </div>
+            <div class="wf-box from-back" style="margin-top: 10px; padding: 10px;">
+              <div class="wf-box-label">12-WORD GRID · shuffled per session · from back</div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 6px;">
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Calm</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Hopeful</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Proud</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Steady</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Clear</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Strong</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Anxious</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Numb</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Heavy</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">On-edge</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Restless</div>
+                <div style="padding: 8px; text-align: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text);">Lonely</div>
+              </div>
+              <div style="margin-top: 8px; font-size: 10px; color: rgba(139,92,246,0.85); font-weight: 600;">+ Add your own</div>
+            </div>
+            <div class="wf-box from-mobile" style="margin-top: auto;">
+              <div class="wf-box-label">SLOT DISPLAY · from mobile</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.75); letter-spacing: 0.5px;">TODAY IS ___  ___  ___</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M4</span>
+        <span class="step-tag user">2.1s — ~18s</span>
+        <span class="step-title">Word tap interaction (CORE MOMENT) — repeated 3×</span>
+      </div>
+      <ul class="step-body">
+        <li><strong>Per-tap micro-sequence (250ms total):</strong>
+          <ul style="margin-top: 4px; list-style: none; padding: 0;">
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong>Tap registered (0ms):</strong> Tapped word lifts <strong>8px</strong> vertically (transform, 120ms ease-out). Soft gold glow (radius 12px, opacity 0→60%, 120ms). <strong>Light haptic impact</strong> (iOS <code>.light</code>; Android haptic ~30ms). <strong>NO audio.</strong></li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong>State change (120ms):</strong> All 11 other words dim to 70% opacity (200ms ease-in-out). Tapped word gets a persistent <strong>gold ring (2px stroke)</strong>.</li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong>Word travels to slot (120ms — 370ms):</strong> Physics-flies into next empty slot. Arc trajectory: slight upward curve, 250ms ease-out. <strong>NO bounce at landing</strong> (trivializes words like "Lonely"). <strong>NO glow trail.</strong></li>
+          </ul>
+        </li>
+        <li><strong>Deselect behavior:</strong> Tap an already-selected word → instant silent deselect. Gold ring fades (100ms), word returns to 100% opacity, vanishes from slot. <strong>No "mistake" feedback ever.</strong> User is labeling their inner state — there are no wrong answers.</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M5</span>
+        <span class="step-tag phase">~18s — ~20s</span>
+        <span class="step-title">Sentence reveal (THERAPEUTIC PEAK)</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+          <li>Fires automatically after the 3rd word lands in its slot. <strong>Total sequence: 2.0s.</strong></li>
+          <li><strong>Morph (0ms — 300ms):</strong> Slot display morphs into a centered serif sentence: <em>"Today is Clear, Proud, Steady."</em> · <strong>Serif, 28pt, ink-black, single line</strong>. Grid dims to 40% opacity.</li>
+          <li><strong>Gold pulse (300ms — 700ms):</strong> <strong>Single</strong> gold glow pulse around sentence (radius 24px, opacity 0→40%→0, 400ms). Pulse fires ONCE — no repeating.</li>
+          <li><strong>Hold (700ms — 1800ms):</strong> Sentence holds centered, 100% opacity, 1.1s. [Next] button appears at 700ms (escape hatch, 80% opacity).</li>
+          <li><strong>Auto-advance at 1.8s.</strong> Tap anywhere on sentence = pause auto-advance (+2s extension); tap again or tap [Next] = advance immediately.</li>
+        </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+            <div class="wf-status">9:41 · iPhone status bar</div>
+            <div class="wf-center" style="flex: 1;">
+              <div class="wf-box from-back" style="width: 100%;">
+                <div class="wf-box-label">SENTENCE · serif 28pt · gold pulse · 1.8s hold · from back</div>
+                <div style="text-align: center; padding: 30px 10px; position: relative;">
+                  <div style="position: absolute; inset: 0; border-radius: 16px; background: radial-gradient(ellipse at center, rgba(255,215,100,0.15), transparent 70%);"></div>
+                  <div style="position: relative; font-family: Georgia, serif; font-size: 18px; color: var(--text); line-height: 1.4;">Today is Clear, Proud, Steady.</div>
+                </div>
+              </div>
+            </div>
+            <div class="wf-box from-mobile" style="margin-top: auto;">
+              <div class="wf-box-label">NEXT · escape hatch · from mobile</div>
+              <div style="padding: 10px 20px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 600; text-align: center; display: inline-block;">Next</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M6</span>
+        <span class="step-tag phase">~20s — ~20.9s</span>
+        <span class="step-title">Transition Screen 1 → Screen 2 (900ms total)</span>
+      </div>
+      <ul class="step-body">
+        <li><strong>Sentence shrinks to pill (0–300ms):</strong> Shrinks from 28pt serif center-stage to a <strong>12pt pill at top of screen</strong>, below day number. Rounded rectangle, warm-tinted background, 80% opacity. Truncation cap at 3 words displayed; overflow = ellipsis.</li>
+        <li><strong>Grid + [Next] fade out (300–500ms):</strong> Emotion grid, [Next] button, "Today felt..." header all fade.</li>
+        <li><strong>Screen 2 elements fade in (500–900ms):</strong> New header "What filled you today?" fades in. Gratitude grid fades in with same staggered 50ms reveal. Gratitude slot area appears: "FILLED BY ___".</li>
+        <li><strong>Pill persists through Screen 2</strong> as a contextual anchor — "I felt X. I was filled by Y."</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M7 / M8</span>
+        <span class="step-tag phase">~20.9s — ~21.3s</span>
+        <span class="step-title">Screen 2 header + gratitude grid reveal</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+          <li><strong>Copy:</strong> <em>"What filled you today?"</em> (serif, 28pt, 100% opacity). Slot: "FILLED BY ___" (80% opacity, awaiting pick).</li>
+          <li><strong>Why "What filled you today?"</strong> Warmer, shorter. Sentence-completion structure parallel to Screen 1 ("Today felt..." / "What filled you..."). Works identically on good AND slip days — does not reference the 3 emotion words (cruel on negative-emotion days).</li>
+          <li><strong>Grid reveal:</strong> 8 words, 2×4 grid · staggered 50ms fade-in, 400ms total · <strong>3% additional warm tint</strong> vs Screen 1 (6% total over neutral baseline).</li>
+          <li><strong>Static — no pulse, no heart-rate animation, no icons beside words.</strong> Over-literal; violates Option B tone.</li>
+        </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+            <div class="wf-box from-back" style="margin-top: 16px;">
+              <div class="wf-box-label">HEADER + PILL · from back</div>
+              <div style="font-size: 10px; letter-spacing: 0.8px; font-weight: 700; color: rgba(255,255,255,0.6);">DAY 47</div>
+              <div style="margin-top: 6px; display: inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(255,215,100,0.1); border: 1px solid rgba(255,215,100,0.3); font-size: 10px; color: rgba(255,215,100,0.85);">Today is Clear, Proud, Steady.</div>
+              <div style="font-family: Georgia, serif; font-size: 18px; color: var(--text); margin-top: 10px;">What filled you today?</div>
+            </div>
+            <div class="wf-box from-back" style="margin-top: 10px;">
+              <div class="wf-box-label">8-GRATITUDE GRID · static · warmer tint · from back</div>
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px;">
+                <div style="padding: 7px; text-align: center; background: rgba(255,200,100,0.06); border: 1px solid rgba(255,200,100,0.15); border-radius: 6px; font-size: 10px; color: var(--text);">Family</div>
+                <div style="padding: 7px; text-align: center; background: rgba(255,200,100,0.06); border: 1px solid rgba(255,200,100,0.15); border-radius: 6px; font-size: 10px; color: var(--text);">Friend</div>
+                <div style="padding: 7px; text-align: center; background: rgba(255,200,100,0.06); border: 1px solid rgba(255,200,100,0.15); border-radius: 6px; font-size: 10px; color: var(--text);">Sleep</div>
+                <div style="padding: 7px; text-align: center; background: rgba(255,200,100,0.06); border: 1px solid rgba(255,200,100,0.15); border-radius: 6px; font-size: 10px; color: var(--text);">Home</div>
+                <div style="padding: 7px; text-align: center; background: rgba(255,200,100,0.06); border: 1px solid rgba(255,200,100,0.15); border-radius: 6px; font-size: 10px; color: var(--text);">Health</div>
+                <div style="padding: 7px; text-align: center; background: rgba(255,200,100,0.06); border: 1px solid rgba(255,200,100,0.15); border-radius: 6px; font-size: 10px; color: var(--text);">Body</div>
+                <div style="padding: 7px; text-align: center; background: rgba(255,200,100,0.06); border: 1px solid rgba(255,200,100,0.15); border-radius: 6px; font-size: 10px; color: var(--text);">Today</div>
+                <div style="padding: 7px; text-align: center; background: rgba(255,200,100,0.06); border: 1px solid rgba(255,200,100,0.15); border-radius: 6px; font-size: 10px; color: var(--text);">Time</div>
+              </div>
+              <div style="margin-top: 8px; font-size: 10px; color: rgba(139,92,246,0.85); font-weight: 600;">+ Add your own</div>
+            </div>
+            <div class="wf-box from-mobile" style="margin-top: auto;">
+              <div class="wf-box-label">SLOT · from mobile</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.75); letter-spacing: 0.5px;">FILLED BY ___</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M9</span>
+        <span class="step-tag user">~21.3s — ~28s</span>
+        <span class="step-title">Gratitude tap — one tap, scaled up</span>
+      </div>
+      <ul class="step-body">
+        <li><strong>Per-tap micro-sequence (300ms total):</strong>
+          <ul style="margin-top: 4px; list-style: none; padding: 0;">
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong>Tap registered:</strong> Word lifts <strong>12px</strong> (vs 8px in M4) — subtle elevation difference. Brighter gold glow: <strong>+15% luminance</strong> vs M4 glow. <strong>Medium haptic impact</strong> (iOS <code>.medium</code>; heavier than M4 <code>.light</code>). <strong>NO audio.</strong></li>
+            <li style="padding: 2px 0 2px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong>State change + travel to slot:</strong> All 7 other words dim to 70%. Selected word gets persistent gold ring. Arc into single slot: "FILLED BY ___". Same 250ms ease-out, NO bounce.</li>
+          </ul>
+        </li>
+        <li><strong>Deselect/reselect:</strong> Tap another gratitude = deselects current, selects new. Silent, instant. User can switch as many times as they want before [Done].</li>
+        <li><strong>[Done] button appears after first tap.</strong></li>
+        <li><em>Peak-end rule:</em> The LAST tap (Screen 2's gratitude pick) should feel slightly bigger than Screen 1's taps. Haptic weight does this without visual clutter.</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M10</span>
+        <span class="step-tag phase">~28s — ~30s</span>
+        <span class="step-title">Final assembly + dissolve (END PEAK)</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+          <li>Fires after user taps [Done] on Screen 2. <strong>Total sequence: 2.0s.</strong></li>
+          <li><strong>Composition forms (0–400ms):</strong> Screen darkens to 40% opacity. Two sentences compose center-screen:
+            <div style="margin-top: 4px; padding: 8px 12px; background: rgba(0,0,0,0.2); border-radius: 8px; font-family: Georgia, serif; font-size: 12px; text-align: center; color: var(--text);">
+              Today is Clear, Proud, Steady.<br/>Filled by Body.
+            </div>
+            Both in <strong>serif 24pt, centered, stacked vertically, 16pt line spacing</strong>. Pill from top fades out.
+          </li>
+          <li><strong>Composition holds (400–1200ms):</strong> Sentence pair holds at 100% opacity for 800ms. <em>The ARTIFACT moment</em> — user sees their complete reflection as one dignified composition, once.</li>
+          <li><strong>Dissolve (1200–1700ms):</strong> Each letter shatters into <strong>~40 gold particles (restrained — not fireworks)</strong>. Particle size 2–4px. <strong>Brightness clamped in dark mode (max 70% luminance).</strong> Particles stream upward and to the top-right of screen toward the Bettercoin counter. Stream duration 500ms. Easing: ease-in (slow start, fast finish — physics feel).</li>
+          <li><strong>Afterglow (1700–2000ms):</strong> Screen goes near-black (15% luminance). Soft center glow (30px radius, 30% opacity warm gold) pulses once. 300ms hold, then fade to M11.</li>
+          <li><em>2AM stress test:</em> Brightness cap is NON-negotiable — a bright gold burst in a dark bedroom at 2AM physically wakes the user more than it rewards them.</li>
+        </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame" style="background: radial-gradient(circle at center, rgba(20,29,31,0.6), rgba(8,8,12,0.95));">
+            <div class="wf-center" style="flex: 1;">
+              <div style="text-align: center; position: relative;">
+                <div style="position: absolute; inset: -30px; background: radial-gradient(circle, rgba(255,215,100,0.2), transparent 70%);"></div>
+                <div style="position: relative; font-family: Georgia, serif; font-size: 14px; color: var(--text); line-height: 1.5;">
+                  Today is Clear, Proud, Steady.<br/>
+                  Filled by Body.
+                </div>
+                <!-- Gold particles streaming up-right -->
+                <div style="position: absolute; top: -30px; right: -40px; font-size: 6px; color: #FFD764;">· ·</div>
+                <div style="position: absolute; top: -20px; right: -25px; font-size: 8px; color: #FFD764;">·</div>
+                <div style="position: absolute; top: -40px; right: -50px; font-size: 4px; color: #FFD764;">·</div>
+              </div>
+            </div>
+            <div style="margin-top: auto; text-align: center; font-size: 9px; color: rgba(255,255,255,0.4); font-style: italic;">~40 gold particles · stream up-right to BC counter · 500ms</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M11</span>
+        <span class="step-tag phase">~30s — ~31s</span>
+        <span class="step-title">BC landing (+15)</span>
+      </div>
+      <ul class="step-body">
+        <li><strong>Counter roll-up:</strong> 145 → 160 animated across intermediate numbers over 600ms (not instant jump). Each intermediate digit visible for ~40ms.</li>
+        <li><strong>Halo pulse:</strong> warm gold halo around counter, 40% opacity, 300ms.</li>
+        <li><strong>Scale bump:</strong> counter scales 1.0 → 1.15 → 1.0 over 300ms.</li>
+        <li><strong>Gold flash:</strong> 200ms flash behind counter (opacity 0→50%→0).</li>
+        <li><strong>"+15" delta text:</strong> floats up from counter, rises 24px, fades over 800ms. Color: warm gold (#F59E0B).</li>
+        <li><strong>Audio:</strong> Single quiet BC chime. <strong>−6dB versus first-ever earn</strong> (Day 1 first BC chime is the loudest; subsequent chimes quieter to avoid fatigue).</li>
+        <li><strong>Audio fallback:</strong> audio OFF → single medium haptic pulse replaces the chime. <strong>Visual fallback:</strong> audio + haptic OFF → "+15" float + scale bump provide full "reward received" signal.</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M12</span>
+        <span class="step-tag phase">~31s — ~33s</span>
+        <span class="step-title">Exit to Node 8 (Daily Close)</span>
+      </div>
+      <ul class="step-body">
+        <li>300ms cross-fade from Node 7 afterglow to Node 8 entry.</li>
+        <li><strong>Pill and reflection artifact do NOT persist into Node 8</strong> (Rule 3 — ephemeral, no archive, no re-read).</li>
+        <li>Day number persists (visible at top of Daily Close).</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">M12b</span>
+        <span class="step-tag phase">Day 15 / Day 60 ONLY</span>
+        <span class="step-title">Phase unlock overlay — pre-grid modal (~5s)</span>
+      </div>
+      <ul class="step-body">
+        <li>Fires <strong>BEFORE Moment 3</strong> (before the emotion grid reveal) on Day 15 and Day 60.</li>
+        <li>Background dims to 70% opacity over 300ms · modal slides up from center over 400ms.</li>
+        <li>4 cards render sequentially (150ms stagger, 600ms total). Each card: word in serif 20pt + 1-line definition in 14pt regular weight.</li>
+        <li>[Add to today] button appears at 1.5s, bottom of modal.</li>
+        <li>User taps [Add to today] → modal slides down (400ms) → grid reveal (M3) begins with new word count.</li>
+        <li>Total overlay duration: user-paced, minimum 2s, maximum 10s (auto-dismiss at 10s if no tap).</li>
+        <li><strong>New words show a 6px gold dot</strong> in upper-right corner for the next 3 sessions. Tap dot → re-shows definition card. After 3 sessions, dot fades.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DATA ARCHITECTURE (§8) -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Data architecture — CRM only</h2>
+      <p><strong>After Moment 12 completes, the reflection is gone.</strong> No archive. No weekly recap. No monthly review. No word cloud. No "you've used these words 47 times" stat.</p>
+    </div>
+
+    <div style="margin-top: 10px; padding: 14px 18px; background: rgba(255,107,122,0.05); border: 1px solid rgba(255,107,122,0.28); border-left: 3px solid #FF6B7A; border-radius: 10px;">
+      <p style="font-size: 13px; color: var(--text-dim); line-height: 1.55; margin: 0;">A depressed user tapping "Numb, Heavy, Lonely" 30 days straight and opening a word cloud = <strong>shame mirror</strong> = confirms the depressive narrative. AA daily reflection books work because <em>you never re-read what you wrote.</em> Permanence without curation is a 2AM failure mode.</p>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Clinician CRM payload</div>
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 4px 14px; font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+        <div style="color: var(--text); font-weight: 600;"><code>user_id</code></div><div>User identifier</div>
+        <div style="color: var(--text); font-weight: 600;"><code>date</code></div><div>ISO 8601 timestamp</div>
+        <div style="color: var(--text); font-weight: 600;"><code>day_in_program</code></div><div>Integer (e.g., 47)</div>
+        <div style="color: var(--text); font-weight: 600;"><code>phase</code></div><div>"acute" / "rebuild" / "maintenance"</div>
+        <div style="color: var(--text); font-weight: 600;"><code>screen_1_words</code></div><div>Array of 3 strings, in pick order</div>
+        <div style="color: var(--text); font-weight: 600;"><code>screen_1_custom_flag</code></div><div>Boolean per word (true if custom entry)</div>
+        <div style="color: var(--text); font-weight: 600;"><code>screen_1_quadrants</code></div><div>Derived: array mapping each word to Barrett quadrant (HA+/LA+/HA-/LA-)</div>
+        <div style="color: var(--text); font-weight: 600;"><code>screen_2_gratitude</code></div><div>1 string</div>
+        <div style="color: var(--text); font-weight: 600;"><code>screen_2_custom_flag</code></div><div>Boolean</div>
+        <div style="color: var(--text); font-weight: 600;"><code>session_duration_ms</code></div><div>Integer</div>
+        <div style="color: var(--text); font-weight: 600;"><code>deselect_events</code></div><div>Integer count (how many times user changed their mind)</div>
+        <div style="color: var(--text); font-weight: 600;"><code>unlock_event</code></div><div>Nullable: "day_15_unlock" or "day_60_unlock"</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Derived clinical signals</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 4px 14px; font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+        <div style="color: var(--text); font-weight: 600;">Signal</div><div style="color: var(--text); font-weight: 600;">Derivation</div><div style="color: var(--text); font-weight: 600;">Clinical meaning</div>
+        <div><code>emotion_granularity_score</code></div><div>Unique emotion words used / total sessions (rolling 30-day)</div><div>Higher = better affect differentiation = lower relapse risk</div>
+        <div><code>valence_ratio_30d</code></div><div>Positive quadrant picks / total picks (30-day)</div><div>Depression / anhedonia marker if chronically low positive valence</div>
+        <div><code>arousal_ratio_30d</code></div><div>High-arousal picks / total picks (30-day)</div><div>Chronic craving / withdrawal signal if high; chronic numbing if low-low</div>
+        <div><code>custom_entry_frequency</code></div><div>% of sessions with a custom word</div><div>High custom = advanced user; low = grid is sufficient</div>
+        <div><code>negative_streak_alert</code></div><div>Consecutive sessions with all 3 picks in LA-</div><div>Depression escalation alert; clinician intervention flag</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Clinician intervention triggers</div>
+      <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FFD764;">·</span><code>negative_streak_alert</code> ≥ 5 consecutive sessions → <strong style="color: #FFD764;">yellow flag</strong>.</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span><code>negative_streak_alert</code> ≥ 10 consecutive sessions → <strong style="color: #FF8A94;">red flag</strong> (clinician outreach).</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FFD764;">·</span><code>emotion_granularity_score</code> decreases by &gt;20% week-over-week → <strong style="color: #FFD764;">yellow flag</strong> (regression).</li>
+        <li style="padding: 3px 0 3px 14px; position: relative;"><span style="position: absolute; left: 0; color: #FF8A94;">·</span>Custom entry contains self-harm language (AI moderation) → <strong style="color: #FF8A94;">immediate red flag</strong> + in-app safety resource surfaced (separate flow).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDGE CASES (§10) -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Edge cases</h2>
+    </div>
+    <div style="margin-top: 10px; padding: 16px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 6px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+        <div style="color: var(--text); font-weight: 600;">Exit after Screen 1 selections (before [Next])</div><div>Progress lost. Next session re-prompts from M1. No partial credit.</div>
+        <div style="color: var(--text); font-weight: 600;">Exit after Screen 1 [Next] (before Screen 2 pick)</div><div>Session incomplete. <strong>+15 BC NOT awarded.</strong> Full re-start next session.</div>
+        <div style="color: var(--text); font-weight: 600;">Exit after M11 but before M12</div><div>Session complete. +15 BC awarded. Data saved to CRM.</div>
+        <div style="color: var(--text); font-weight: 600;">Custom entry on both screens</div><div>Both saved, both flagged <code>custom: true</code>. No double BC bonus. +15 is flat.</div>
+        <div style="color: var(--text); font-weight: 600;">Custom entry contains emoji</div><div>Permitted. Stored as UTF-8 in CRM. Display renders emoji in slot alongside text.</div>
+        <div style="color: var(--text); font-weight: 600;">Custom entry empty or whitespace</div><div>[Save] button disabled until ≥1 non-whitespace character entered.</div>
+        <div style="color: var(--text); font-weight: 600;">Custom entry contains self-harm language</div><div><strong>AI-based moderation (NOT regex).</strong> OpenAI Moderation API or equivalent. Threshold: any category &gt;0.5 or <code>self-harm/intent</code> at any score → safety flag. Latency budget 200ms. <strong>User experience completely unchanged</strong> — no warning, no redirect, no censorship visible. Out-of-flow at session end, if flag fired, soft notification surfaces safety resource (988 / Samaritans / regional).</div>
+        <div style="color: var(--text); font-weight: 600;">All 3 picks same quadrant (e.g., all LA-)</div><div>Permitted. "Today is Numb, Heavy, Lonely." is a valid reflection. Sentence reveal fires normally. CRM logs pattern.</div>
+        <div style="color: var(--text); font-weight: 600;">Day 15 / Day 60 unlock on slip day</div><div><strong>MVP:</strong> unlock fires normally, no deferral. Withholding growth from someone who slipped is paternalistic.</div>
+        <div style="color: var(--text); font-weight: 600;">User with tremor mis-taps wrong word</div><div>Tap again → instant silent deselect. <strong>No error tone, no shake, no "are you sure?" modal.</strong></div>
+        <div style="color: var(--text); font-weight: 600;">User with slow reading speed (sentence reveal)</div><div>Auto-advance at 1.8s. Tap anywhere on sentence pauses (+2s extension). Tap [Next] to continue. No forced timer.</div>
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </details>
+
 </div>
 </body>
 </html>
