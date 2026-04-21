@@ -5738,6 +5738,552 @@ Response 200:
       </div>
     </details>
 
+
+    <!-- BIG COLLAPSIBLE: Finish (Complete Checkmark) full flow -->
+    <details class="collapsible big-collapsible" style="margin-top: 22px;">
+      <summary class="collapsible-toggle big-toggle">
+        <span class="toggle-chevron">›</span>
+        <span class="big-task-icon">🏁</span>
+        <span class="big-task-label">
+          <span class="big-task-name">Finish</span>
+          <span class="big-task-sub">SUMMIT celebration · 4.5s + 4s summit · position 9 of 9 · v5.2</span>
+        </span>
+        <span class="big-task-reward">🪙 +20 BC</span>
+      </summary>
+      <div class="collapsible-body big-body">
+
+  <!-- GOVERNING RULES -->
+  <div style="margin: 4px 0 22px; padding: 16px 20px; background: rgba(255, 107, 122, 0.05); border: 1px solid rgba(255, 107, 122, 0.28); border-left: 3px solid #FF6B7A; border-radius: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <span style="font-size: 13px; font-weight: 700; color: #FF8A94; letter-spacing: 0.3px; text-transform: uppercase;">Governing rules — NEVER violate</span>
+    </div>
+    <ol style="margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--text-dim); line-height: 1.65;">
+      <li><strong style="color: var(--text);">+20 BC FIXED always.</strong> Never variable. Peak-end completion moment gets guaranteed recognition. Variable reward is the Chest's job (Node 5).</li>
+      <li><strong style="color: var(--text);">Non-dismissible.</strong> User MUST tap the Complete button to lock in the day's BC. Cannot be skipped, swiped away, or bypassed.</li>
+      <li><strong style="color: var(--text);">Close owns emotional closure; Checkmark owns celebration dopamine hit.</strong> Node 8 = LOW, observational, dignifying. Node 9 = HIGH, celebratory, rewarding.</li>
+      <li><strong style="color: var(--text);">No copy overlap with Node 8 (Daily Close).</strong> Node 8 = observational ("Evening mood higher than morning"). Node 9 = direct celebratory ("Cravings hit. You stayed.").</li>
+      <li><strong style="color: var(--text);">Line 2 is ALWAYS "See you tomorrow."</strong> — fixed ritual anchor. Never changes. Never personalized. Never skipped.</li>
+      <li><strong style="color: var(--text);">No share prompt, no rating prompt, no extra interaction.</strong> Clean dopamine hit → auto-transition to Summit → done.</li>
+      <li><strong style="color: var(--text);">Auto-transition from checkmark to Summit.</strong> No tap between. Crossfade at t=4000ms.</li>
+      <li><strong style="color: var(--text);">Every feature must satisfy BOTH engagement AND therapeutic value.</strong></li>
+      <li><strong style="color: var(--text);">Global tone-of-voice = Option B.</strong> "Cravings" is acceptable. Never "urges," "triggers," "lapse," "relapse."</li>
+      <li><strong style="color: var(--text);">Never show negative clinical metrics.</strong> No "relapse risk," no "severity." Only positive framing: progress made, days built, skills demonstrated.</li>
+    </ol>
+  </div>
+
+  <!-- PURPOSE + FIXED ATTRIBUTES -->
+  <section style="margin-bottom: 22px;">
+    <div class="section-header">
+      <h2>Purpose &amp; fixed attributes</h2>
+      <p>Peak-end rule (Kahneman). The last thing the user does each day is a guaranteed celebration. Consistent positive ending regardless of how the day went. The daily arc: HIGH → MED → HIGH → HIGH → REWARD → MED → HIGH → LOW → <strong>SUMMIT</strong>. Node 8 (Daily Close) deliberately lands LOW so that Node 9 can spike to SUMMIT — the contrast amplifies the celebration.</p>
+    </div>
+    <div style="margin-top: 10px; padding: 14px 18px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55;">
+        <div style="color: var(--text-muted); font-weight: 600;">Position</div><div>9 of 9 (final node)</div>
+        <div style="color: var(--text-muted); font-weight: 600;">Follows</div><div>Node 8 — Daily Close</div>
+        <div style="color: var(--text-muted); font-weight: 600;">Bettercoins</div><div><strong>+20 BC (fixed, never variable)</strong></div>
+        <div style="color: var(--text-muted); font-weight: 600;">Duration</div><div>5–8s celebration + 4s Summit auto-dismiss</div>
+        <div style="color: var(--text-muted); font-weight: 600;">Energy</div><div>SUMMIT</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRE-TAP STATE -->
+  <section style="margin-top: 22px;">
+    <div class="section-header">
+      <h2>Pre-tap state</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55;">
+          <div style="color: var(--text-muted); font-weight: 600;">Button</div><div>80px circular, centered on screen</div>
+          <div style="color: var(--text-muted); font-weight: 600;">Fill color</div><div><code>#16A34A</code> (green)</div>
+          <div style="color: var(--text-muted); font-weight: 600;">Icon</div><div>White checkmark outline</div>
+          <div style="color: var(--text-muted); font-weight: 600;">Idle animation</div><div>2-second breathing pulse (scale 1.0 → 1.03 → 1.0, ease-in-out, loops)</div>
+          <div style="color: var(--text-muted); font-weight: 600;">Copy above</div><div><em>"All done. Seal the day."</em></div>
+          <div style="color: var(--text-muted); font-weight: 600;">Button label</div><div><strong>COMPLETE ✓</strong></div>
+          <div style="color: var(--text-muted); font-weight: 600;">Background</div><div>Standard dark theme, no special treatment</div>
+        </div>
+      </div>
+      <div>
+        <div class="wf-frame" style="max-width: 240px; margin: 0 auto;">
+          <div class="wf-status">9:41 · iPhone status bar</div>
+          <div class="wf-center" style="flex: 1;">
+            <div style="text-align: center;">
+              <div style="font-size: 13px; color: rgba(255,255,255,0.85); margin-bottom: 16px; font-style: italic;">All done. Seal the day.</div>
+              <div style="width: 80px; height: 80px; border-radius: 50%; background: #16A34A; display: flex; align-items: center; justify-content: center; margin: 0 auto; box-shadow: 0 0 20px rgba(22,163,74,0.3);">
+                <span style="font-size: 32px; color: white;">✓</span>
+              </div>
+              <div style="margin-top: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; color: #16A34A;">COMPLETE ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE CELEBRATION TIERS -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Three celebration tiers</h2>
+      <p>Every day gets a celebration. The tier determines the intensity. Tier selection is independent from text pool selection — a day can be Tier 2 visuals with Pool C text, etc.</p>
+    </div>
+    <div style="margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+      <!-- Tier 1 -->
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Tier 1 — Regular</div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;">~70% of days · Default fallback</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; font-size: 12px; color: var(--text-dim); line-height: 1.45;">
+          <div style="color: var(--text-muted);">Confetti</div><div>40–60 particles, metal-tier-colored</div>
+          <div style="color: var(--text-muted);">Haptic</div><div>1 strong pulse — iOS <code>.heavy</code></div>
+          <div style="color: var(--text-muted);">Audio</div><div>Soft bell chime (<code>chime_tier1.aac</code>)</div>
+          <div style="color: var(--text-muted);">Visual</div><div>Standard checkmark fill animation</div>
+          <div style="color: var(--text-muted);">Duration</div><div>5–6s total</div>
+        </div>
+      </div>
+      <!-- Tier 2 -->
+      <div style="padding: 14px; border: 1px solid rgba(255,176,96,0.3); border-radius: 12px; background: rgba(255,176,96,0.04);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: #FFB060; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Tier 2 — Hard Day</div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">~20% of days</div>
+        <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 8px; font-style: italic; line-height: 1.4;">Trigger: cravingIntensity ≥ Strong, OR moodCompareResult == "worse", OR slipReportedToday.</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; font-size: 12px; color: var(--text-dim); line-height: 1.45;">
+          <div style="color: var(--text-muted);">Confetti</div><div>60–80 particles, metal-tier-colored</div>
+          <div style="color: var(--text-muted);">Haptic</div><div>Double-beat heartbeat: <code>.heavy</code> → 200ms → <code>.medium</code></div>
+          <div style="color: var(--text-muted);">Audio</div><div>Bell + harmonic overtone at +600ms (<code>chime_tier2.aac</code>)</div>
+          <div style="color: var(--text-muted);">Visual</div><div>Checkmark border glows brighter (0.3s, 1.5× brightness)</div>
+          <div style="color: var(--text-muted);">Duration</div><div>6–7s total</div>
+        </div>
+        <div style="margin-top: 10px; padding: 8px 10px; background: rgba(255,176,96,0.08); border: 1px solid rgba(255,176,96,0.2); border-radius: 6px; font-size: 11px; color: var(--text-dim); line-height: 1.5;"><strong style="color: #FFB060;">Rationale:</strong> Hard days get a BIGGER celebration, not a smaller one. Completing the full path on a hard day IS a bigger achievement.</div>
+      </div>
+      <!-- Tier 3 -->
+      <div style="padding: 14px; border: 1px solid rgba(255,215,100,0.3); border-radius: 12px; background: rgba(255,215,100,0.04);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: #FFD764; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Tier 3 — Milestone</div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">~5% of days</div>
+        <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 8px; font-style: italic; line-height: 1.4;">Trigger: daysSinceStart ∈ [7, 14, 21, 30, 60, 90, 180, 365, 730, 1825], OR levelUpToday == true.</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; font-size: 12px; color: var(--text-dim); line-height: 1.45;">
+          <div style="color: var(--text-muted);">Confetti</div><div>80–120 particles, metal colors + <strong>20% gold accent</strong> <code>#F59E0B</code></div>
+          <div style="color: var(--text-muted);">Haptic</div><div>Ceremonial: <code>.heavy</code> → 300ms continuous → <code>.heavy</code></div>
+          <div style="color: var(--text-muted);">Audio</div><div>Three-note major triad (<code>triad_tier3.aac</code>, root → fifth → octave at +400ms intervals)</div>
+          <div style="color: var(--text-muted);">Visual</div><div>Border pulses gold 2× / 1.5s · 15% particles at 1.5× size · screen-edge glow soft gold 0.4 opacity, 800ms fade-in</div>
+          <div style="color: var(--text-muted);">Duration</div><div>7–8s total</div>
+        </div>
+        <div style="margin-top: 10px; padding: 8px 10px; background: rgba(255,215,100,0.08); border: 1px solid rgba(255,215,100,0.3); border-radius: 6px; font-size: 11px; color: var(--text-dim); line-height: 1.5;"><strong style="color: #FFD764;">Day 365 special:</strong> Confetti RISES from bottom of screen before falling (reversed gravity). Fires once ever — only on Day 365.</div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+      <strong style="color: var(--text);">Tier selection logic:</strong> Milestone (Tier 3) &gt; Hard Day (Tier 2) &gt; Regular (Tier 1). If a day qualifies for both Tier 2 AND Tier 3, <strong>Tier 3 wins</strong> — no hybrid tier. Milestone visuals are already the most intense.
+    </div>
+  </section>
+
+  <!-- FRAME-BY-FRAME TAP SEQUENCE -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Frame-by-frame tap sequence (t=0 → t=4500ms)</h2>
+      <p>All timings from t=0 (moment of user tap). Tier determines intensity per §3. Text is selected per §4. Total sequence: 4.5 seconds from tap to Summit.</p>
+    </div>
+
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 90px 1fr 2fr; font-size: 12px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Time</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Event</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Detail</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=0ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">User taps COMPLETE</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Button depresses: <code>scale(0.95)</code>, 80ms ease-out</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=80ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Button bounce</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Scales to 1.1×, 120ms · Spring <code>{stiffness: 180, damping: 12, mass: 1}</code>. GSM fallback: <code>Easing.out(Easing.cubic)</code>, no spring overshoot.</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=200ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Haptic fires</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Tier 1: 1× <code>.heavy</code> · Tier 2: <code>.heavy</code> → 200ms → <code>.medium</code> · Tier 3: <code>.heavy</code> → 300ms continuous → <code>.heavy</code></div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=200ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Green fill radiates</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Green fill radiates from center of button outward, 400ms duration</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=200ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Checkmark stroke begins</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">White checkmark stroke draws bottom-left → top-right, 400ms</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=600ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Stroke completes + audio fires</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Tier 1: soft bell · Tier 2: bell + harmonic overtone at t=1200ms · Tier 3: major triad (root t=600, fifth t=1000, octave t=1400)</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=700ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">"All done" fades out</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Pre-tap copy fades to 0% opacity, 200ms</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: #FFD764; font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=800ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">CONFETTI BURST</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">From top-center of screen (Day 365 exception: rises from bottom). Particle count + color per tier.</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=900ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Line 1 fades in</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Context-aware headline (§4). 18pt bold, white. Fade-in 400ms.</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=1800ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Line 2 fades in</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);"><em>"See you tomorrow."</em> — 14pt, 60% opacity. Fade-in 400ms.</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=2200ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Streak counter ticks</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Visual highlight only (actual streak was incremented at Node 1). Scale 1.0 → 1.15 → 1.0, 300ms. Light haptic <code>.light</code>.</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=2500ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">BC counter animation begins</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Gold "+20" (14pt bold, <code>#F59E0B</code>) appears centered on checkmark, floats upward in quadratic bezier arc toward BC counter (control point: 50% horizontal, 30% vertical). 600ms, <code>Easing.out(Easing.cubic)</code>. Text scales 1.0 → 0.7.</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: #FFD764; font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=3100ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">BC credited to account</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"+20" arrives at header BC counter. Counter increments by 20. Light haptic pulse. <strong>This is the commit moment.</strong> Force-quit before = no BC. Force-quit after = BC kept, Summit doesn't replay.</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=3800ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Confetti faded</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Confetti particles have settled/faded by this point.</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=4000ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Auto-transition begins</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">500ms crossfade to Summit screen.</div>
+
+        <div style="padding: 10px; border-top: 1px solid var(--border); color: var(--accent); font-family: 'SF Mono', Menlo, monospace; font-weight: 700;">t=4500ms</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Summit fully rendered</div><div style="padding: 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Auto-dismiss countdown begins (4s).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMIT SCREEN -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Summit screen</h2>
+      <p>Auto-appears via 500ms crossfade after the checkmark animation. No tap required between them.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Layout</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+          <div style="color: var(--text); font-weight: 600;">Mountain peak</div><div>Centered, tinted by current Streak Tier metal color. Top ~40% of screen.</div>
+          <div style="color: var(--text); font-weight: 600;">Stats cluster</div><div>Horizontal row: (1) BC earned today · (2) streak count with flame · (3) current league badge</div>
+          <div style="color: var(--text); font-weight: 600;">Tomorrow preview</div><div>Actual exercise TITLE + category + 🔒 lock icon. <strong>NOT blurred</strong> — specific &gt; vague for Zeigarnik. Example: <em>"🔒 Tomorrow: Urge Surfing · Mindfulness"</em></div>
+          <div style="color: var(--text); font-weight: 600;">Countdown ring</div><div>2dp stroke, <code>#FFFFFF</code> @ 30%. Background track same ring @ 10% (full circle visible). Fills clockwise from 12 o'clock over 4 seconds, linear.</div>
+        </div>
+      </div>
+      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
+        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Interaction</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+          <div style="color: var(--text); font-weight: 600;">Do nothing</div><div>Screen auto-dismisses at 4 seconds (countdown ring completes)</div>
+          <div style="color: var(--text); font-weight: 600;">Tap anywhere</div><div>Pauses countdown. Ring freezes. User can read at their own pace.</div>
+          <div style="color: var(--text); font-weight: 600;">Release (finger up)</div><div>Countdown resumes from where it paused</div>
+          <div style="color: var(--text); font-weight: 600;">Ring completes</div><div>Screen fades out (300ms), returns to home screen</div>
+        </div>
+        <div style="margin-top: 10px; padding: 8px 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-size: 11.5px; color: var(--text-muted); line-height: 1.5;">
+          <strong style="color: var(--text);">No [Done] button.</strong> Auto-dismiss replaces the manual button from v5.1. Fewer taps = cleaner exit. The tap-to-hold mechanic lets interested users linger without penalizing fast finishers.
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+      <strong style="color: var(--text);">Tomorrow Preview fallback:</strong> If tomorrow's exercise isn't yet assigned → show <em>"🔒 Tomorrow: Your next step is ready."</em> — same lock icon, same styling, clean text fallback.
+    </div>
+  </section>
+
+  <!-- SIGNAL PRIORITY CASCADE + 8 TEXT POOLS -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Context-aware completion text — 9-priority cascade</h2>
+      <p>Line 1 = context-specific headline (max 8 words, bold, 18pt). Line 2 = always <em>"See you tomorrow."</em> Signal detection runs at the moment user taps COMPLETE. Only ONE signal fires per day. Highest-priority matching signal wins.</p>
+    </div>
+
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 40px 1fr 1.5fr 60px; font-size: 12px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">#</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Signal</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Condition</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Pool</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">1</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text);">Level-up day</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'SF Mono', Menlo, monospace; font-size: 11px;">levelUpToday == true</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: #B98CFF; font-weight: 700;">L</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">2</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text);">Milestone day</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'SF Mono', Menlo, monospace; font-size: 11px;">daysSinceStart ∈ [7, 30, 90, 180, 365]</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: #FFD764; font-weight: 700;">A</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">3</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text);">Post-slip day</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'SF Mono', Menlo, monospace; font-size: 11px;">slipReportedToday OR slipYesterdayReported</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">B</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">4</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text);">Hard day powered through</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'SF Mono', Menlo, monospace; font-size: 11px;">cravingIntensity ≥ Strong AND dayCompleted</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">C</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">5</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text);">Mood improved</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'SF Mono', Menlo, monospace; font-size: 11px;">moodCompareResult == "improved"</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">D</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">6</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text);">Streak milestone</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'SF Mono', Menlo, monospace; font-size: 11px;">streakCount % 7 == 0 AND streakCount &gt; 0</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">E</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">7</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text);">Mood held steady</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'SF Mono', Menlo, monospace; font-size: 11px;">moodCompareResult == "same"</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">F</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">8</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text);">Tough day, still showed up</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'SF Mono', Menlo, monospace; font-size: 11px;">moodCompareResult == "worse"</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">G</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700;">9</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text);">Default</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'SF Mono', Menlo, monospace; font-size: 11px;">always true (fallback)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 700;">H</div>
+      </div>
+    </div>
+
+    <!-- Text Pools -->
+    <div style="margin-top: 14px; padding: 14px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 12px;">All 8 text pools (rotate with 7-day no-repeat tracking)</div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="padding: 12px; border: 1px solid rgba(255,215,100,0.3); border-radius: 8px; background: rgba(255,215,100,0.04);">
+          <div style="font-size: 11px; letter-spacing: 0.4px; color: #FFD764; text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Pool A — Milestone (Priority 2)</div>
+          <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+            <div><strong style="color: var(--text);">Day 7</strong> — <em>"Day 7. First week down."</em></div>
+            <div><strong style="color: var(--text);">Day 30</strong> — <em>"Day 30. A whole month of you."</em></div>
+            <div><strong style="color: var(--text);">Day 90</strong> — <em>"Day 90. This is who you are now."</em></div>
+            <div><strong style="color: var(--text);">Day 180</strong> — <em>"Day 180. Half a year. Let that land."</em></div>
+            <div><strong style="color: var(--text);">Day 365</strong> — <em>"Day 365. One year. Yours."</em></div>
+          </div>
+        </div>
+
+        <div style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.03);">
+          <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Pool B — Post-slip (Priority 3)</div>
+          <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+            <div style="font-style: italic;">"You came back. That's the whole game."</div>
+            <div style="font-style: italic;">"Still here. Still going."</div>
+            <div style="font-style: italic;">"Reset the counter. Keep the lessons."</div>
+            <div style="font-style: italic;">"Showing up after a hard day? That's grit."</div>
+          </div>
+        </div>
+
+        <div style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.03);">
+          <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Pool C — Hard Day (Priority 4)</div>
+          <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+            <div style="font-style: italic;">"Cravings hit. You stayed."</div>
+            <div style="font-style: italic;">"That was a hard one. You held."</div>
+            <div style="font-style: italic;">"Your brain pushed. You pushed back."</div>
+            <div style="font-style: italic;">"Not easy today. Done anyway."</div>
+          </div>
+        </div>
+
+        <div style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.03);">
+          <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Pool D — Mood Improved (Priority 5)</div>
+          <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+            <div style="font-style: italic;">"Better than this morning."</div>
+            <div style="font-style: italic;">"You shifted your own day."</div>
+            <div style="font-style: italic;">"Started rough. Ended here."</div>
+            <div style="font-style: italic;">"Look at that — you moved the needle."</div>
+          </div>
+        </div>
+
+        <div style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.03);">
+          <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Pool E — Streak (Priority 6)</div>
+          <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+            <div style="font-style: italic;">"{X} days straight. Not luck — habit."</div>
+            <div style="font-style: italic;">"{X}-day streak. Building something real."</div>
+            <div style="font-style: italic;">"{X} in a row. Your rhythm is holding."</div>
+            <div style="margin-top: 4px; color: var(--text-muted); font-size: 11px; font-style: normal;"><code>{X}</code> = streakCount</div>
+          </div>
+        </div>
+
+        <div style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.03);">
+          <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Pool F — Mood Steady (Priority 7)</div>
+          <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+            <div style="font-style: italic;">"Steady all day. That's a skill."</div>
+            <div style="font-style: italic;">"No drama needed. You held your ground."</div>
+            <div style="font-style: italic;">"Consistency is its own quiet win."</div>
+          </div>
+        </div>
+
+        <div style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.03);">
+          <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Pool G — Tough Day (Priority 8)</div>
+          <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+            <div style="font-style: italic;">"Hard day. You still showed up."</div>
+            <div style="font-style: italic;">"Not every day feels good. Every day counts."</div>
+            <div style="font-style: italic;">"Rough ending. But you finished."</div>
+            <div style="font-style: italic;">"Some days the win is just completing."</div>
+          </div>
+        </div>
+
+        <div style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.03);">
+          <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text); text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Pool H — Default (Priority 9)</div>
+          <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+            <div style="font-style: italic;">"Day {X} — done."</div>
+            <div style="font-style: italic;">"Another one in the books, {name}."</div>
+            <div style="font-style: italic;">"Solid day. Locked in."</div>
+            <div style="font-style: italic;">"Day {X}. Yours."</div>
+            <div style="font-style: italic;">"{X} days and counting."</div>
+          </div>
+        </div>
+
+        <div style="padding: 12px; border: 1px solid rgba(185,140,255,0.3); border-radius: 8px; background: rgba(185,140,255,0.04); grid-column: span 2;">
+          <div style="font-size: 11px; letter-spacing: 0.4px; color: #B98CFF; text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">Pool L — Level-up (Priority 1)</div>
+          <div style="font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+            <div style="font-style: italic;">"{LevelName}. That's you now."</div>
+            <div style="font-style: italic;">"{LevelName} — earned."</div>
+            <div style="font-style: italic;">"Welcome to {LevelName}."</div>
+            <div style="margin-top: 4px; color: var(--text-muted); font-size: 11px; font-style: normal;"><code>{LevelName}</code> resolves to identity level name (e.g., "The Resilient"). Level-up ceremony fires as separate overlay BEFORE Node 9 (see §3.7).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 12px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 6px;">Copy rules</div>
+      <ul style="list-style: none; font-size: 12px; color: var(--text-dim); line-height: 1.55; padding: 0; margin: 0;">
+        <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong style="color: var(--text);">Line 1 is ALWAYS one sentence.</strong> No compound sentences. No semicolons. No "and" joining two clauses.</li>
+        <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong style="color: var(--text);">No clinical language.</strong> "Cravings" is acceptable. NEVER "urges," "triggers," "lapse," "relapse," "abstinence," "sobriety."</li>
+        <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong style="color: var(--text);">Pool rotation tracking:</strong> Backend stores array of last 7 <code>{poolId, lineIndex, date}</code> records per user. Select from lines NOT in last-7-days → pick randomly → store selection.</li>
+        <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong style="color: var(--text);">Template tokens:</strong> <code>{X}</code> → <code>daysSinceStart</code> (except Pool E = <code>streakCount</code>). <code>{name}</code> → first name from profile; if null, omit gracefully (Pool H line 2 → <em>"Another one in the books."</em>).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- NO-OVERLAP ENFORCEMENT -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>No-overlap enforcement with Node 8 (Daily Close)</h2>
+      <p>Both nodes respond to the same signals (mood delta, slip status, hard day) but serve different functions. No two lines across the two nodes should convey the same message in the same words.</p>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; font-size: 12px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;"></div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Node 8 — Daily Close</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Node 9 — Complete Checkmark</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Energy</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">LOW</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">SUMMIT</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Function</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Observational acknowledgment</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Celebratory dopamine hit</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Tone</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"Here's what happened today"</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">"You did it"</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Style</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Observational, non-causal, dignifying</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Direct, punchy, rewarding</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Mood improved</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"Morning: Okay. Now: Good."</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"Better than this morning."</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Slip day</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"A slip and a heavy evening. You logged both and you're still here."</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"You came back. That's the whole game."</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Hard day</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"Today was heavy. You logged it."</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); font-style: italic;">"Cravings hit. You stayed."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFETTI PALETTE — STREAK TIER -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Confetti color palette — Streak Tier metals (LOCKED D-TIERS-V2)</h2>
+      <p>Color is driven by the user's <strong>current Streak Tier metal</strong> (avatar-ring metal color). GSM users use the SAME palette — only the tier LABEL is remapped, not the color. Band ranges below are <strong>🔥 streak counter values, not calendar days</strong>.</p>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1.2fr; font-size: 12px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Metal</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Primary</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Secondary</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Tertiary</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Distribution</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Copper (🔥 1–6, Starter)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #B87333;"></span><code style="font-size: 10px;">#B87333</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #D69A5C;"></span><code style="font-size: 10px;">#D69A5C</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF;"></span><code style="font-size: 10px;">#FFFFFF</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">50% / 30% / 20%</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Bronze (🔥 7–29, Early)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #CD7F32;"></span><code style="font-size: 10px;">#CD7F32</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #E4A062;"></span><code style="font-size: 10px;">#E4A062</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF;"></span><code style="font-size: 10px;">#FFFFFF</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">50% / 30% / 20%</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Silver (🔥 30–89, Intermediate)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #C0C0C0;"></span><code style="font-size: 10px;">#C0C0C0</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #E8E8E8;"></span><code style="font-size: 10px;">#E8E8E8</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF;"></span><code style="font-size: 10px;">#FFFFFF</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">45% / 30% / 25%</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Gold (🔥 90–364, Advanced)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFD700;"></span><code style="font-size: 10px;">#FFD700</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFE869;"></span><code style="font-size: 10px;">#FFE869</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF;"></span><code style="font-size: 10px;">#FFFFFF</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">50% / 30% / 20%</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Platinum (🔥 365–729, Expert)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #E5E4E2;"></span><code style="font-size: 10px;">#E5E4E2</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #C0E0E8;"></span><code style="font-size: 10px;">#C0E0E8</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF;"></span><code style="font-size: 10px;">#FFFFFF</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">45% / 30% / 25%</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Diamond (🔥 730–1,824, Veteran)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #B9F2FF;"></span><code style="font-size: 10px;">#B9F2FF</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #E0F7FF;"></span><code style="font-size: 10px;">#E0F7FF</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF;"></span><code style="font-size: 10px;">#FFFFFF</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">45% / 30% / 25%</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Obsidian (🔥 1,825+, Legend)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #0B0B0F; border: 1px solid #8A2BE2;"></span><code style="font-size: 10px;">#0B0B0F</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #8A2BE2;"></span><code style="font-size: 10px;">#8A2BE2</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF;"></span><code style="font-size: 10px;">#FFFFFF</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">40% / 30% / 30% + iridescent rim</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Pre-Copper (🔥 0, fallback)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #16A34A;"></span><code style="font-size: 10px;">#16A34A</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #22C55E;"></span><code style="font-size: 10px;">#22C55E</code></div><div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF;"></span><code style="font-size: 10px;">#FFFFFF</code> + mint</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">35% / 30% / 20% / 15%</div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; padding: 12px 14px; background: rgba(255,215,100,0.06); border: 1px solid rgba(255,215,100,0.28); border-radius: 10px; font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+      <strong style="color: #FFD764;">Tier 3 milestone adjustment:</strong> 20% of ALL particles replaced with gold accent <code>#F59E0B</code>, regardless of metal tier. Obsidian's iridescent particles are preserved; gold accents overlay regular particles.
+    </div>
+    <div style="margin-top: 10px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 6px;">Confetti particle physics</div>
+      <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 12px; color: var(--text-dim); line-height: 1.45;">
+        <div style="color: var(--text-muted);">Emission origin</div><div>Top-center of screen, 120° arc (60° each side of vertical)</div>
+        <div style="color: var(--text-muted);">Particle shapes</div><div>70% rectangles (4:7 aspect), 30% circles. Mixed randomly.</div>
+        <div style="color: var(--text-muted);">Base size</div><div>Rectangles: 6×10.5 dp · Circles: 6 dp diameter</div>
+        <div style="color: var(--text-muted);">Tier 3 large (15%)</div><div>1.5× base: rectangles 9×15.75 dp, circles 9 dp</div>
+        <div style="color: var(--text-muted);">Fall speed</div><div><code>gravity: 0.8</code> — particles reach bottom of 844px screen in ~2.5s</div>
+        <div style="color: var(--text-muted);">Rotation</div><div>Random X/Y/Z axis per particle · 1–3 full rotations during fall</div>
+        <div style="color: var(--text-muted);">Horizontal drift</div><div>Random per particle: −20 to +20 dp/s lateral · no uniform wind direction</div>
+        <div style="color: var(--text-muted);">Fade</div><div>Opacity 1.0 for 0–70% of fall · ease-out fade 1.0 → 0.0 over remaining 30%</div>
+        <div style="color: var(--text-muted);">Day 365 reversed gravity</div><div>Emit from bottom-center · rise 0.6× normal speed for 1s (~40% screen height) · decelerate to 0 · then fall with standard gravity</div>
+        <div style="color: var(--text-muted);">Performance</div><div>60 FPS target on iPhone SE 2 / budget Android 2GB. If frame drops → halve particle count dynamically.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATE-NIGHT MODE -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Late-night mode (9PM – 4AM)</h2>
+      <p>Highest-risk period for recovering users. <strong>Automatic — no user toggle.</strong> Fires when local device time is 21:00 – 03:59. Delivers a toned-down celebration that respects the environment (family asleep, user in bed, dark room) while still delivering the completion reward.</p>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr 1.2fr; font-size: 12.5px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Element</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Standard</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Late-night</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Duration</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">5–8s (per tier)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Reduced by 1–2s</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Audio</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Per tier (chime/triad)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);"><strong>OFF by default.</strong> Haptic only. User can re-enable in settings.</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Confetti count</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Per tier (40–120)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);"><strong>−30%</strong> (28–84 particles)</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Confetti brightness</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Full opacity</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);"><strong>0.7 opacity</strong></div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Screen-edge glow (Tier 3)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">0.4 opacity gold</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);"><strong>Removed</strong> (not rendered)</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Haptic</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Per tier</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Unchanged — silent to others</div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; font-size: 12px; color: var(--text-dim); line-height: 1.55;">
+      <strong style="color: var(--text);">Replayable:</strong> The celebration animation is replayable from the user's profile screen at any time. If a user completes at 2AM and wants to see the full-brightness version later, they can replay it. Store celebration metadata at completion (not recalculated).
+    </div>
+  </section>
+
+  <!-- GAMBLING SENSITIVITY MODE -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Gambling Sensitivity Mode</h2>
+      <p>Adjusts the celebration to avoid variable-reward aesthetics while preserving the completion ritual.</p>
+    </div>
+    <div style="margin-top: 10px; padding: 14px 18px; background: rgba(255,215,100,0.04); border: 1px solid rgba(255,215,100,0.28); border-left: 3px solid #FFD764; border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: #FFD764; letter-spacing: 0.2px; margin-bottom: 6px;">Why confetti still fires</div>
+      <p style="font-size: 12.5px; color: var(--text-dim); line-height: 1.55; margin: 0;">Confetti at Node 9 is a <strong>completion reward</strong> (fixed, deterministic, earned by finishing the path). It is NOT a variable reward like the Chest. Gambling sensitivity concerns are about unpredictable outcomes and variable reinforcement — the Complete Checkmark is neither. Removing confetti entirely would punish gambling-addiction users with a worse experience for no clinical reason.</p>
+    </div>
+    <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-soft);">
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr 1.2fr; font-size: 12.5px;">
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Element</div>
+        <div style="padding: 10px; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase;">Standard</div>
+        <div style="padding: 10px; background: rgba(255,215,100,0.08); font-weight: 700; font-size: 10px; letter-spacing: 0.4px; color: #FFD764; text-transform: uppercase;">Gambling Sensitivity</div>
+
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Confetti count</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">40–120 (per tier)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Fixed 30</strong> (all tiers)</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Shimmer</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Per tier</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>None</strong> — no shimmer, no sparkle, no glitter</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Tier/league name</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Shown on Summit</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Hidden.</strong> Stats cluster shows BC + streak only.</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Animation style</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Spring eases, variable sizes</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);"><strong>Deterministic</strong> — uniform size, linear fall, no random wobble</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Confetti color</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">League-colored</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);">League-colored (same as standard — color itself is not a gambling trigger)</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Gold accent (Tier 3)</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">20% gold</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);">20% gold retained (completion reward, not variable)</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Text pools</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Standard pools</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);">Identical (text is not a gambling trigger)</div>
+        <div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600;">Haptic/audio</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim);">Per tier</div><div style="padding: 8px 10px; border-top: 1px solid var(--border); color: var(--text-dim); background: rgba(255,215,100,0.03);">Unchanged</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEVEL-UP COORDINATION -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Level-up ceremony coordination</h2>
+      <p>The identity level-up ceremony (8-second fade-to-dim overlay from Gamification) fires as a <strong>separate full-screen overlay AFTER Node 8's [Done] tap and BEFORE Node 9's pre-tap state appears.</strong></p>
+    </div>
+    <div style="margin-top: 10px; padding: 14px 18px; background: rgba(185,140,255,0.04); border: 1px solid rgba(185,140,255,0.28); border-left: 3px solid #8B5CF6; border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: #B98CFF; letter-spacing: 0.2px; margin-bottom: 8px;">Sequence on a level-up day</div>
+      <ol style="margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--text-dim); line-height: 1.6;">
+        <li>User taps [Done] on Node 8 (Daily Close)</li>
+        <li>300ms crossfade → Level-up ceremony overlay begins (8 seconds: dim → level name → identity statement → celebration burst → social proof)</li>
+        <li>Ceremony ends → 300ms crossfade → Node 9 pre-tap state appears ("All done. Seal the day.")</li>
+        <li>User taps COMPLETE → standard Node 9 celebration fires with level-up text in Line 1</li>
+      </ol>
+      <p style="margin: 10px 0 0; font-size: 11.5px; color: var(--text-muted); font-style: italic; line-height: 1.55;">Why this order: the ceremony is the DEEP moment ("I'm The Resilient — I've been tested. I held."). Node 9 is the CELEBRATORY moment. Ceremony first = emotional weight. Node 9 second = dopamine reward. Putting the ceremony inside Node 9 would create a 16+ second screen that overstays.</p>
+    </div>
+  </section>
+
+  <!-- EDGE CASES -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Edge cases</h2>
+    </div>
+    <div style="margin-top: 10px; padding: 16px 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 6px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+        <div style="color: var(--text); font-weight: 600;">Day 1</div><div>Tier 1 · Line 1 hardcoded <em>"Day 1. You showed up."</em> (not from rotation pool) · Line 2 "See you tomorrow." · Streak does NOT tick visually (already 1) · standard Tier 1 confetti.</div>
+        <div style="color: var(--text); font-weight: 600;">Post-slip Day 1 (streak reset)</div><div><strong>Tier 2</strong> — slip triggers Tier 2 regardless of it being Day 1 of new streak. Pool B text. <strong>Confetti color unchanged</strong> — leagues/identity levels never revoked. Streak tick still fires (new streak = 1).</div>
+        <div style="color: var(--text); font-weight: 600;">Multiple signals match</div><div>Only ONE signal fires for text (highest priority). Tier independently selected. Example Day 30 + slip + cravings strong + mood worse → Tier 3 visuals + Pool A milestone text (Priority 2 beats Priority 3).</div>
+        <div style="color: var(--text); font-weight: 600;">Level-up + Day 90</div><div>Tier 3 (both trigger Tier 3). Level-up text (Priority 1 beats Priority 2).</div>
+        <div style="color: var(--text); font-weight: 600;">Late-night + milestone</div><div>Both apply. Milestone tier visuals fire WITH late-night adjustments: −30% confetti, audio OFF by default, screen-edge glow REMOVED, haptic unchanged, Pool A text unaffected.</div>
+        <div style="color: var(--text); font-weight: 600;">Light tier / minimum path</div><div>Same celebration as full-path users. The fact they showed up at all is the achievement. Tier still determined by signal logic.</div>
+        <div style="color: var(--text); font-weight: 600;">Force-quit before t=3100ms</div><div>+20 BC <strong>NOT credited.</strong> Summit does not appear. Next open → back to Node 9 pre-tap.</div>
+        <div style="color: var(--text); font-weight: 600;">Force-quit at/after t=3100ms</div><div>+20 BC <strong>credited.</strong> Summit doesn't replay on next open. Day is marked complete.</div>
+        <div style="color: var(--text); font-weight: 600;">Tomorrow exercise not assigned</div><div>Summit shows fallback: <em>"🔒 Tomorrow: Your next step is ready."</em> Same lock icon, same styling.</div>
+        <div style="color: var(--text); font-weight: 600;">Tier 2 + Tier 3 overlap</div><div><strong>Tier 3 wins.</strong> No hybrid tier — milestone visuals are already the most intense.</div>
+        <div style="color: var(--text); font-weight: 600;">BC credit network failure</div><div>Animation completes visually as normal (<strong>do NOT interrupt it</strong>). BC retried in background (3 retries, exponential backoff 2s/4s/8s). If all fail → stored locally, synced on next successful API call. User NEVER sees an error at Node 9. <strong>The celebration is sacred.</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLICITLY REJECTED -->
+  <section style="margin-top: 28px;">
+    <div class="section-header">
+      <h2>Explicitly rejected features</h2>
+      <p>Discussed and deliberately NOT added. Do not implement. Do not revisit without product decision.</p>
+    </div>
+    <div style="margin-top: 10px; padding: 16px 18px; background: rgba(255,107,122,0.05); border: 1px solid rgba(255,107,122,0.28); border-left: 3px solid #FF6B7A; border-radius: 10px;">
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 6px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+        <div style="color: var(--text); font-weight: 600;">"Share your day" prompt</div><div>Friction at peak-end. Social sharing belongs elsewhere (profile, community tab).</div>
+        <div style="color: var(--text); font-weight: 600;">Elaborate coin counter animation</div><div>The Chest (Node 5) owns the elaborate reward animation. Node 9 is simple ("+20" float to header).</div>
+        <div style="color: var(--text); font-weight: 600;">Tomorrow preview "peek" that reveals more</div><div>Overcomplicates the summit. Specific exercise title + lock icon is sufficient Zeigarnik.</div>
+        <div style="color: var(--text); font-weight: 600;">Mascot / character / avatar</div><div>Not part of BetterStep's design language. Clinical credibility &gt; playful characters.</div>
+        <div style="color: var(--text); font-weight: 600;">"Rate your session" prompt</div><div>Friction. Survey fatigue. User just completed 9 nodes — asking for feedback at the end creates bad taste.</div>
+        <div style="color: var(--text); font-weight: 600;">Stats overlay on milestone days</div><div>Text lives in the confetti headline instead (Pool A). Separate overlay adds visual clutter.</div>
+        <div style="color: var(--text); font-weight: 600;">Variable BC for milestones</div><div>Milestone bonuses are handled by the Chest (Node 5) milestone jackpots. Node 9 is always +20 fixed.</div>
+        <div style="color: var(--text); font-weight: 600;">Done button on Summit</div><div>Auto-dismiss with tap-to-hold replaced the manual button. Fewer taps = cleaner exit.</div>
+        <div style="color: var(--text); font-weight: 600;">Confetti only on milestones (v5.1)</div><div>Replaced with confetti every day (v5.2). Daily dopamine hit &gt; occasional surprise.</div>
+        <div style="color: var(--text); font-weight: 600;">Reduced celebration on slip days</div><div>Reversed: slip days get <strong>BIGGER</strong> celebration (Tier 2). Punishing vulnerability would harm retention.</div>
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </details>
+
 </div>
 </body>
 </html>
