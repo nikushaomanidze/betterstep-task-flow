@@ -5452,30 +5452,223 @@ Response 200:
       <p>Fires when <code>day_in_program % 7 == 0</code> AND at least 4 of the last 7 days have logged both AM and PM moods (data sufficiency). If data insufficient on a 7-multiple day, skip silently — no error, no "not enough data" message.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
-      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
-        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Copy by N-of-7 shifts up</div>
-        <div style="display: grid; grid-template-columns: 30px 1fr; gap: 4px 10px; font-size: 12px; color: var(--text-dim); line-height: 1.5;">
-          <div style="color: var(--text); font-weight: 700; text-align: center;">7</div><div style="font-style: italic;">"This week: your evening mood beat your morning mood all 7 days."</div>
-          <div style="color: var(--text); font-weight: 700; text-align: center;">6</div><div style="font-style: italic;">"…beat your morning mood 6 of 7 days."</div>
-          <div style="color: var(--text); font-weight: 700; text-align: center;">5</div><div style="font-style: italic;">"…beat your morning mood 5 of 7 days."</div>
-          <div style="color: var(--text); font-weight: 700; text-align: center;">4</div><div style="font-style: italic;">"…beat your morning mood 4 of 7 days."</div>
-          <div style="color: var(--text); font-weight: 700; text-align: center;">3</div><div style="font-style: italic;">"…3 of 7 days — and you showed up all 7."</div>
-          <div style="color: var(--text); font-weight: 700; text-align: center;">2</div><div style="font-style: italic;">"This week: 2 days of upward shift. Every week looks different."</div>
-          <div style="color: var(--text); font-weight: 700; text-align: center;">1</div><div style="font-style: italic;">"This week had one upward day. You still closed every night."</div>
-          <div style="color: #FF8A94; font-weight: 700; text-align: center;">0</div><div style="font-style: italic; color: #FF8A94;">"Heavy week. Evening moods didn't rise this time. You kept showing up — that's the only metric that stacks."</div>
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">01</span>
+        <span class="step-tag phase">LAYOUT</span>
+        <span class="step-title">Visual layout — block sits between header and mood compare</span>
+      </div>
+      <div class="step-columns">
+        <ul class="step-body">
+          <li><strong>Position:</strong> after header copy, before mood compare. Hairline divider above and below the block.</li>
+          <li><strong>Copy line</strong> (16pt, 90% opacity): N-of-7 sentence with bolded number (e.g., <em>"5 of 7 days"</em>).</li>
+          <li><strong>Sparkline:</strong> 7 dots × 8px diameter, equal spacing across container width. Connecting line: 1.5px stroke, soft gold <code>#F59E0B</code> at 60% opacity. Container ~48px tall.</li>
+          <li><strong>Optional day labels</strong> (Mon–Sun): 12pt, 50% opacity, centered under each dot.</li>
+          <li><strong>No Y-axis, no numbers, no legend.</strong> Felt-shape, not a chart — absolute mood values create "my baseline is low" shame trigger.</li>
+          <li><strong>Pattern Dot is HIDDEN</strong> on weekly arc days (no need for tap-to-expand when full arc already shows).</li>
+        </ul>
+        <div class="step-wireframe">
+          <div class="wf-frame">
+            <div class="wf-status">9:41 · iPhone status bar</div>
+            <div class="wf-box from-back" style="margin-top: 18px;">
+              <div class="wf-box-label">HEADER · Branch H1 · from back</div>
+              <div style="font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.5; font-style: italic;">Day 14, Nika. Today you practiced <em>saying no at work</em>. That skill gets stronger with use.</div>
+            </div>
+            <div class="wf-box from-back" style="margin-top: 10px;">
+              <div class="wf-box-label">WEEKLY ARC · sparkline + N-of-7 copy · from back</div>
+              <div style="font-size: 11px; color: rgba(255,255,255,0.85); line-height: 1.5; margin-bottom: 8px;">This week: your evening mood beat your morning mood <strong style="color: #F59E0B;">5 of 7 days</strong>.</div>
+              <svg width="100%" height="20" viewBox="0 0 240 20" style="display: block;" preserveAspectRatio="none">
+                <line x1="12" y1="10" x2="228" y2="10" stroke="#F59E0B" stroke-opacity="0.6" stroke-width="1.2"/>
+                <circle cx="12"  cy="10" r="3.5" fill="#F59E0B"/>
+                <circle cx="48"  cy="10" r="3.5" fill="#F59E0B"/>
+                <circle cx="84"  cy="10" r="3.5" fill="#9CA3AF"/>
+                <circle cx="120" cy="10" r="3.5" fill="#F59E0B"/>
+                <circle cx="156" cy="10" r="3.5" fill="#F59E0B"/>
+                <circle cx="192" cy="10" r="3.5" fill="#64748B"/>
+                <circle cx="228" cy="10" r="3.5" fill="#F59E0B"/>
+              </svg>
+              <div style="display: grid; grid-template-columns: repeat(7, 1fr); margin-top: 4px;">
+                <div style="text-align: center; font-size: 8px; color: rgba(255,255,255,0.4);">M</div>
+                <div style="text-align: center; font-size: 8px; color: rgba(255,255,255,0.4);">T</div>
+                <div style="text-align: center; font-size: 8px; color: rgba(255,255,255,0.4);">W</div>
+                <div style="text-align: center; font-size: 8px; color: rgba(255,255,255,0.4);">T</div>
+                <div style="text-align: center; font-size: 8px; color: rgba(255,255,255,0.4);">F</div>
+                <div style="text-align: center; font-size: 8px; color: rgba(255,255,255,0.4);">S</div>
+                <div style="text-align: center; font-size: 8px; color: rgba(255,255,255,0.4);">S</div>
+              </div>
+            </div>
+            <div class="wf-box from-mobile" style="margin-top: 10px;">
+              <div class="wf-box-label">MOOD COMPARE BELOW · from mobile</div>
+              <div style="font-size: 9px; color: rgba(255,255,255,0.4); text-align: center;">[ This morning · How about now? · 5 faces · Done ]</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div style="padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft);">
-        <div style="font-size: 11px; letter-spacing: 0.4px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Sparkline animation (1.0s total)</div>
-        <ul style="list-style: none; font-size: 12.5px; color: var(--text-dim); line-height: 1.6; padding: 0; margin: 0;">
-          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>7 dots, left-to-right, one per day of the week.</li>
-          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong>Dot colors:</strong> Improved = gold <code>#F59E0B</code> · Same = neutral grey <code>#9CA3AF</code> · Worse = muted slate <code>#64748B</code> (<strong>NOT red</strong> — red on mental-health chart is iatrogenic) · Missing = open circle (hollow ring).</li>
-          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>0–400ms: all 7 dots fade in simultaneously.</li>
-          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>400–800ms: connecting line sweeps left-to-right (stroke-dashoffset). Line color: soft gold at 60% opacity.</li>
-          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span>800–1000ms: sparkline holds at 100%.</li>
-          <li style="padding: 3px 0 3px 12px; position: relative;"><span style="position: absolute; left: 0; color: var(--text-muted);">·</span><strong>No vertical axis labels. No Y-axis.</strong> This is a felt-shape, not a chart. Showing absolute mood values creates a "my baseline is low" shame trigger.</li>
-        </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">02</span>
+        <span class="step-tag user">ANIM</span>
+        <span class="step-title">Sparkline animation — 1.0s total, fires 400ms after header fades in</span>
+      </div>
+      <ul class="step-body">
+        <li><strong>0–400ms:</strong> all 7 dots fade in <strong>simultaneously</strong> (opacity 0% → 100%). NO line yet.</li>
+        <li><strong>400–800ms:</strong> connecting line sweeps left-to-right (<code>stroke-dashoffset</code> animation). Line color: soft gold <code>#F59E0B</code> at 60% opacity, 1.5px stroke.</li>
+        <li><strong>800–1000ms:</strong> sparkline holds at 100% opacity, complete shape.</li>
+        <li><strong>NO audio. NO haptic.</strong> Pure visual signal.</li>
+        <li><strong>Reduce Motion fallback:</strong> all 7 dots render simultaneously at 100%, line drawn instantly. No L→R sweep. Total Daily Close duration drops 1s → ~10.9s.</li>
+      </ul>
+    </div>
+
+    <div class="step-arrow">↓</div>
+
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-num">03</span>
+        <span class="step-tag phase">STATES</span>
+        <span class="step-title">All 8 sparkline states (one per N-of-7 value) + copy</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr; gap: 6px;">
+
+        <div style="display: grid; grid-template-columns: 28px 140px 1fr; gap: 14px; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px;">
+          <div style="color: var(--text); font-weight: 700; text-align: center; font-size: 13px;">7</div>
+          <svg width="140" height="14" viewBox="0 0 140 14" style="display: block;">
+            <line x1="6" y1="7" x2="134" y2="7" stroke="#F59E0B" stroke-opacity="0.6" stroke-width="1"/>
+            <circle cx="6"     cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="27.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="48.7"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="70"    cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="91.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="112.7" cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="134"   cy="7" r="2.5" fill="#F59E0B"/>
+          </svg>
+          <div style="font-size: 12px; color: var(--text-dim); font-style: italic; line-height: 1.5;">"This week: your evening mood beat your morning mood <strong style="color: var(--text); font-style: normal;">all 7 days</strong>."</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 28px 140px 1fr; gap: 14px; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px;">
+          <div style="color: var(--text); font-weight: 700; text-align: center; font-size: 13px;">6</div>
+          <svg width="140" height="14" viewBox="0 0 140 14" style="display: block;">
+            <line x1="6" y1="7" x2="134" y2="7" stroke="#F59E0B" stroke-opacity="0.6" stroke-width="1"/>
+            <circle cx="6"     cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="27.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="48.7"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="70"    cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="91.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="112.7" cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="134"   cy="7" r="2.5" fill="#F59E0B"/>
+          </svg>
+          <div style="font-size: 12px; color: var(--text-dim); font-style: italic; line-height: 1.5;">"…beat your morning mood <strong style="color: var(--text); font-style: normal;">6 of 7 days</strong>."</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 28px 140px 1fr; gap: 14px; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px;">
+          <div style="color: var(--text); font-weight: 700; text-align: center; font-size: 13px;">5</div>
+          <svg width="140" height="14" viewBox="0 0 140 14" style="display: block;">
+            <line x1="6" y1="7" x2="134" y2="7" stroke="#F59E0B" stroke-opacity="0.6" stroke-width="1"/>
+            <circle cx="6"     cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="27.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="48.7"  cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="70"    cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="91.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="112.7" cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="134"   cy="7" r="2.5" fill="#F59E0B"/>
+          </svg>
+          <div style="font-size: 12px; color: var(--text-dim); font-style: italic; line-height: 1.5;">"…beat your morning mood <strong style="color: var(--text); font-style: normal;">5 of 7 days</strong>."</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 28px 140px 1fr; gap: 14px; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px;">
+          <div style="color: var(--text); font-weight: 700; text-align: center; font-size: 13px;">4</div>
+          <svg width="140" height="14" viewBox="0 0 140 14" style="display: block;">
+            <line x1="6" y1="7" x2="134" y2="7" stroke="#F59E0B" stroke-opacity="0.6" stroke-width="1"/>
+            <circle cx="6"     cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="27.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="48.7"  cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="70"    cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="91.3"  cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="112.7" cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="134"   cy="7" r="2.5" fill="#F59E0B"/>
+          </svg>
+          <div style="font-size: 12px; color: var(--text-dim); font-style: italic; line-height: 1.5;">"…beat your morning mood <strong style="color: var(--text); font-style: normal;">4 of 7 days</strong>."</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 28px 140px 1fr; gap: 14px; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px;">
+          <div style="color: var(--text); font-weight: 700; text-align: center; font-size: 13px;">3</div>
+          <svg width="140" height="14" viewBox="0 0 140 14" style="display: block;">
+            <line x1="6" y1="7" x2="134" y2="7" stroke="#F59E0B" stroke-opacity="0.6" stroke-width="1"/>
+            <circle cx="6"     cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="27.3"  cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="48.7"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="70"    cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="91.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="112.7" cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="134"   cy="7" r="2.5" fill="#64748B"/>
+          </svg>
+          <div style="font-size: 12px; color: var(--text-dim); font-style: italic; line-height: 1.5;">"…<strong style="color: var(--text); font-style: normal;">3 of 7 days</strong> — and you showed up all 7."</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 28px 140px 1fr; gap: 14px; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px;">
+          <div style="color: var(--text); font-weight: 700; text-align: center; font-size: 13px;">2</div>
+          <svg width="140" height="14" viewBox="0 0 140 14" style="display: block;">
+            <line x1="6" y1="7" x2="134" y2="7" stroke="#F59E0B" stroke-opacity="0.6" stroke-width="1"/>
+            <circle cx="6"     cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="27.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="48.7"  cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="70"    cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="91.3"  cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="112.7" cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="134"   cy="7" r="2.5" fill="#9CA3AF"/>
+          </svg>
+          <div style="font-size: 12px; color: var(--text-dim); font-style: italic; line-height: 1.5;">"This week: <strong style="color: var(--text); font-style: normal;">2 days of upward shift</strong>. Every week looks different."</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 28px 140px 1fr; gap: 14px; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px;">
+          <div style="color: var(--text); font-weight: 700; text-align: center; font-size: 13px;">1</div>
+          <svg width="140" height="14" viewBox="0 0 140 14" style="display: block;">
+            <line x1="6" y1="7" x2="134" y2="7" stroke="#F59E0B" stroke-opacity="0.6" stroke-width="1"/>
+            <circle cx="6"     cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="27.3"  cy="7" r="2.5" fill="#F59E0B"/>
+            <circle cx="48.7"  cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="70"    cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="91.3"  cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="112.7" cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="134"   cy="7" r="2.5" fill="#64748B"/>
+          </svg>
+          <div style="font-size: 12px; color: var(--text-dim); font-style: italic; line-height: 1.5;">"This week had <strong style="color: var(--text); font-style: normal;">one upward day</strong>. You still closed every night."</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 28px 140px 1fr; gap: 14px; align-items: center; padding: 8px 12px; background: rgba(255, 138, 148, 0.05); border: 1px solid rgba(255, 138, 148, 0.25); border-radius: 8px;">
+          <div style="color: #FF8A94; font-weight: 700; text-align: center; font-size: 13px;">0</div>
+          <svg width="140" height="14" viewBox="0 0 140 14" style="display: block;">
+            <line x1="6" y1="7" x2="134" y2="7" stroke="#F59E0B" stroke-opacity="0.4" stroke-width="1"/>
+            <circle cx="6"     cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="27.3"  cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="48.7"  cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="70"    cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="91.3"  cy="7" r="2.5" fill="#64748B"/>
+            <circle cx="112.7" cy="7" r="2.5" fill="#9CA3AF"/>
+            <circle cx="134"   cy="7" r="2.5" fill="#64748B"/>
+          </svg>
+          <div style="font-size: 12px; color: #FF8A94; font-style: italic; line-height: 1.5;"><strong style="color: #FF8A94; font-style: normal;">"Heavy week.</strong> Evening moods didn't rise this time. You kept showing up — that's the only metric that stacks."</div>
+        </div>
+
+      </div>
+      <div style="margin-top: 12px; padding: 10px 12px; background: rgba(255,255,255,0.025); border: 1px solid var(--border); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 18px; font-size: 11.5px; color: var(--text-dim);">
+        <span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #F59E0B; margin-right: 6px; vertical-align: middle;"></span><strong style="color: var(--text);">Improved</strong> — gold <code>#F59E0B</code></span>
+        <span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #9CA3AF; margin-right: 6px; vertical-align: middle;"></span><strong style="color: var(--text);">Same</strong> — neutral grey <code>#9CA3AF</code></span>
+        <span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #64748B; margin-right: 6px; vertical-align: middle;"></span><strong style="color: var(--text);">Worse</strong> — muted slate <code>#64748B</code> <em>(NOT red — iatrogenic)</em></span>
+        <span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: transparent; border: 1px solid #9CA3AF; margin-right: 6px; vertical-align: middle;"></span><strong style="color: var(--text);">Missing day</strong> — hollow ring</span>
+      </div>
+    </div>
+
+    <!-- Data-sufficiency gate edge case -->
+    <div style="margin-top: 14px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.2px; margin-bottom: 8px;">Data-sufficiency gate — silent skip</div>
+      <div style="display: grid; grid-template-columns: 110px 1fr; gap: 4px 14px; font-size: 12.5px; color: var(--text-dim); line-height: 1.5;">
+        <div style="color: var(--text); font-weight: 600;">Trigger</div><div>Day is 7-multiple (Day 7/14/21/28…) but <strong>fewer than 4 of last 7 days</strong> have logged both AM + PM mood.</div>
+        <div style="color: var(--text); font-weight: 600;">Behavior</div><div>Skip the entire weekly arc block. <strong>No error, no "not enough data" message</strong> — clinical tone never scolds missing data.</div>
+        <div style="color: var(--text); font-weight: 600;">Layout impact</div><div>Header transitions directly into mood compare. Total session duration drops back to baseline ~10.9s.</div>
       </div>
     </div>
   </section>
